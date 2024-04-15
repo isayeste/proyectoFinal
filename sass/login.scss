@@ -1,0 +1,39 @@
+.contenedor{
+    background-color: #AC9ACF;
+    height: 100vh;
+    // height: 100vh;
+    display: grid;
+    // align-items: center;
+    // justify-content: center;
+    .logo{
+        img{
+            width: 150px;
+        }
+    }
+    .contenido{
+        height: 60vh;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        .formularios{
+            // background-color: aqua;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            .reg{
+                background-color: #F2F2F2;
+                // height: 300px;
+                padding: 100px;
+                border-radius: 20px;
+                h2{
+                    color: #372954;
+                }
+                .campo{
+                    display: grid;
+                    gap: 5px;
+                }
+            }
+        }
+        
+    }
+}

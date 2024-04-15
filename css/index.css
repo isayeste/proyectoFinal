@@ -1,0 +1,33 @@
+.contenedor {
+  background-color: #AC9ACF;
+  height: 100vh;
+  display: grid;
+}
+.contenedor .logo img {
+  width: 150px;
+}
+.contenedor .contenido {
+  height: 60vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor .contenido .formularios {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+.contenedor .contenido .formularios .reg {
+  background-color: #F2F2F2;
+  padding: 100px;
+  border-radius: 20px;
+}
+.contenedor .contenido .formularios .reg h2 {
+  color: #372954;
+}
+.contenedor .contenido .formularios .reg .campo {
+  display: grid;
+  gap: 5px;
+}
+
+/*# sourceMappingURL=index.css.map */
