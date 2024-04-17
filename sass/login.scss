@@ -1,39 +1,33 @@
 .contenedor{
-    background-color: #AC9ACF;
     height: 100vh;
-    // height: 100vh;
+    // background-image: url('../imagenes/fondo1.png');
+    background-repeat: no-repeat;
     display: grid;
-    // align-items: center;
-    // justify-content: center;
-    .logo{
-        img{
-            width: 150px;
-        }
+    grid-template-rows: 1fr 10fr;
+    // opacity: 0.99;
+    
+    .superior{
+        // background-color: rgba(0, 0, 0, 0.3);
+        // background: linear-gradient(177deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+        background-color: rgba(255, 255, 255, 0.9);
+        background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+
     }
     .contenido{
-        height: 60vh;
+        // background-color: rgba(255, 255, 255, 0.9);
+        // background-color: rgba(0, 0, 0, 0.5);
         display: grid;
-        justify-content: center;
         align-items: center;
-        .formularios{
-            // background-color: aqua;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            .reg{
-                background-color: #F2F2F2;
-                // height: 300px;
-                padding: 100px;
-                border-radius: 20px;
-                h2{
-                    color: #372954;
-                }
-                .campo{
-                    display: grid;
-                    gap: 5px;
-                }
-            }
-        }
+        justify-content: center;
         
+        .formulario{
+            // background-color: rgba(255, 255, 255, 0.8);
+            z-index: 6;
+            background: rgb(255, 255, 255);
+            background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+            padding: 50px;
+        }
     }
+    
 }

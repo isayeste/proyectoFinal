@@ -1,33 +1,24 @@
 .contenedor {
-  background-color: #AC9ACF;
   height: 100vh;
+  background-repeat: no-repeat;
   display: grid;
+  grid-template-rows: 1fr 10fr;
 }
-.contenedor .logo img {
-  width: 150px;
+.contenedor .superior {
+  background-color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
 }
 .contenedor .contenido {
-  height: 60vh;
   display: grid;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
-.contenedor .contenido .formularios {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
-}
-.contenedor .contenido .formularios .reg {
-  background-color: #F2F2F2;
-  padding: 100px;
-  border-radius: 20px;
-}
-.contenedor .contenido .formularios .reg h2 {
-  color: #372954;
-}
-.contenedor .contenido .formularios .reg .campo {
-  display: grid;
-  gap: 5px;
+.contenedor .contenido .formulario {
+  z-index: 6;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+  padding: 50px;
 }
 
 /*# sourceMappingURL=index.css.map */
