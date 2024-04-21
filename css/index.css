@@ -3,11 +3,44 @@
   background-repeat: no-repeat;
   display: grid;
   grid-template-rows: 1fr 10fr;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(208, 224, 255) 100%);
 }
 .contenedor .superior {
-  background-color: rgba(255, 255, 255, 0.9);
-  background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgb(94, 101, 120);
+  background: linear-gradient(180deg, rgb(94, 101, 120) 0%, rgba(94, 101, 120, 0.5) 50%, rgba(94, 101, 120, 0.1) 100%);
+}
+.contenedor .superior .contSup {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+.contenedor .superior .contSup img {
+  margin: 20px 50px;
+  width: 130px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  animation: girar 8s linear infinite;
+}
+@keyframes girar {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(0deg);
+  }
+  75% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+.contenedor .superior .contSup a {
+  justify-self: flex-end;
+  padding-right: 50px;
 }
 .contenedor .contenido {
   display: grid;
@@ -16,9 +49,8 @@
 }
 .contenedor .contenido .formulario {
   z-index: 6;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
-  padding: 50px;
+  border: 1px solid black;
+  padding: 200px 100px;
 }
 
 /*# sourceMappingURL=index.css.map */
