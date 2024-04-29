@@ -14,10 +14,28 @@
                 <a href="inicioPsicologo.html">Acceso Profesionales</a>
             </div> 
         </div>
+        
         <div class="contenedorCalendario">
+            <div id="botones">
+                <button id="anterior">Anterior</button>
+                <button id="siguiente">Siguiente</button>
+            </div>
             <!-- Aquí se mostrará el calendario -->
-            <table class="calendar" id="calendar"></table>
+            <div id="nombreMes"></div>
+            <table class="calendar" id="calendario"></table>
         </div>
+        <!--  -->
+        <table id="horas">
+            <thead>
+                <tr>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody id="horasCuerpo">
+                <!-- Aquí se generarán las horas -->
+            </tbody>
+        </table>
+
     </div>
 
     <script src="../js/calendar.js"></script>
