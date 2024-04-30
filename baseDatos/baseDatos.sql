@@ -5,7 +5,8 @@ use psyconnect;
 CREATE TABLE pacientes(
     emailPaciente VARCHAR(100) PRIMARY KEY NOT NULL,
     nombre VARCHAR(100),
-    edad INT
+    fechaNacimiento DATE,
+    fotoPerfil BLOB
 );
 
 -- HORARIOS
