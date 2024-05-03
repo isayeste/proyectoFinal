@@ -25,7 +25,7 @@
     }
     finally {
     // Cerrar la conexión
-    $conexion = null;
+        $conexion = null;
     }
 
 ?>
