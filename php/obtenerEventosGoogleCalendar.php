@@ -23,7 +23,7 @@ $client->setRedirectUri($redirect_uri);
 // Si se recibió un código de autorización, intercambia el código por un token de acceso
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    // Verifica si hay errores
+    // Verificar si hay errores
     if (array_key_exists('error', $token)) {
         die('Error al intentar obtener el token de acceso: ' . $token['error']);
     }
