@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (target.tagName === 'TD') {
             const dia = parseInt(target.textContent);
             const fecha = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), dia);
-            // Aquí puedes hacer lo que necesites con la fecha seleccionada
+            // VOY POR AQUÍ!!!!!!!!!!!!!
             console.log(fecha);
         }
     });
