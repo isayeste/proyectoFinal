@@ -48,7 +48,7 @@ $newEvent = new Event([
     'end' => ['dateTime' => $fecha->format('Y-m-d') . 'T22:00:00', 'timeZone' => 'Europe/Madrid'],
 ]);
 
-// Inserta el evento en el calendario del usuario
+// Insertar el evento en el calendario del usuario
 $calendarId = 'primary';
 $createdEvent = $calendarService->events->insert($calendarId, $newEvent);
 
@@ -58,7 +58,7 @@ echo 'Evento creado: ' . $createdEvent->getId();
 // Hacer llamadas a la API de Google Calendar
 $events = $calendarService->events->listEvents('primary');
 
-// Almacena los eventos
+// Almacenar los eventos en el array
 $eventos = [];
 foreach ($events->getItems() as $event) {
     $eventos[] = [

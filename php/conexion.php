@@ -32,7 +32,7 @@
         }
     }
 
-    // Si no hay un token de acceso, redirige al usuario a la página de autorización
+    // Si no hay un token de acceso, redirige al usuario a loguearse
     if (!isset($token['access_token'])) {
         $authUrl = $cliente->createAuthUrl();
         header('Location: ' . $authUrl);
