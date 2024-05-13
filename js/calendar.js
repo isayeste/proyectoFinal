@@ -3,64 +3,73 @@ let fechaActual = new Date();
 
 // Función para obtener la fecha en formato "YYYY-MM-DD"
 function obtenerFechaFormateada(fecha) {
-    const dia = fecha.getDate();
-    const mes = fecha.getMonth() + 1;
-    const anio = fecha.getFullYear();
-    return `${anio}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth() + 1;
+    let anio = fecha.getFullYear();
+    if (mes < 10) {
+        mes = '0' + mes;
+    }
+    if (dia < 10) {
+        dia = '0' + dia;
+    }
+    return anio + '-' + mes + '-' + dia;
 }
 
+
 function generarCalendario(fecha) {
-    const cuerpoCalendario = document.getElementById('calendario');
-    const nombreMesElemento = document.getElementById('nombreMes');
+    // Obtener referencia al elemento del calendario y al elemento del nombre del mes
+    let cuerpoCalendario = document.getElementById('calendario');
+    let nombreMesElemento = document.getElementById('nombreMes');
     cuerpoCalendario.innerHTML = '';
 
-    // Variable local para almacenar las fechas del JSON
+    // Variable para almacenar las fechas obtenidas
     let fechasBD;
 
-    // Llamada a la función para obtener las fechas
-    obtenerFechas().then(fechas => {
-        // Almacenar las fechas en la variable local
+    // Obtener fechas de la base de datos -> asíncronía para que de tiempo a que cargue
+    obtenerFechas().then(function(fechas) {
+        // Almacenar las fechas obtenidas
         fechasBD = fechas;
 
-        // Obtener el primer y último día del mes
-        const primerDiaMes = new Date(fecha.getFullYear(), fecha.getMonth(), 1);
-        const ultimoDiaMes = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0);
+        // Calcular el primer y último día del mes
+        let primerDiaMes = new Date(fecha.getFullYear(), fecha.getMonth(), 1);
+        let ultimoDiaMes = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0);
 
-        // Obtener el día de la semana del primer día del mes (0 = domingo, 1 = lunes, ..., 6 = sábado)
+        // Obtener el día de la semana del primer día del mes
         let primerDiaSemana = primerDiaMes.getDay();
-        // Ajustar para que el lunes sea el primer día (1 = lunes, ..., 7 = domingo)
-        primerDiaSemana = (primerDiaSemana === 0) ? 7 : primerDiaSemana;
-        // Crear una fila para los nombres de los días de la semana
-        const filaDiasSemana = document.createElement('tr');
-        const nombresDiasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-        nombresDiasSemana.forEach(nombreDia => {
-            const celdaDiaSemana = document.createElement('th');
+        // Ajustar para que el lunes sea el primer día
+        if (primerDiaSemana === 0) {
+            primerDiaSemana = 7;
+        }
+
+        // Crear fila para los nombres de los días de la semana
+        let filaDiasSemana = document.createElement('tr');
+        let nombresDiasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+        nombresDiasSemana.forEach(function(nombreDia) {
+            let celdaDiaSemana = document.createElement('th');
             celdaDiaSemana.textContent = nombreDia;
             filaDiasSemana.append(celdaDiaSemana);
         });
         cuerpoCalendario.append(filaDiasSemana);
 
-        // Crear una fecha para iterar sobre los días del mes
+        // Crear fecha para iterar sobre los días del mes
         let fechaIteracion = new Date(primerDiaMes);
-        
-        fechaIteracion.setDate(fechaIteracion.getDate() - (primerDiaSemana - 1)); // Ajustar para empezar desde el lunes
+        fechaIteracion.setDate(fechaIteracion.getDate() - (primerDiaSemana - 1));
         // Generar las filas del calendario
         for (let i = 0; i < 6; i++) {
-            const fila = document.createElement('tr');
+            let fila = document.createElement('tr');
             for (let j = 0; j < 7; j++) {
-                const diaC = fechaIteracion.getDate();
-                const mesC = fechaIteracion.getMonth();
-                const anioC = fechaIteracion.getFullYear();
-                const fechaC = obtenerFechaFormateada(fechaIteracion);
+                let diaC = fechaIteracion.getDate();
+                let mesC = fechaIteracion.getMonth();
+                let anioC = fechaIteracion.getFullYear();
+                let fechaC = obtenerFechaFormateada(fechaIteracion);
 
-                const celda = document.createElement('td');
-                // Comparar la fecha formateada con las fechas del JSON
+                let celda = document.createElement('td');
+                // Comparar la fecha formateada con las fechas obtenidas de la base de datos -> colorear
                 if(fechasBD.includes(fechaC)){
-                    console.log('holilla');
+                    //console.log('holilla');
                     celda.style.backgroundColor = '#98FB98';
                 }
 
-                
                 // Establecer el número del día en la celda
                 celda.textContent = fechaIteracion.getDate();
                 // Estilo para los días que no pertenecen al mes actual
@@ -68,21 +77,21 @@ function generarCalendario(fecha) {
                     celda.style.color = '#D3D3D3';
                 }
 
-                // Añadir la celda a la fila
                 fila.append(celda);
-                // Avanzar al siguiente día
                 fechaIteracion.setDate(fechaIteracion.getDate() + 1);
             }
-            // Añadir la fila al cuerpo del calendario
             cuerpoCalendario.append(fila);
         }
         // Mostrar el nombre del mes
-        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        nombreMesElemento.textContent = meses[fecha.getMonth()] + ' ' + primerDiaMes.getFullYear();
-    }).catch(error => {
+        let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        let nombreMes = meses[fecha.getMonth()];
+        let anio = primerDiaMes.getFullYear();
+        nombreMesElemento.textContent = nombreMes + ' ' + anio;
+    }).catch(function(error) {
         console.error(error);
     });
 }
+
 
 function mesAnterior() {
     fechaActual.setMonth(fechaActual.getMonth() - 1);
@@ -99,7 +108,7 @@ function obtenerFechas() {
         .then(respuesta => respuesta.json())
         .then(horarios => {
             const fechas = horarios.map(horario => horario.fechaInicio.split(' ')[0]);
-            // Eliminar duplicados manteniendo el orden original
+            // Eliminar duplicados
             const fechasUnicas = fechas.filter((fecha, index) => fechas.indexOf(fecha) === index);
             return fechasUnicas;
         })
