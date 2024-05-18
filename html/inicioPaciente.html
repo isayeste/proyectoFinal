@@ -12,19 +12,37 @@
         <div class="superior">
             <div class="contSup">
                 <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
-                <a href="inicioPsicologo.html">Acceso Profesionales</a>
             </div> 
         </div>
         
         <div class="contenedorCalendario">
-            <div id="botones">
-                <button id="anterior">Anterior</button>
-                <button id="siguiente">Siguiente</button>
-            </div>
+            
             <!-- Contenedor calendario -->
-            <h2 id="nombreMes"></h2>
+            <div class="h2">
+                <h2 id="nombreMes"></h2>
+            </div>
             <table class="calendar" id="calendario"></table>
-            <div id="fechas"></div>
+            <div id="botones" class="botones">
+                <div><button class="boton" id="anterior">Anterior</button></div>
+                <div class="final"><button class="boton" id="siguiente">Siguiente</button></div>
+                
+                
+            </div>
+            <div id="horas" class="horas">
+                <h3>Horarios disponibles</h3>
+                
+            </div>
+            <div class="franjasHorarias">
+                <div class="franja">
+                    <h5>Mañana</h5>
+                </div>
+                <div class="franja">
+                    <h5>Tarde</h5>
+                </div>
+                <div class="franja">
+                    <h5>Noche</h5>
+                </div>
+            </div>
         </div>
         
 

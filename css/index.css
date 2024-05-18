@@ -1,10 +1,10 @@
 .contenedor {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 100vh;
   background-repeat: no-repeat;
   display: grid;
   grid-template-rows: 1fr 10fr;
-  background: rgb(255, 255, 255);
-  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(208, 224, 255) 100%);
+  background-color: #ccc4de;
 }
 .contenedor .superior {
   background: rgb(94, 101, 120);
@@ -47,10 +47,24 @@
   align-items: center;
   justify-content: center;
 }
-.contenedor .contenido .formulario {
-  z-index: 6;
+.contenedor .contenido .interiorContenido {
+  display: grid;
+  gap: 100px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.contenedor .contenido .interiorContenido .enlace {
+  text-align: center;
+  padding: 20px;
+  background: #9796AD;
+  border: 1px solid #9796AD;
+}
+.contenedor .contenido .interiorContenido .enlace a {
+  text-decoration: none;
+  color: #F2F2F2;
+}
+.contenedor .contenido .interiorContenido .enlace:hover {
+  background-color: #B3AEC7;
   border: 1px solid black;
-  padding: 200px 100px;
 }
 
 .calendar {
@@ -71,6 +85,46 @@
 }
 .calendar .selected {
   background-color: lightblue;
+}
+
+.contenedorCalendario {
+  padding: 60px;
+}
+.contenedorCalendario .h2 {
+  display: grid;
+  justify-items: center;
+  color: #000000;
+}
+.contenedorCalendario .botones {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 30px;
+}
+.contenedorCalendario .botones div .boton {
+  padding: 10px 20px;
+  background-color: #9796AD;
+  border: 1px solid #9796AD;
+  color: #F2F2F2;
+}
+.contenedorCalendario .botones div .boton:hover {
+  background-color: #B3AEC7;
+  border: 1px solid black;
+}
+.contenedorCalendario .botones .final {
+  display: flex;
+  justify-content: end;
+}
+.contenedorCalendario .horas {
+  display: grid;
+  justify-items: center;
+}
+.contenedorCalendario .franjasHorarias {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.contenedorCalendario .franjasHorarias .franja {
+  margin: 5px;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

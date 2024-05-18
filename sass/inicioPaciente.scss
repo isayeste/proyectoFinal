@@ -1,0 +1,58 @@
+.contenedorCalendario{
+    padding: 60px;
+    .h2{
+        display: grid;
+        // align-items: center;
+        justify-items: center;
+        color: #000000;
+    }
+
+    .botones{
+        //background-color: aqua;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        //justify-items: space-between;
+        padding-top: 30px;
+
+        div{
+            //background-color: aqua;
+            //display: grid;
+            //justify-content: space-between;
+            //grid-template-columns: repeat(2, 1fr);
+            //gap: 60px;
+
+            .boton{
+                padding: 10px 20px;
+                background-color: #9796AD;
+                border: 1px solid #9796AD;
+                color: #F2F2F2;
+            }
+            .boton:hover{
+                background-color: #B3AEC7;
+                border: 1px solid black;
+            }
+            
+        }
+        .final{
+            display: flex;
+            justify-content: end;
+        }
+        
+    }
+    .horas{
+        display: grid;
+        justify-items: center;
+
+    }
+    .franjasHorarias{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        .franja{
+            // border: 1px solid #B3AEC7;
+            // border-radius: 7px;
+            margin: 5px;
+            padding: 5px
+        }
+    }
+
+}

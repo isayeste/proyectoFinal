@@ -1,12 +1,14 @@
 .contenedor{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 100vh;
     // background-image: url('../imagenes/fondo1.png');
     background-repeat: no-repeat;
     display: grid;
     grid-template-rows: 1fr 10fr;
     // opacity: 0.99;
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(208,224,255,1) 100%);
+    // background: rgb(255,255,255);
+    // background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(208,224,255,1) 100%);
+    background-color: #ccc4de;
     
     .superior{
         // background-color: rgba(0, 0, 0, 0.3);
@@ -58,13 +60,41 @@
         align-items: center;
         justify-content: center;
         
-        .formulario{
+        .interiorContenido{
             // background-color: rgba(255, 255, 255, 0.8);
-            z-index: 6;
-            border: 1px solid black;
+            //z-index: 6;
+            //border: 1px solid black;
             // background: rgb(255, 255, 255);
             // background: linear-gradient(177deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
-            padding: 200px 100px;
+            //padding: 200px 100px;
+            display: grid;
+            gap: 100px;
+            grid-template-columns: repeat(2, 1fr);
+            //background-color: bisque;
+
+            .enlace{
+                //border: 1px solid rgb(212, 101, 101);
+                text-align: center;
+                padding: 20px;
+                background: #9796AD;
+                border: 1px solid #9796AD;
+                //justify-items: center;
+                //align-items: center;
+                //background-color: aqua;
+
+                a{
+                    text-decoration: none;
+                    color: #F2F2F2;
+
+                }
+                // a:hover{
+                //     color: #BDB7D1;
+                // }
+            }
+            .enlace:hover{
+                background-color: #B3AEC7;
+                border: 1px solid black;
+            }
         }
         
     }
@@ -72,6 +102,3 @@
     
     
 }
-// .contenedorCalendario{
-//     background-color: aqua;
-// }
