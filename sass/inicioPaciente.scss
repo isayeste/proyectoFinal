@@ -39,20 +39,32 @@
         }
         
     }
-    .horas{
-        display: grid;
-        justify-items: center;
+    
 
-    }
-    .franjasHorarias{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        .franja{
-            // border: 1px solid #B3AEC7;
-            // border-radius: 7px;
-            margin: 5px;
-            padding: 5px
-        }
-    }
+}
 
+// ----------------------------------------------------------------------
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijado en la ventana */
+    z-index: 1; /* Estar por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Permitir scroll si es necesario */
+    background-color: rgb(0, 0, 0); /* Fondo negro con opacidad */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
+    padding-top: 60px; /* Padding para centrar contenido */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Centrar el modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del contenido */
+}
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
 }

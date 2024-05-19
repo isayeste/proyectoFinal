@@ -1,5 +1,6 @@
 // Variable global para almacenar la fecha actual
 let fechaActual = new Date();
+let horariosCompleto = []; // Variable global para almacenar todos los horarios
 
 // Función para obtener la fecha en formato "YYYY-MM-DD"
 function obtenerFechaFormateada(fecha) {
@@ -15,20 +16,17 @@ function obtenerFechaFormateada(fecha) {
     return anio + '-' + mes + '-' + dia;
 }
 
-
 function generarCalendario(fecha) {
     // Obtener referencia al elemento del calendario y al elemento del nombre del mes
     let cuerpoCalendario = document.getElementById('calendario');
     let nombreMesElemento = document.getElementById('nombreMes');
     cuerpoCalendario.innerHTML = '';
 
-    // Variable para almacenar las fechas obtenidas
-    let fechasBD;
-
     // Obtener fechas de la base de datos -> asíncronía para que de tiempo a que cargue
     obtenerFechas().then(function(fechas) {
         // Almacenar las fechas obtenidas
-        fechasBD = fechas;
+        horariosCompleto = fechas;
+        let fechasBD = fechas.map(horario => horario.fecha);
 
         // Calcular el primer y último día del mes
         let primerDiaMes = new Date(fecha.getFullYear(), fecha.getMonth(), 1);
@@ -65,8 +63,7 @@ function generarCalendario(fecha) {
 
                 let celda = document.createElement('td');
                 // Comparar la fecha formateada con las fechas obtenidas de la base de datos -> colorear
-                if(fechasBD.includes(fechaC)){
-                    //console.log('holilla');
+                if (fechasBD.includes(fechaC)) {
                     celda.style.backgroundColor = '#98FB98';
                 }
 
@@ -92,7 +89,6 @@ function generarCalendario(fecha) {
     });
 }
 
-
 function mesAnterior() {
     fechaActual.setMonth(fechaActual.getMonth() - 1);
     generarCalendario(fechaActual);
@@ -107,10 +103,12 @@ function obtenerFechas() {
     return fetch('../js/lecturaHorario.json')
         .then(respuesta => respuesta.json())
         .then(horarios => {
-            const fechas = horarios.map(horario => horario.fechaInicio.split(' ')[0]);
-            // Eliminar duplicados
-            const fechasUnicas = fechas.filter((fecha, index) => fechas.indexOf(fecha) === index);
-            return fechasUnicas;
+            const fechasHorarios = horarios.map(horario => ({
+                fecha: horario.fechaInicio.split(' ')[0],
+                fechaInicio: horario.fechaInicio,
+                estado: horario.estado
+            }));
+            return fechasHorarios;
         })
         .catch(error => {
             console.error(error);
@@ -122,18 +120,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnAnterior = document.getElementById('anterior');
     const btnSiguiente = document.getElementById('siguiente');
     const cuerpoCalendario = document.getElementById('calendario');
+    const tablaHorasDisponibles = document.getElementById('horasDisponibles');
+    const modal = document.getElementById('myModal');
+    const modalText = document.getElementById('modalText');
+    const acceptButton = document.getElementById('acceptButton');
+    const cancelButton = document.getElementById('cancelButton');
+
     btnAnterior.addEventListener('click', mesAnterior);
     btnSiguiente.addEventListener('click', mesSiguiente);
     // Inicializar el calendario con el mes actual
     generarCalendario(fechaActual);
+
     // Delegación de eventos para las celdas del calendario
     cuerpoCalendario.addEventListener('click', function(event) {
         const target = event.target;
         if (target.tagName === 'TD') {
             const dia = parseInt(target.textContent);
             const fecha = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), dia);
-            // VOY POR AQUÍ!!!!!!!!!!!!!
-            console.log(fecha);
+            const fechaFormateada = obtenerFechaFormateada(fecha);
+
+            // Filtrar horarios para la fecha seleccionada
+            const horariosSeleccionados = horariosCompleto.filter(horario => horario.fecha === fechaFormateada && horario.estado === 'libre');
+            const horasDisponibles = horariosSeleccionados.map(horario => horario.fechaInicio);
+
+            // Limpiar la tabla de horas disponibles
+            tablaHorasDisponibles.innerHTML = '';
+
+            // Imprimir horas disponibles en la consola y añadir filas a la tabla
+            console.log(`Horas disponibles para ${fechaFormateada}:`, horasDisponibles);
+            horasDisponibles.forEach(hora => {
+                let fila = document.createElement('tr');
+                let celda = document.createElement('td');
+                celda.textContent = hora;
+                fila.append(celda);
+                tablaHorasDisponibles.append(fila);
+            });
+        }
+    });
+
+    // Delegación de eventos para las filas de la tabla de horas disponibles
+    tablaHorasDisponibles.addEventListener('click', function(event) {
+        const target = event.target;
+        if (target.tagName === 'TD') {
+            const datetime = target.textContent;
+            console.log(`hola, hoy es ${datetime}`);
+            
+            // Mostrar el modal con el datetime
+            modal.style.display = "block";
+            modalText.textContent = `hola, hoy es ${datetime}`;
+
+            // Acción al hacer clic en Aceptar
+            acceptButton.onclick = function() {
+                console.log(`Aceptar: ${datetime}`);
+                modal.style.display = "none";
+            }
+
+            // Acción al hacer clic en Cancelar
+            cancelButton.onclick = function() {
+                console.log(`Cancelar: ${datetime}`);
+                modal.style.display = "none";
+            }
+
+            // Acción al hacer clic fuera del modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
         }
     });
 });
