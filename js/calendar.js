@@ -64,7 +64,7 @@ function generarCalendario(fecha) {
                 let celda = document.createElement('td');
                 // Comparar la fecha formateada con las fechas obtenidas de la base de datos -> colorear
                 if (fechasBD.includes(fechaC)) {
-                    celda.style.backgroundColor = '#98FB98';
+                    celda.style.backgroundColor = '#acf2d4';
                 }
 
                 // Establecer el número del día en la celda

@@ -6,7 +6,7 @@
   grid-template-rows: 1fr 10fr;
 }
 .contenedor .superior {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(121, 107, 156, 0.3);
   border-bottom: 1px solid white;
 }
 .contenedor .superior .contSup {
@@ -42,7 +42,7 @@
   padding-right: 50px;
 }
 .contenedor .contenido {
-  background-color: rgba(0, 0, 0, 0.367);
+  background-color: rgba(51, 41, 61, 0.367);
   display: grid;
   align-items: center;
   justify-items: end;
@@ -79,8 +79,8 @@
   text-decoration: none;
 }
 .contenedor .contenido .interiorContenido .enlace:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid rgba(51, 50, 86, 0.5);
 }
 
 .portada {
@@ -99,7 +99,8 @@
   padding: 8px;
 }
 .calendar th {
-  background-color: #f2f2f2;
+  background-color: rgb(136, 135, 163);
+  color: white;
 }
 .calendar td {
   cursor: pointer;
@@ -114,7 +115,7 @@
 .contenedorCalendario .h2 {
   display: grid;
   justify-items: center;
-  color: #000000;
+  color: rgb(65, 64, 80);
 }
 .contenedorCalendario .botones {
   display: grid;
@@ -135,6 +136,26 @@
   display: flex;
   justify-content: end;
 }
+.contenedorCalendario .horas {
+  display: grid;
+  justify-items: center;
+}
+.contenedorCalendario .horas h3 {
+  color: rgb(65, 64, 80);
+}
+.contenedorCalendario .horas .horasDisponibles td {
+  border: 1px solid black;
+  padding: 10px;
+  cursor: pointer;
+}
+.contenedorCalendario .horas .horasDisponibles td:hover {
+  background-color: #D0CBD9;
+}
+
+.inicioPaciente {
+  opacity: 0.99;
+  background-color: #F4F4F4;
+}
 
 .modal {
   display: none; /* Oculto por defecto */
@@ -144,23 +165,39 @@
   top: 0;
   width: 100%; /* Ancho total */
   height: 100%; /* Altura total */
-  overflow: auto; /* Permitir scroll si es necesario */
   background-color: rgb(0, 0, 0); /* Fondo negro con opacidad */
   background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
   padding-top: 60px; /* Padding para centrar contenido */
 }
-
-.modal-content {
-  background-color: #fefefe;
+.modal .modal-content {
+  background-color: #e3e0e8;
   margin: 5% auto; /* Centrar el modal */
   padding: 20px;
-  border: 1px solid #888;
+  height: 200px;
   width: 80%; /* Ancho del contenido */
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
-
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
+.modal .modal-content .modalText {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+.modal .modal-content .modal-footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.modal .modal-content .modal-footer .boton {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 30px;
+  padding: 10px 20px;
+  background-color: #9796AD;
+  border: 1px solid #9796AD;
+  color: white;
+}
+.modal .modal-content .modal-footer .boton:hover {
+  background-color: #B4AFC8;
+  border: 1px solid black;
 }
 
 .contenidoF {

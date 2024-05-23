@@ -1,10 +1,11 @@
 .contenedorCalendario{
     padding: 60px;
+    //background-color: rgba(0, 0, 0, 0.4);
     .h2{
         display: grid;
         // align-items: center;
         justify-items: center;
-        color: #000000;
+        color: rgb(65, 64, 80);
     }
 
     .botones{
@@ -39,8 +40,36 @@
         }
         
     }
+    .horas{
+        display: grid;
+        justify-items: center;
+        h3{
+            color: rgb(65, 64, 80);
+        }
+        .horasDisponibles{
+            //border: 1px solid black;
+            td{
+                border: 1px solid black;
+                padding: 10px;
+                cursor: pointer;
+            }
+            td:hover{
+                background-color: #D0CBD9;
+            }
+        }
+    }
     
 
+}
+.inicioPaciente{
+    // background-image: url('../imagenes/inicioPaciente.jpg');
+    // background-size: cover;
+    // background-position: center;
+    opacity: 0.99;
+    background-color: #F4F4F4;
+    //background: rgb(255,255,255);
+    //background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(208,224,255,1) 100%);
+    
 }
 
 // ----------------------------------------------------------------------
@@ -52,19 +81,46 @@
     top: 0;
     width: 100%; /* Ancho total */
     height: 100%; /* Altura total */
-    overflow: auto; /* Permitir scroll si es necesario */
+    //overflow: auto; /* Permitir scroll si es necesario */
     background-color: rgb(0, 0, 0); /* Fondo negro con opacidad */
     background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
     padding-top: 60px; /* Padding para centrar contenido */
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto; /* Centrar el modal */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Ancho del contenido */
-}
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
+
+    .modal-content {
+        background-color: #e3e0e8;
+        margin: 5% auto; /* Centrar el modal */
+        padding: 20px;
+        height: 200px;
+        // border: 1px solid #888;
+        width: 80%; /* Ancho del contenido */
+        display: grid;
+        align-items: center;
+        justify-items: center;
+
+        .modalText{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            .boton{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                margin: 30px;
+                padding: 10px 20px;
+                background-color: #9796AD;
+                border: 1px solid #9796AD;
+                color: white;
+            }
+            .boton:hover{
+                background-color: #B4AFC8;
+                border: 1px solid black;
+            }
+        }
+
+
+    }
+    
 }

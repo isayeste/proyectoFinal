@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script src="https://apis.google.com/js/api.js"></script> -->
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <div class="contenedor">
+    <div class="contenedor inicioPaciente">
         <div class="superior">
             <div class="contSup">
                 <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
@@ -30,20 +29,9 @@
             </div>
             <div id="horas" class="horas">
                 <h3>Horarios disponibles</h3>
-                <table id="horasDisponibles"></table>
+                <table id="horasDisponibles" class="horasDisponibles"></table>
                 
             </div>
-            <!-- <div class="franjasHorarias">
-                <div class="franja">
-                    <h5>Mañana</h5>
-                </div>
-                <div class="franja">
-                    <h5>Tarde</h5>
-                </div>
-                <div class="franja">
-                    <h5>Noche</h5>
-                </div>
-            </div> -->
         </div>
         
 
@@ -52,7 +40,7 @@
      <!-- Modal -->
      <div id="myModal" class="modal">
         <div class="modal-content">
-            <p id="modalText"></p>
+            <p id="modalText" class="modalText"></p>
             <div class="modal-footer">
                 <button id="acceptButton" class="boton">Aceptar</button>
                 <button id="cancelButton" class="boton">Cancelar</button>
