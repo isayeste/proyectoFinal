@@ -4,11 +4,10 @@
   background-repeat: no-repeat;
   display: grid;
   grid-template-rows: 1fr 10fr;
-  background-color: #ccc4de;
 }
 .contenedor .superior {
-  background: rgb(94, 101, 120);
-  background: linear-gradient(180deg, rgb(94, 101, 120) 0%, rgba(94, 101, 120, 0.5) 50%, rgba(94, 101, 120, 0.1) 100%);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid white;
 }
 .contenedor .superior .contSup {
   display: grid;
@@ -43,9 +42,23 @@
   padding-right: 50px;
 }
 .contenedor .contenido {
+  background-color: rgba(0, 0, 0, 0.367);
   display: grid;
   align-items: center;
-  justify-content: center;
+  justify-items: end;
+  padding: 10%;
+}
+.contenedor .contenido .texto {
+  color: white;
+  text-align: end;
+}
+.contenedor .contenido .texto h1 {
+  font-size: 60px;
+  font-weight: bold;
+}
+.contenedor .contenido .texto h3 {
+  font-size: 30px;
+  font-weight: 100;
 }
 .contenedor .contenido .interiorContenido {
   display: grid;
@@ -53,18 +66,26 @@
   grid-template-columns: repeat(2, 1fr);
 }
 .contenedor .contenido .interiorContenido .enlace {
-  text-align: center;
-  padding: 20px;
-  background: #9796AD;
-  border: 1px solid #9796AD;
+  padding: 25px 40px;
+  border: 0.5px solid white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 .contenedor .contenido .interiorContenido .enlace a {
+  font-size: 16px;
+  text-align: center;
+  color: white;
   text-decoration: none;
-  color: #F2F2F2;
 }
 .contenedor .contenido .interiorContenido .enlace:hover {
-  background-color: #B3AEC7;
-  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+.portada {
+  background-image: url("../imagenes/portada.jpg");
+  background-size: cover;
 }
 
 .calendar {
@@ -140,6 +161,23 @@
 .modal-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.contenidoF {
+  display: grid;
+  grid-template-rows: 3fr, 1fr;
+}
+.contenidoF .formulario {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.contenidoF .botonVolver {
+  display: grid;
+  justify-items: end;
+}
+.contenidoF .botonVolver .volver {
+  padding: 50px;
 }
 
 /*# sourceMappingURL=index.css.map */

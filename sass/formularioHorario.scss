@@ -1,0 +1,21 @@
+.contenidoF{
+    display: grid;
+    grid-template-rows: 3fr, 1fr;
+
+    .formulario{
+        // background-color: aqua;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+    .botonVolver{
+        // background-color: beige;
+        display: grid;
+        justify-items: end;
+
+        .volver{
+            // background-color: aqua;
+            padding: 50px;
+        }
+    }
+}
