@@ -1,20 +1,23 @@
-.contenedor {
+.cont {
+  display: grid;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.cont .contenedor {
   height: 100vh;
   background-repeat: no-repeat;
   display: grid;
   grid-template-rows: 1fr 10fr;
 }
-.contenedor .superior {
+.cont .contenedor .superior {
   background-color: rgba(121, 107, 156, 0.3);
   border-bottom: 1px solid white;
 }
-.contenedor .superior .contSup {
+.cont .contenedor .superior .contSup {
   display: grid;
   grid-template-columns: 3fr 1fr;
   align-items: center;
 }
-.contenedor .superior .contSup img {
+.cont .contenedor .superior .contSup img {
   margin: 20px 50px;
   width: 130px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
@@ -37,55 +40,60 @@
     transform: rotateY(0deg);
   }
 }
-.contenedor .superior .contSup a {
+.cont .contenedor .superior .contSup a {
   justify-self: flex-end;
   padding-right: 50px;
 }
-.contenedor .contenido {
+.cont .contenedor .contenido {
   background-color: rgba(51, 41, 61, 0.367);
   display: grid;
   align-items: center;
   justify-items: end;
   padding: 10%;
 }
-.contenedor .contenido .texto {
+.cont .contenedor .contenido .texto {
   color: white;
   text-align: end;
 }
-.contenedor .contenido .texto h1 {
+.cont .contenedor .contenido .texto h1 {
   font-size: 60px;
   font-weight: bold;
 }
-.contenedor .contenido .texto h3 {
+.cont .contenedor .contenido .texto h3 {
   font-size: 30px;
   font-weight: 100;
 }
-.contenedor .contenido .interiorContenido {
+.cont .contenedor .contenido .interiorContenido {
   display: grid;
   gap: 100px;
   grid-template-columns: repeat(2, 1fr);
 }
-.contenedor .contenido .interiorContenido .enlace {
+.cont .contenedor .contenido .interiorContenido .enlace {
   padding: 25px 40px;
   border: 0.5px solid white;
   display: grid;
   align-items: center;
   justify-items: center;
 }
-.contenedor .contenido .interiorContenido .enlace a {
+.cont .contenedor .contenido .interiorContenido .enlace a {
   font-size: 16px;
   text-align: center;
   color: white;
   text-decoration: none;
 }
-.contenedor .contenido .interiorContenido .enlace:hover {
+.cont .contenedor .contenido .interiorContenido .enlace:hover {
   background-color: rgba(51, 50, 86, 0.5);
   border: 0.5px solid rgba(51, 50, 86, 0.5);
 }
-
-.portada {
+.cont .portada {
   background-image: url("../imagenes/portada.jpg");
   background-size: cover;
+}
+.cont footer {
+  display: grid;
+  text-align: center;
+  color: white;
+  background-color: rgb(51, 41, 61);
 }
 
 .calendar {
@@ -153,8 +161,9 @@
 }
 
 .inicioPaciente {
-  opacity: 0.99;
-  background-color: #F4F4F4;
+  background-image: url("../imagenes/fondoPaciente.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .modal {
@@ -201,22 +210,68 @@
 }
 
 .contenidoF {
-  display: grid;
-  grid-template-rows: 3fr, 1fr;
+  background-color: rgba(51, 41, 61, 0.656);
 }
 .contenidoF .formulario {
   display: grid;
   align-items: center;
   justify-items: center;
+  color: white;
+}
+.contenidoF .formulario h3 {
+  font-size: 30px;
+  font-weight: 100;
+}
+.contenidoF .formulario .formularioGlobal {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.contenidoF .formulario .formularioGlobal h4 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.contenidoF .formulario .formularioGlobal .diasSemana {
+  padding: 100px;
+}
+.contenidoF .formulario .formularioGlobal .horas {
+  padding: 100px;
 }
 .contenidoF .botonVolver {
   display: grid;
   justify-items: end;
+  margin-right: 50px;
 }
 .contenidoF .botonVolver .volver {
-  padding: 50px;
+  padding: 25px 40px;
+  border: 0.5px solid white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.contenidoF .botonVolver .volver a {
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+.contenidoF .botonVolver .volver:hover {
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid rgba(51, 50, 86, 0.5);
 }
 
+.contenedorHorario {
+  display: grid;
+  grid-template-rows: 3fr, 1fr;
+  background-image: url("../imagenes/fondoFormularioHorario.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.boton {
+  display: grid;
+  justify-items: center;
+}
 .psi {
   background-image: url("../imagenes/inicioPaciente.jpg");
   background-size: cover;

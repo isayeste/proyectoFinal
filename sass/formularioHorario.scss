@@ -1,21 +1,85 @@
 .contenidoF{
-    display: grid;
-    grid-template-rows: 3fr, 1fr;
+    
+    background-color: rgba(51, 41, 61, 0.656);
+    
 
     .formulario{
         // background-color: aqua;
+        
         display: grid;
+        
         align-items: center;
         justify-items: center;
+        color: white;
+        h3{
+            font-size: 30px;
+            font-weight: 100;
+        }
+        .formularioGlobal{
+            display: grid;
+            //gap: 20%;
+            padding: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            h4{
+                font-size: 20px;
+                font-weight: 400;
+                
+            }
+            .diasSemana{
+                //background-color: rgba(51, 41, 61, 0.367);
+                padding: 100px;
+            }
+            .horas{
+                //background-color: rgba(51, 41, 61, 0.367);
+                padding: 100px;
+            }
+
+        }
+        
     }
     .botonVolver{
         // background-color: beige;
         display: grid;
         justify-items: end;
+        margin-right: 50px;
 
         .volver{
-            // background-color: aqua;
-            padding: 50px;
+            padding: 25px 40px;
+            border: 0.5px solid white;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            a{
+                font-size: 16px;
+                text-align: center;
+                color: white;
+                text-decoration: none;
+            }
         }
+        .volver:hover{
+            background-color: rgba(51, 50, 86, 0.5);
+            border: 0.5px solid rgba(51, 50, 86, 0.5);
+        }
+        
     }
+}
+.contenedorHorario{
+    display: grid;
+    grid-template-rows: 3fr, 1fr;
+    background-image: url('../imagenes/fondoFormularioHorario.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.boton{
+    display: grid;
+    //align-items: center;
+    justify-items: center;
+    input{
+        
+    }
+    
+    //-----------
+    
+    //-----------
 }

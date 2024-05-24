@@ -7,35 +7,44 @@
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <div class="contenedor inicioPaciente">
-        <div class="superior">
-            <div class="contSup">
-                <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
-            </div> 
-        </div>
-        
-        <div class="contenedorCalendario">
+    <div class="cont">
+        <div class="contenedor inicioPaciente">
+            <a href="../index.html">
+                <div class="superior">
+                    <div class="contSup">
+                        <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
+                    </div> 
+                </div>
+            </a>
             
-            <!-- Contenedor calendario -->
-            <div class="h2">
-                <h2 id="nombreMes"></h2>
-            </div>
-            <table class="calendar" id="calendario"></table>
-            <div id="botones" class="botones">
-                <div><button class="boton" id="anterior">Anterior</button></div>
-                <div class="final"><button class="boton" id="siguiente">Siguiente</button></div>
+            
+            <div class="contenedorCalendario">
                 
-                
+                <!-- Contenedor calendario -->
+                <div class="h2">
+                    <h2 id="nombreMes"></h2>
+                </div>
+                <table class="calendar" id="calendario"></table>
+                <div id="botones" class="botones">
+                    <div><button class="boton" id="anterior">Anterior</button></div>
+                    <div class="final"><button class="boton" id="siguiente">Siguiente</button></div>
+                    
+                    
+                </div>
+                <div id="horas" class="horas">
+                    <h3>Horarios disponibles</h3>
+                    <table id="horasDisponibles" class="horasDisponibles"></table>
+                    
+                </div>
             </div>
-            <div id="horas" class="horas">
-                <h3>Horarios disponibles</h3>
-                <table id="horasDisponibles" class="horasDisponibles"></table>
-                
-            </div>
+            
+    
         </div>
-        
-
+        <footer>
+            <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
+        </footer>
     </div>
+    
 
      <!-- Modal -->
      <div id="myModal" class="modal">
