@@ -1,26 +1,17 @@
 .contenedorCalendario{
     padding: 60px;
-    //background-color: rgba(0, 0, 0, 0.4);
     .h2{
         display: grid;
-        // align-items: center;
         justify-items: center;
-        color: rgb(65, 64, 80);
+        color: $moradoTabla;
     }
 
     .botones{
-        //background-color: aqua;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        //justify-items: space-between;
         padding-top: 30px;
 
         div{
-            //background-color: aqua;
-            //display: grid;
-            //justify-content: space-between;
-            //grid-template-columns: repeat(2, 1fr);
-            //gap: 60px;
 
             .boton{
                 padding: 10px 20px;
@@ -44,12 +35,11 @@
         display: grid;
         justify-items: center;
         h3{
-            color: rgb(65, 64, 80);
+            color: $moradoTabla;
         }
         .horasDisponibles{
-            //border: 1px solid black;
             td{
-                border: 1px solid black;
+                border: 1px solid $moradoTabla;
                 padding: 10px;
                 cursor: pointer;
             }
@@ -65,10 +55,6 @@
     background-image: url('../imagenes/fondoPaciente.png');
     background-size: cover;
     background-position: center;
-    //opacity: 0.99;
-    //background-color: #F4F4F4;
-    //background: rgb(255,255,255);
-    //background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(208,224,255,1) 100%);
     
 }
 
@@ -98,7 +84,7 @@
         justify-items: center;
 
         .modalText{
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-family: $fuenteLetra;
             font-weight: bold;
         }
 
@@ -107,7 +93,7 @@
             grid-template-columns: repeat(2, 1fr);
 
             .boton{
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-family: $fuenteLetra;
                 margin: 30px;
                 padding: 10px 20px;
                 background-color: #9796AD;

@@ -1,17 +1,16 @@
-// Estilos para el calendario
 .calendar {
     font-family: Arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 
     th, td {
-        border: 1px solid #dddddd;
+        border: 1px solid $moradoTabla;
         text-align: center;
         padding: 8px;
     }
 
     th {
-        background-color: rgb(136, 135, 163);
+        background-color: $moradoTabla;
         color: white;
     }
 
