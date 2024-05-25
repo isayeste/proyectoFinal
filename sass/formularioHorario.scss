@@ -4,8 +4,6 @@
     
 
     .formulario{
-        // background-color: aqua;
-        
         display: grid;
         
         align-items: center;
@@ -17,7 +15,6 @@
         }
         .formularioGlobal{
             display: grid;
-            //gap: 20%;
             padding: 10px;
             grid-template-columns: repeat(2, 1fr);
             h4{
@@ -26,11 +23,9 @@
                 
             }
             .diasSemana{
-                //background-color: rgba(51, 41, 61, 0.367);
                 padding: 100px;
             }
             .horas{
-                //background-color: rgba(51, 41, 61, 0.367);
                 padding: 100px;
             }
 
@@ -44,21 +39,11 @@
         margin-right: 50px;
 
         .volver{
-            padding: 25px 40px;
-            border: 0.5px solid white;
-            display: grid;
-            align-items: center;
-            justify-items: center;
-            a{
-                font-size: 16px;
-                text-align: center;
-                color: white;
-                text-decoration: none;
-            }
+            // }
+            @include boton;
         }
         .volver:hover{
-            background-color: rgba(51, 50, 86, 0.5);
-            border: 0.5px solid rgba(51, 50, 86, 0.5);
+            @include botonHover;
         }
         
     }
@@ -66,18 +51,10 @@
 .contenedorHorario{
     display: grid;
     grid-template-rows: 3fr, 1fr;
-    background-image: url('../imagenes/fondoFormularioHorario.jpg');
-    background-size: cover;
-    background-position: center;
+    @include fondo('../imagenes/fondoFormularioHorario.jpg');
 }
 
 .boton{
-    display: grid;
-    //align-items: center;
-    justify-items: center;
-    input{
-        
-    }
     
     //-----------
     

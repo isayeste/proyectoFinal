@@ -1,0 +1,24 @@
+@import 'variables.scss';
+
+@mixin boton{
+    padding: 25px 40px;
+    border: 0.5px solid white;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+@mixin botonHover{
+    background-color: $moradoHover;
+    border: 0.5px solid $moradoHover;
+}
+
+@mixin fondo($url){
+    background-image: url($url);
+    background-size: cover;
+    background-position: center;
+}

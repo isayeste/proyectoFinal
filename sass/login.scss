@@ -6,9 +6,7 @@
     font-family: $fuenteLetra;
     
     .contenedor{
-        
         height: 100vh;
-        //background-repeat: no-repeat;
         display: grid;
         grid-template-rows: 1fr 10fr;
         
@@ -36,23 +34,11 @@
                 display: grid;
                 gap: 100px;
                 grid-template-columns: repeat(2, 1fr);
-    
                 .enlace{
-                    padding: 25px 40px;
-                    border: 0.5px solid white;
-                    display: grid;
-                    align-items: center;
-                    justify-items: center;
-                    a{
-                        font-size: 16px;
-                        text-align: center;
-                        color: white;
-                        text-decoration: none;
-                    }
+                    @include boton;
                 }
                 .enlace:hover{
-                    background-color: rgba(51, 50, 86, 0.5);
-                    border: 0.5px solid rgba(51, 50, 86, 0.5);
+                    @include botonHover;
                 }
             }
         }
@@ -61,8 +47,7 @@
     }
     
     .portada{
-        background-image: url('../imagenes/portada.jpg');
-        background-size: cover;
+        @include fondo('../imagenes/portada.jpg');
     }
     
     footer{

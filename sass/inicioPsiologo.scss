@@ -1,7 +1,5 @@
 .psi{
-    background-image: url('../imagenes/inicioPaciente.jpg');
-    background-size: cover;
-    background-position: center;
+    @include fondo('../imagenes/inicioPaciente.jpg');
 }
 .contenidoPsi{
     background-color: $moradoFondo;
@@ -17,26 +15,10 @@
         grid-template-columns: repeat(3, 1fr);
 
         .enlace{
-            // background-color: rgba(45, 50, 50, 0.545);
-            padding: 25px 40px;
-            border: 0.5px solid white;
-            display: grid;
-            align-items: center;
-            justify-items: center;
-            a{
-                font-size: 16px;
-                text-align: center;
-                color: white;
-                text-decoration: none;
-            }
+            @include boton;
         }
         .enlace:hover{
-            background-color: rgba(51, 50, 86, 0.5);
-            border: 0.5px solid rgba(51, 50, 86, 0.5);
-            // a{
-            //     // font-size: 20px;
-            //     // color: red;
-            // }
+            @include botonHover;
         }
     }
 }
