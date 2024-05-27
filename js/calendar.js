@@ -105,7 +105,7 @@ function obtenerFechas() {
         .then(horarios => {
             const fechasHorarios = horarios.map(horario => ({
                 fecha: horario.fechaInicio.split(' ')[0],
-                fechaInicio: horario.fechaInicio,
+                hora: horario.fechaInicio.split(' ')[1].slice(0, 5), // Obtener sólo la hora y minuto
                 estado: horario.estado
             }));
             return fechasHorarios;
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Filtrar horarios para la fecha seleccionada
             const horariosSeleccionados = horariosCompleto.filter(horario => horario.fecha === fechaFormateada && horario.estado === 'libre');
-            const horasDisponibles = horariosSeleccionados.map(horario => horario.fechaInicio);
+            const horasDisponibles = horariosSeleccionados.map(horario => horario.hora);
 
             // Limpiar la tabla de horas disponibles
             tablaHorasDisponibles.innerHTML = '';
@@ -162,22 +162,22 @@ document.addEventListener('DOMContentLoaded', function() {
     tablaHorasDisponibles.addEventListener('click', function(event) {
         const target = event.target;
         if (target.tagName === 'TD') {
-            const datetime = target.textContent;
-            console.log(`hola, hoy es ${datetime}`);
+            const time = target.textContent;
+            console.log(`mostraste la hora: ${time}`);
             
-            // Mostrar el modal con el datetime
+            // Mostrar el modal con el time
             modal.style.display = "block";
-            modalText.textContent = `hola, hoy es ${datetime}`;
+            modalText.textContent = `mostraste la hora: ${time}`;
 
             // Acción al hacer clic en Aceptar
             acceptButton.onclick = function() {
-                console.log(`Aceptar: ${datetime}`);
+                console.log(`Aceptar: ${time}`);
                 modal.style.display = "none";
             }
 
             // Acción al hacer clic en Cancelar
             cancelButton.onclick = function() {
-                console.log(`Cancelar: ${datetime}`);
+                console.log(`Cancelar: ${time}`);
                 modal.style.display = "none";
             }
 
