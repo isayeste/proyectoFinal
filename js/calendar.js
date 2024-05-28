@@ -172,7 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Acción al hacer clic en Aceptar
             acceptButton.onclick = function() {
                 console.log(`Aceptar: ${time}`);
-                modal.style.display = "none";
+                //modal.style.display = "none";
+                //window.location.href= "../html/preInicioSesion.html";
             }
 
             // Acción al hacer clic en Cancelar

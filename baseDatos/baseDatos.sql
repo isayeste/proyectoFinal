@@ -4,7 +4,7 @@ use psyconnect;
 -- PACIENTES
 CREATE TABLE pacientes(
     emailPaciente VARCHAR(100) PRIMARY KEY NOT NULL,
-    -- contrasenia VARCHAR (100),
+    contrasenia VARCHAR (100),
     nombre VARCHAR(100),
     fechaNacimiento DATE,
     fotoPerfil BLOB

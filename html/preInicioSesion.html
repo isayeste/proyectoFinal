@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <div class="cont">
+        <div class="contenedor preInicio">
+            <div class="superior">
+                <a href="../index.html">
+                    <div class="contSup">
+                        <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
+                    </div>
+                </a>
+                 
+            </div>
+
+            <div class="contFormularios">
+                <div class="registro">
+                    <form action="../php/registroPaciente.php" method="post" enctype="multipart/form-data">
+                        <label>Email:</label><br>
+                        <input type="email" id="email" name="email" required><br><br>
+
+                        <label>Contraseña:</label><br>
+                        <input type="password" id="password" name="password" required><br><br>
+                
+                        <label>Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre" required><br><br>
+                
+                        <label>Fecha de Nacimiento:</label><br>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
+                
+                        <label>Foto de Perfil:</label><br>
+                        <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*" required><br><br>
+                
+                        <input type="submit" value="Registrar">
+                    </form>
+                </div>
+                //////////////////////////////////
+                <br>
+                /////////////////////////////////
+                <div class="inicioSesion">
+                    <form action="../php/inicioSesionPaciente.php" method="post" enctype="multipart/form-data">
+                        <label>Email:</label><br>
+                        <input type="email" id="email" name="email" required><br><br>
+
+                        <label>Contraseña:</label><br>
+                        <input type="password" id="contrasenia" name="contrasenia" required><br><br>
+                
+                        <input type="submit" value="Registrar">
+                    </form>
+                </div>
+            </div>
+            
+    
+            
+    
+            
+    
+        </div>
+        <footer>
+            <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
+        </footer>
+    </div>
+</body>
+</html>
