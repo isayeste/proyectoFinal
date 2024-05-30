@@ -300,4 +300,27 @@
   padding-right: 50px;
 }
 
+.preInicio {
+  background-image: url("../imagenes/preInicio.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+.preInicio .contFormularios {
+  background-color: rgba(51, 41, 61, 0.6);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+}
+.preInicio .contFormularios .formulario {
+  background-color: rgba(0, 0, 0, 0.285);
+  height: 450px;
+  width: 400px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 /*# sourceMappingURL=index.css.map */

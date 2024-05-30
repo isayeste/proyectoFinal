@@ -15,54 +15,53 @@
                         <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
                     </div>
                 </a>
-                 
             </div>
 
             <div class="contFormularios">
-                <div class="registro">
-                    <form action="../php/registroPaciente.php" method="post" enctype="multipart/form-data">
+                <div class="registro formulario">
+                    <form id="registroForm" action="../php/registroPaciente.php" method="post" enctype="multipart/form-data">
                         <label>Email:</label><br>
-                        <input type="email" id="email" name="email" required><br><br>
+                        <input type="email" id="email" name="email" required><br>
+                        <div class="error" id="errorEmail"></div><br>
 
                         <label>Contraseña:</label><br>
-                        <input type="password" id="password" name="password" required><br><br>
-                
+                        <input type="password" id="password" name="password" required><br>
+                        <div class="error" id="errorPassword"></div><br>
+
                         <label>Nombre:</label><br>
-                        <input type="text" id="nombre" name="nombre" required><br><br>
-                
+                        <input type="text" id="nombre" name="nombre" required><br>
+                        <div class="error" id="errorNombre"></div><br>
+
                         <label>Fecha de Nacimiento:</label><br>
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
-                
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>
+                        <div class="error" id="errorFechaNacimiento"></div><br>
+
                         <label>Foto de Perfil:</label><br>
-                        <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*" required><br><br>
-                
+                        <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*" required><br>
+                        <div class="error" id="errorFotoPerfil"></div><br>
+
                         <input type="submit" value="Registrar">
                     </form>
                 </div>
-                //////////////////////////////////
-                <br>
-                /////////////////////////////////
-                <div class="inicioSesion">
+                
+                
+                
+                <div class="inicioSesion formulario">
                     <form action="../php/inicioSesionPaciente.php" method="post" enctype="multipart/form-data">
                         <label>Email:</label><br>
-                        <input type="email" id="email" name="email" required><br><br>
+                        <input type="email" id="emailInicio" name="email" required><br><br>
 
                         <label>Contraseña:</label><br>
                         <input type="password" id="contrasenia" name="contrasenia" required><br><br>
                 
                         <input type="submit" value="Inicio Sesión">
+                        <div id="mensajeError"></div>
                     </form>
                 </div>
 
-                <div id="mensajeError"></div>
+                
 
             </div>
-            
-    
-            
-    
-            
-    
         </div>
         <footer>
             <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
@@ -70,5 +69,6 @@
     </div>
 
     <script src="../js/mensajeErrorInicioSesionPaciente.js"></script>
+    <script src="../js/validacionRegistro.js"></script>
 </body>
 </html>
