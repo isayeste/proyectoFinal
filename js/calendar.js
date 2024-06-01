@@ -1,94 +1,94 @@
 // Variable global para almacenar la fecha actual
 let fechaActual = new Date();
-let horariosCompleto = []; // Variable global para almacenar todos los horarios
+let horariosCompleto = []; // Para almacenar todos los horarios desde el archivo JSON
+let fechaSeleccionada = ''; // Para almacenar la fecha seleccionada
+let email = "";
+let citaSeleccionada = null; // Para almacenar el ID de la cita seleccionada
 
 // Función para obtener la fecha en formato "YYYY-MM-DD"
 function obtenerFechaFormateada(fecha) {
     let dia = fecha.getDate();
     let mes = fecha.getMonth() + 1;
     let anio = fecha.getFullYear();
-    if (mes < 10) {
-        mes = '0' + mes;
-    }
-    if (dia < 10) {
-        dia = '0' + dia;
-    }
-    return anio + '-' + mes + '-' + dia;
+    // Añadir ceros a la izquierda si es necesario
+    if (mes < 10) mes = '0' + mes;
+    if (dia < 10) dia = '0' + dia;
+    return `${anio}-${mes}-${dia}`;
 }
 
+// Función para obtener la fecha en formato "DD de MMMM"
+function obtenerFechaLegible(fecha) {
+    const opciones = { day: 'numeric', month: 'long' };
+    return fecha.toLocaleDateString('es-ES', opciones);
+}
+
+// Función para generar el calendario del mes
 function generarCalendario(fecha) {
-    // Obtener referencia al elemento del calendario y al elemento del nombre del mes
+    // Obtener referencia al cuerpo del calendario y al nombre del mes
     let cuerpoCalendario = document.getElementById('calendario');
     let nombreMesElemento = document.getElementById('nombreMes');
-    cuerpoCalendario.innerHTML = '';
+    cuerpoCalendario.innerHTML = ''; // Limpiar el calendario
 
-    // Obtener fechas de la base de datos -> asíncronía para que de tiempo a que cargue
+    // Obtener fechas desde el archivo JSON
     obtenerFechas().then(function(fechas) {
-        // Almacenar las fechas obtenidas
-        horariosCompleto = fechas;
-        let fechasBD = fechas.map(horario => horario.fecha);
+        horariosCompleto = fechas; // Guardar las fechas obtenidas
+        let fechasBD = fechas.map(horario => horario.fechaInicio.split(' ')[0]); // Solo las fechas
 
-        // Calcular el primer y último día del mes
         let primerDiaMes = new Date(fecha.getFullYear(), fecha.getMonth(), 1);
         let ultimoDiaMes = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0);
-
-        // Obtener el día de la semana del primer día del mes
         let primerDiaSemana = primerDiaMes.getDay();
-        // Ajustar para que el lunes sea el primer día
-        if (primerDiaSemana === 0) {
-            primerDiaSemana = 7;
-        }
+        if (primerDiaSemana === 0) primerDiaSemana = 7; // Ajustar para que lunes sea el primer día
 
-        // Crear fila para los nombres de los días de la semana
+        // Crear fila con los nombres de los días
         let filaDiasSemana = document.createElement('tr');
         let nombresDiasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-        nombresDiasSemana.forEach(function(nombreDia) {
+        nombresDiasSemana.forEach(nombreDia => {
             let celdaDiaSemana = document.createElement('th');
             celdaDiaSemana.textContent = nombreDia;
             filaDiasSemana.append(celdaDiaSemana);
         });
         cuerpoCalendario.append(filaDiasSemana);
 
-        // Crear fecha para iterar sobre los días del mes
+        // Crear fechas para el calendario
         let fechaIteracion = new Date(primerDiaMes);
         fechaIteracion.setDate(fechaIteracion.getDate() - (primerDiaSemana - 1));
-        // Generar las filas del calendario
+
+        // Crear las filas del calendario
         for (let i = 0; i < 6; i++) {
             let fila = document.createElement('tr');
             for (let j = 0; j < 7; j++) {
-                let diaC = fechaIteracion.getDate();
-                let mesC = fechaIteracion.getMonth();
-                let anioC = fechaIteracion.getFullYear();
                 let fechaC = obtenerFechaFormateada(fechaIteracion);
-
                 let celda = document.createElement('td');
-                // Comparar la fecha formateada con las fechas obtenidas de la base de datos -> colorear
+                
+                // Marcar días con citas disponibles
                 if (fechasBD.includes(fechaC)) {
                     celda.style.backgroundColor = '#acf2d4';
                 }
 
-                // Establecer el número del día en la celda
-                celda.textContent = fechaIteracion.getDate();
-                // Estilo para los días que no pertenecen al mes actual
+                celda.textContent = fechaIteracion.getDate(); // Mostrar el día del mes
                 if (fechaIteracion.getMonth() !== primerDiaMes.getMonth()) {
-                    celda.style.color = '#D3D3D3';
+                    celda.style.color = '#D3D3D3'; // Diferenciar días fuera del mes actual
                 }
 
+                // Guardar la fecha en atributos para usar más tarde
+                celda.setAttribute('data-fecha', fechaC);
+                celda.setAttribute('data-fecha-legible', obtenerFechaLegible(fechaIteracion));
+                
                 fila.append(celda);
                 fechaIteracion.setDate(fechaIteracion.getDate() + 1);
             }
             cuerpoCalendario.append(fila);
         }
+
         // Mostrar el nombre del mes
         let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        let nombreMes = meses[fecha.getMonth()];
-        let anio = primerDiaMes.getFullYear();
-        nombreMesElemento.textContent = nombreMes + ' ' + anio;
+        nombreMesElemento.textContent = `${meses[fecha.getMonth()]} ${fecha.getFullYear()}`;
     }).catch(function(error) {
         console.error(error);
     });
 }
 
+// Funciones para cambiar el mes
 function mesAnterior() {
     fechaActual.setMonth(fechaActual.getMonth() - 1);
     generarCalendario(fechaActual);
@@ -99,20 +99,21 @@ function mesSiguiente() {
     generarCalendario(fechaActual);
 }
 
+// Función para obtener fechas desde el archivo JSON
 function obtenerFechas() {
     return fetch('../js/lecturaHorario.json')
         .then(respuesta => respuesta.json())
         .then(horarios => {
-            const fechasHorarios = horarios.map(horario => ({
-                fecha: horario.fechaInicio.split(' ')[0],
-                hora: horario.fechaInicio.split(' ')[1].slice(0, 5), // Obtener sólo la hora y minuto
+            return horarios.map(horario => ({
+                id: horario.idHorario, // Utilizar el campo idHorario
+                fechaInicio: horario.fechaInicio.split(' ')[0],
+                hora: horario.fechaInicio.split(' ')[1].slice(0, 5), // Solo hora y minuto
                 estado: horario.estado
             }));
-            return fechasHorarios;
         })
         .catch(error => {
             console.error(error);
-            return []; // Si da error -> array vacío
+            return []; // Si hay error, devolver array vacío
         });
 }
 
@@ -123,71 +124,104 @@ document.addEventListener('DOMContentLoaded', function() {
     const tablaHorasDisponibles = document.getElementById('horasDisponibles');
     const modal = document.getElementById('myModal');
     const modalText = document.getElementById('modalText');
-    const acceptButton = document.getElementById('acceptButton');
-    const cancelButton = document.getElementById('cancelButton');
+    const botonAceptar = document.getElementById('acceptButton');
+    const botonCancelar = document.getElementById('cancelButton');
 
     btnAnterior.addEventListener('click', mesAnterior);
     btnSiguiente.addEventListener('click', mesSiguiente);
-    // Inicializar el calendario con el mes actual
-    generarCalendario(fechaActual);
+    generarCalendario(fechaActual); // Mostrar el calendario al cargar la página
 
-    // Delegación de eventos para las celdas del calendario
+    // Obtener el email de la URL
+    const parametroUrl = new URLSearchParams(window.location.search);
+    email = parametroUrl.get('email');
+    console.log('Email:', email);
+
+    // Click en una celda del calendario
     cuerpoCalendario.addEventListener('click', function(event) {
         const target = event.target;
         if (target.tagName === 'TD') {
-            const dia = parseInt(target.textContent);
-            const fecha = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), dia);
-            const fechaFormateada = obtenerFechaFormateada(fecha);
+            fechaSeleccionada = target.getAttribute('data-fecha-legible');
+            const fechaFormateada = target.getAttribute('data-fecha');
 
-            // Filtrar horarios para la fecha seleccionada
-            const horariosSeleccionados = horariosCompleto.filter(horario => horario.fecha === fechaFormateada && horario.estado === 'libre');
-            const horasDisponibles = horariosSeleccionados.map(horario => horario.hora);
-
-            // Limpiar la tabla de horas disponibles
-            tablaHorasDisponibles.innerHTML = '';
-
-            // Imprimir horas disponibles en la consola y añadir filas a la tabla
-            console.log(`Horas disponibles para ${fechaFormateada}:`, horasDisponibles);
-            horasDisponibles.forEach(hora => {
-                let fila = document.createElement('tr');
-                let celda = document.createElement('td');
-                celda.textContent = hora;
-                fila.append(celda);
-                tablaHorasDisponibles.append(fila);
-            });
-        }
-    });
-
-    // Delegación de eventos para las filas de la tabla de horas disponibles
-    tablaHorasDisponibles.addEventListener('click', function(event) {
-        const target = event.target;
-        if (target.tagName === 'TD') {
-            const time = target.textContent;
-            console.log(`mostraste la hora: ${time}`);
+                        // Filtrar horarios para la fecha seleccionada
+                        const horariosSeleccionados = horariosCompleto.filter(horario => horario.fechaInicio === fechaFormateada && horario.estado === 'libre');
+                        const horasDisponibles = horariosSeleccionados.map(horario => ({ id: horario.id, hora: horario.hora }));
             
-            // Mostrar el modal con el time
-            modal.style.display = "block";
-            modalText.textContent = `mostraste la hora: ${time}`;
+                        // Limpiar la tabla de horas disponibles
+                        tablaHorasDisponibles.innerHTML = '';
+            
+                        // Añadir horas disponibles a la tabla
+                        horasDisponibles.forEach(({ id, hora }) => {
+                            let fila = document.createElement('tr');
+                            let celda = document.createElement('td');
+                            celda.textContent = hora;
+                            celda.setAttribute('data-hora', hora);
+                            celda.setAttribute('data-id', id); // Guardar el ID de la cita
+                            fila.append(celda);
+                            tablaHorasDisponibles.append(fila);
+                        });
+                    }
+                });
+            
+                // Click en una hora disponible
+                tablaHorasDisponibles.addEventListener('click', function(event) {
+                    const target = event.target;
+                    if (target.tagName === 'TD') {
+                        const hora = target.getAttribute('data-hora');
+                        citaSeleccionada = target.getAttribute('data-id'); // Guardar el ID de la cita seleccionada
+                        console.log(`Cita ID: ${citaSeleccionada}`); // Imprimir el ID de la cita seleccionada
+            
+                        // Mostrar el modal con la fecha y la hora seleccionadas
+                        modal.style.display = "block";
+                        modalText.textContent = `Confirmar cita: ${fechaSeleccionada} a las ${hora}h`;
 
-            // Acción al hacer clic en Aceptar
-            acceptButton.onclick = function() {
-                console.log(`Aceptar: ${time}`);
-                //modal.style.display = "none";
-                //window.location.href= "../html/preInicioSesion.html";
-            }
-
-            // Acción al hacer clic en Cancelar
-            cancelButton.onclick = function() {
-                console.log(`Cancelar: ${time}`);
-                modal.style.display = "none";
-            }
-
-            // Acción al hacer clic fuera del modal
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        }
-    });
-});
+                        botonAceptar.onclick = function() {
+                            const motivo = document.getElementById('motivoConsulta').value;
+                            const via = document.querySelector('input[name="tipoConsulta"]:checked').value;
+                            const datosCita = {
+                                idHorario: citaSeleccionada,
+                                motivo: motivo,
+                                via: via,
+                                emailPaciente: email
+                            };
+                        
+                            // Enviar datos al servidor mediante fetch
+                            fetch('../php/guardarCita.php', { //solicitud HTTP POST para enviar al archivo /php/guardarCita.php
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json' //enviar datos tipo json
+                                },
+                                body: JSON.stringify(datosCita)
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    console.log('Solicitud enviada con éxito');
+                                    return response.text(); // Leer la respuesta como texto
+                                } else {
+                                    console.error('Error en la solicitud:', response.status);
+                                }
+                            })
+                            .then(data => {
+                                console.log(data); // Imprimir la respuesta del servidor
+                            })
+                            .catch(error => console.error('Error:', error));
+                        };
+                        
+                        
+            
+                        // Botón cancelar en el modal
+                        botonCancelar.onclick = function() {
+                            console.log(`Cancelar: Fecha ${fechaSeleccionada}, Hora ${hora}, Cita ID: ${citaSeleccionada}`);
+                            modal.style.display = "none";
+                        };
+            
+                        // Cerrar el modal al hacer clic fuera del mismo
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        };
+                    }
+                });
+            });
+            

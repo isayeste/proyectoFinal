@@ -17,7 +17,6 @@
                 </div>
             </a>
             
-            
             <div class="contenedorCalendario">
                 
                 <!-- Contenedor calendario -->
@@ -28,31 +27,40 @@
                 <div id="botones" class="botones">
                     <div><button class="boton" id="anterior">Anterior</button></div>
                     <div class="final"><button class="boton" id="siguiente">Siguiente</button></div>
-                    
-                    
                 </div>
                 <div id="horas" class="horas">
                     <h3>Horarios disponibles</h3>
                     <table id="horasDisponibles" class="horasDisponibles"></table>
-                    
                 </div>
             </div>
-            
-    
         </div>
         <footer>
             <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
         </footer>
     </div>
-    
 
-     <!-- Modal -->
-     <div id="myModal" class="modal">
+    <!-- Modal -->
+    <div id="myModal" class="modal">
         <div class="modal-content">
-            <p id="modalText" class="modalText"></p>
-            <div class="modal-footer">
-                <button id="acceptButton" class="boton">Aceptar</button>
-                <button id="cancelButton" class="boton">Cancelar</button>
+            <h3 id="modalText"></h3>
+            <div class="formularioModal">
+                <label for="motivoConsulta">Motivo de consulta:</label>
+                <div>
+                    <textarea id="motivoConsulta" rows="4" cols="50"></textarea>
+                </div>
+                <br>
+                <label for="tipoConsulta">Tipo de consulta:</label><br>
+                <div>
+                    <input type="radio" id="consultaOnline" name="tipoConsulta" value="online">
+                    <label for="consultaOnline">Online</label><br>
+                    <input type="radio" id="consultaPresencial" name="tipoConsulta" value="presencial">
+                    <label for="consultaPresencial">Presencial</label>
+                </div>
+                <br>
+            </div>
+            <div class="botonesModal">
+                <button id="acceptButton">Aceptar</button>
+                <button id="cancelButton">Cancelar</button>
             </div>
         </div>
     </div>

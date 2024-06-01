@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .cont {
   display: grid;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -129,48 +130,6 @@
   background-image: url("../imagenes/fondoPaciente.png");
   background-size: cover;
   background-position: center;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 60px;
-}
-.modal .modal-content {
-  background-color: #e3e0e8;
-  margin: 5% auto;
-  padding: 20px;
-  height: 200px;
-  width: 80%;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-}
-.modal .modal-content .modalText {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
-}
-.modal .modal-content .modal-footer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-.modal .modal-content .modal-footer .boton {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 30px;
-  padding: 10px 20px;
-  background-color: #9796AD;
-  border: 1px solid #9796AD;
-  color: white;
-}
-.modal .modal-content .modal-footer .boton:hover {
-  background-color: #B4AFC8;
-  border: 1px solid black;
 }
 
 .contenidoF {
@@ -321,6 +280,74 @@
   display: grid;
   justify-items: center;
   align-items: center;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+.modal .modal-content {
+  background-color: #e3e0e8;
+  margin: 5% auto;
+  padding: 20px;
+  height: auto; /* Cambiado a 'auto' */
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr; /* Cambiado a una sola columna */
+  align-items: center;
+  /* Estilo para el título */
+  /* Estilos para el formulario */
+  /* Estilos para el pie de página modal */
+}
+.modal .modal-content #modalText {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  text-align: center; /* Centrar el texto */
+  margin-bottom: 20px; /* Añadir espacio inferior */
+}
+.modal .modal-content .formularioModal {
+  display: grid;
+  grid-template-columns: max-content 1fr; /* Alineado a la izquierda */
+  align-items: center;
+  gap: 10px; /* Espacio entre elementos */
+}
+.modal .modal-content .formularioModal label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-flex; /* Alinear radio buttons al lado de las etiquetas */
+  align-items: center; /* Centrar verticalmente */
+}
+.modal .modal-content .formularioModal textarea {
+  width: 100%;
+  resize: vertical; /* Permitir redimensionamiento vertical */
+}
+.modal .modal-content .formularioModal input[type=radio] {
+  margin-right: 5px; /* Espacio entre radio button y label */
+  cursor: pointer;
+}
+.modal .modal-content .botonesModal {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Botones uno a cada lado */
+  gap: 10px; /* Espacio entre botones */
+  margin-top: 20px; /* Añadir espacio superior */
+}
+.modal .modal-content .boton {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px 20px;
+  background-color: #9796AD;
+  border: 1px solid #9796AD;
+  color: white;
+  cursor: pointer;
+}
+.modal .modal-content .boton:hover {
+  background-color: #B4AFC8;
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=index.css.map */

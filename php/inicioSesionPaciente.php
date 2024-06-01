@@ -25,8 +25,8 @@ try {
     if ($resultado) {
         // Verificar si la contraseña es correcta
         if ($resultado['contrasenia'] === $contrasenia) {
-            // Redirigir al usuario a inicioPaciente.html
-            header("Location: ../html/inicioPaciente.html");
+            // Redirigir al usuario a inicioPaciente.html con el email como parametro
+            header("Location: ../html/inicioPaciente.html?email=" . urlencode($email));
             exit();
         } else {
             // Redirigir con mensaje de error de contraseña incorrecta
