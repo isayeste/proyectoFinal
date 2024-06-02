@@ -1,7 +1,5 @@
 <?php
 
-
-
 //ACTUALIZAR LA BASE DE DATOS
 // Datos de la base de datos
 $servidor = 'localhost';

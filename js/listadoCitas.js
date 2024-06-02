@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Ruta del archivo JSON
     const url = '../js/listadoCitas.json';
 
-    // Función para crear la tabla de citas
     function crearTablaCitas(citas) {
         const contenedor = document.querySelector('.contenidoListado');
         const tabla = document.createElement('table');
         tabla.classList.add('tablaCitas');
 
-        // Crear el encabezado de la tabla
         const thead = document.createElement('thead');
         const encabezadoFila = document.createElement('tr');
 
@@ -22,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         thead.append(encabezadoFila);
         tabla.append(thead);
 
-        // Crear el cuerpo de la tabla
         const tbody = document.createElement('tbody');
         
         citas.forEach(cita => {
@@ -63,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                fetch('../php/citaGoogleCalendarOcupado.php', {
+                fetch('../php/citaOcupado.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -73,7 +69,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === "Estado actualizado correctamente") {
-                        crearEventoGoogleCalendar(cita, token);
+                        fetch('../php/crearEventoGoogleCalendar.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                cita: cita,
+                                token: token
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(eventData => {
+                            if (eventData.success) {
+                                alert('Evento creado en Google Calendar');
+                            } else {
+                                alert('Error al crear el evento en Google Calendar');
+                            }
+                        })
+                        .catch(error => console.error('Error al crear el evento:', error));
                     } else {
                         alert(data.message);
                     }
@@ -97,47 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
         contenedor.append(tabla);
     }
 
-    // Leer el archivo JSON
     fetch(url)
         .then(response => response.json())
         .then(data => crearTablaCitas(data))
         .catch(error => console.error('Error al cargar el archivo JSON:', error));
 });
-
-// function crearEventoGoogleCalendar(cita, token) {
-//     const event = {
-//         summary: 'Cita con ' + cita.nombre,
-//         start: {
-//             dateTime: cita.fechaInicio,
-//             timeZone: 'Europe/Madrid'
-//         },
-//         end: {
-//             dateTime: cita.fechaFin,
-//             timeZone: 'Europe/Madrid'
-//         },
-//         description: cita.motivo,
-//         attendees: [{ email: cita.emailPaciente }],
-//         reminders: {
-//             useDefault: false,
-//             overrides: [
-//                 { method: 'email', minutes: 24 * 60 },
-//                 { method: 'popup', minutes: 10 }
-//             ]
-//         }
-//     };
-
-//     fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-//         method: 'POST',
-//         headers: {
-//             'Authorization': `Bearer ${token}`,
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(event)
-//     })
-//     .then(response => response.json())
-//     .then(event => {
-//         console.log('Evento creado: ' + event.htmlLink);
-//         alert('Evento creado en Google Calendar');
-//     })
-//     .catch(error => console.error('Error al crear el evento:', error));
-// }

@@ -15,6 +15,7 @@ $client->setAuthConfig('../config/client_secret_817642552550-grgavacspiedvqco6uu
 $client->addScope('email');
 $client->addScope('profile');
 
+
 // Establecer la URL de redireccionamiento después de la autorización
 $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/proyectoFinal/proyectoFinal/php/inicioSesionPsicologo.php';
 $client->setRedirectUri($redirect_uri);
