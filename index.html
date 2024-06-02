@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+
 
 </head>
 <body>
@@ -21,16 +23,14 @@
                     <h3>Tu bienestar mental, a solo un clic de distancia</h3>
                 </div>
                 <div class="interiorContenido">
-                    <a href="html/preInicioSesion.html">
-                        <div class="enlace">
-                            <p>Solicitar Cita</p>
-                        </div>
-                    </a>
-                    <a href="html/inicioPsicologo.html">
-                        <div class="enlace">
-                            <p>Acceso Profesionales</p>
-                        </div>
-                    </a>
+                    <button id="btnSolicitarCita" class="enlace">
+                        Solicitar Cita
+                    </button>
+                    <form method="post" action="php/inicioSesionPsicologo.php">
+                        <button type="submit" id="btnIniciarSesion" class="enlace">
+                            Acceso Profesionales
+                        </button>
+                    </form>
                 </div>
             </div>
             
@@ -40,7 +40,7 @@
         </footer>
     </div>
     
-    
+    <script src="js/script.js"></script>
 </body>
 
 </html>

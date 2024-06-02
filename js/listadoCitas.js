@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Ruta del archivo JSON
     const url = '../js/listadoCitas.json';
 
@@ -57,7 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const btnAceptar = document.createElement('button');
             btnAceptar.textContent = 'Aceptar';
             btnAceptar.addEventListener('click', function () {
-                fetch('actualizarEstado.php', {
+                const token = localStorage.getItem('googleAccessToken');
+                if (!token) {
+                    console.log('Inicia sesión primero');
+                    return;
+                }
+
+                fetch('../php/citaGoogleCalendarOcupado.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -66,8 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.message) {
-                        console.log(data.message);
+                    if (data.message === "Estado actualizado correctamente") {
+                        crearEventoGoogleCalendar(cita, token);
+                    } else {
+                        alert(data.message);
                     }
                 })
                 .catch(error => console.error('Error al actualizar el estado:', error));
@@ -95,3 +103,41 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => crearTablaCitas(data))
         .catch(error => console.error('Error al cargar el archivo JSON:', error));
 });
+
+// function crearEventoGoogleCalendar(cita, token) {
+//     const event = {
+//         summary: 'Cita con ' + cita.nombre,
+//         start: {
+//             dateTime: cita.fechaInicio,
+//             timeZone: 'Europe/Madrid'
+//         },
+//         end: {
+//             dateTime: cita.fechaFin,
+//             timeZone: 'Europe/Madrid'
+//         },
+//         description: cita.motivo,
+//         attendees: [{ email: cita.emailPaciente }],
+//         reminders: {
+//             useDefault: false,
+//             overrides: [
+//                 { method: 'email', minutes: 24 * 60 },
+//                 { method: 'popup', minutes: 10 }
+//             ]
+//         }
+//     };
+
+//     fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+//         method: 'POST',
+//         headers: {
+//             'Authorization': `Bearer ${token}`,
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(event)
+//     })
+//     .then(response => response.json())
+//     .then(event => {
+//         console.log('Evento creado: ' + event.htmlLink);
+//         alert('Evento creado en Google Calendar');
+//     })
+//     .catch(error => console.error('Error al crear el evento:', error));
+// }
