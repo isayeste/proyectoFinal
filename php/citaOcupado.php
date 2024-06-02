@@ -1,6 +1,6 @@
 <?php
 
-//ACTUALIZAR LA BASE DE DATOS
+//ACTUALIZAR LA BASE DE DATOS -> ARREGLAR
 // Datos de la base de datos
 $servidor = 'localhost';
 $usuario = 'root';

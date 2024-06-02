@@ -16,6 +16,20 @@ if (!isset($_SESSION['access_token'])) {
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
+<script>
+        // Función para obtener el valor de un parámetro GET por su nombre
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Obtener el token de acceso de la URL
+        const token = getQueryParam('token');
+        if (token) {
+            // Guardar el token de acceso en localStorage
+            localStorage.setItem('googleAccessToken', token);
+        }
+    </script>
     <div class="cont">
         <div class="contenedor psi">
             <div class="superior">

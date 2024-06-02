@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tabla = document.createElement('table');
         tabla.classList.add('tablaCitas');
 
+        //Crear el thead de la tabla
         const thead = document.createElement('thead');
         const encabezadoFila = document.createElement('tr');
 
@@ -19,8 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
         thead.append(encabezadoFila);
         tabla.append(thead);
 
+        //Crear el body de la tabla
         const tbody = document.createElement('tbody');
         
+        //Iterar sobre cada cita y crear una fila en la tabla para cada una -> añadir info de cada una
         citas.forEach(cita => {
             const fila = document.createElement('tr');
             
@@ -52,13 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const btnAceptar = document.createElement('button');
             btnAceptar.textContent = 'Aceptar';
+
             btnAceptar.addEventListener('click', function () {
                 const token = localStorage.getItem('googleAccessToken');
                 if (!token) {
-                    console.log('Inicia sesión primero');
+                    console.log('No hay sesión con Google');
                     return;
                 }
-
+                // Actualizar la BBDD
                 fetch('../php/citaOcupado.php', {
                     method: 'POST',
                     headers: {
@@ -69,31 +73,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === "Estado actualizado correctamente") {
+                        // Enviar token y ID de la cita a crearEventoGoogleCalendar.php
                         fetch('../php/crearEventoGoogleCalendar.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
-                                cita: cita,
-                                token: token
+                                token: token,
+                                idHorario: cita.idHorario
                             })
                         })
-                        .then(response => response.json())
+                        .then(response => {
+                            if (!response.ok) {
+                                // Si la respuesta no es OK -> lanza un error para ser atrapado por catch
+                                return response.text().then(text => { throw new Error(text) });
+                            }
+                            return response.json();
+                        })
                         .then(eventData => {
                             if (eventData.success) {
-                                alert('Evento creado en Google Calendar');
+                                console.log('Evento creado en Google Calendar');
                             } else {
-                                alert('Error al crear el evento en Google Calendar');
+                                console.log('Error al crear el evento en Google Calendar:', eventData.message);
                             }
                         })
-                        .catch(error => console.error('Error al crear el evento:', error));
+                        .catch(error => {
+                            console.error('Error al crear el evento:', error.message);
+                        });
                     } else {
-                        alert(data.message);
+                        console.log(data.message);
                     }
                 })
-                .catch(error => console.error('Error al actualizar el estado:', error));
+                .catch(error => console.error('Error al actualizar el estado:', error.message));
             });
+            
+            
+
 
             const btnCancelar = document.createElement('button');
             btnCancelar.textContent = 'Cancelar';

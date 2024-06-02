@@ -31,14 +31,14 @@ if (isset($_GET['code'])) {
     session_start();
     $_SESSION['access_token'] = $token;
     // Redirigir a la página de inicio después de la autenticación
-    header('Location: ../html/inicioPsicologo.php');
-    exit;
+    header('Location: ../html/inicioPsicologo.php?token=' . $token['access_token']);
+    //exit;
 }
 
 // Si no hay un token de acceso, redirige al usuario a loguearse
 if (!isset($_SESSION['access_token'])) {
     $authUrl = $client->createAuthUrl();
     header('Location: ' . $authUrl);
-    exit;
+    //exit;
 }
 ?>

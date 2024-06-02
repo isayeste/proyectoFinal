@@ -1,12 +1,11 @@
 <?php
-session_start();
+// session_start();
 
-if (!isset($_SESSION['access_token'])) {
-    header('Location: ../index.html');
-    exit();
-}
+// if (!isset($_SESSION['access_token'])) {
+//     header('Location: ../index.html');
+//     exit();
+// }
 
-// OBTENER Y MOSTRAR CITAS
 
 ?>
 <!DOCTYPE html>
