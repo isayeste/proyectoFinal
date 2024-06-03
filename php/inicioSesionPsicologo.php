@@ -20,7 +20,7 @@ $client->addScope('profile');
 $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/proyectoFinal/proyectoFinal/php/inicioSesionPsicologo.php';
 $client->setRedirectUri($redirect_uri);
 
-// Si se recibió un código de autorización, intercambia el código por un token de acceso
+// Si se recibió un código de autorización -> intercambia el código por un token de acceso
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
     // Verificar si hay errores
