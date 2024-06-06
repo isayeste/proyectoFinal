@@ -40,6 +40,52 @@
     }
 }
 
+@mixin bordeTop{
+    border-top: 2px solid;
+    animation: intercambioColores 5s infinite linear;
+    transition: filter 0.5s ease;
+    @keyframes intercambioColores {
+        0% {
+          border-image: linear-gradient(to bottom, $moradoPrincipal, $moradoH3, white, $moradoTabla) 1;
+        }
+        25% {
+            border-image: linear-gradient(to bottom, $moradoH3, white, $moradoTabla, $moradoPrincipal) 1;
+        }
+        50% {
+          border-image: linear-gradient(to bottom, white, $moradoTabla, $moradoPrincipal, $moradoH3) 1;
+        }
+        75% {
+            border-image: linear-gradient(to bottom, $moradoTabla, $moradoPrincipal, $moradoH3, white) 1;
+        }
+        100% {
+          border-image: linear-gradient(to bottom, $moradoPrincipal, $moradoH3, white, $moradoTabla) 1;
+        }
+      } 
+}
+
+@mixin bordeBottom{
+    border-bottom: 2px solid;
+    animation: intercambioColores 5s infinite linear;
+    transition: filter 0.5s ease;
+    @keyframes intercambioColores {
+        0% {
+          border-image: linear-gradient(to bottom, $moradoPrincipal, $moradoH3, white, $moradoTabla) 1;
+        }
+        25% {
+            border-image: linear-gradient(to bottom, $moradoH3, white, $moradoTabla, $moradoPrincipal) 1;
+        }
+        50% {
+          border-image: linear-gradient(to bottom, white, $moradoTabla, $moradoPrincipal, $moradoH3) 1;
+        }
+        75% {
+            border-image: linear-gradient(to bottom, $moradoTabla, $moradoPrincipal, $moradoH3, white) 1;
+        }
+        100% {
+          border-image: linear-gradient(to bottom, $moradoPrincipal, $moradoH3, white, $moradoTabla) 1;
+        }
+      } 
+}
+
 @mixin bordeAnimado{
     border: 2px solid;
     animation: intercambioColores 5s infinite linear;
