@@ -62,5 +62,68 @@
     // .tercero{
     //     @include distribucionPortada;
     // }
+
+    .cv{
+        background-color: $moradoDiv;
+        padding-top: 50px;
+        // background-color: aquamarine;
+        .cv1{
+            // background-color: azure;
+            // height: 100px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            .fotoPerfil{
+                // background-color: firebrick;
+                display: grid;
+                justify-items: end;
+                img{
+                    width: 200px;
+                    border-radius: 50%;
+                }
+            }
+            .nombre{
+                // background-color: purple;
+                display: grid;
+                justify-items: left;
+                align-items: center;
+            }
+        }
+        .cv2{
+            margin-top: 50px;
+            //background-color: blueviolet;
+            display: grid;
+
+            .links{
+                // background-color: antiquewhite;
+                @include bordeAnimado;
+                ul{
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 10px;
+                    display: flex;
+                    justify-content: center;
+
+                    li{
+                        margin: 0 15px;
+                    }
+                }
+            }
+        }
+        .cv3{
+            padding: 100px;
+            // background-color: forestgreen;
+            // height: 100px;
+            display: grid;
+            justify-items: center;
+            gap: 50px;
+            .cv31{
+                background-color: rgb(255, 255, 255);
+                border-radius: 20px;
+                width: 1000px;
+                padding: 30px;
+            }
+        }
+    }
     
 }
