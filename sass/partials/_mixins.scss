@@ -22,3 +22,43 @@
     background-size: cover;
     background-position: center;
 }
+
+@mixin distribucionPortada ($altura, $ancho){
+    //background-color: aqua;
+    height: $altura;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    .texto{
+        //background-color: aqua;
+        display: grid;
+        justify-items: center;
+        width: $ancho     
+    }
+    p{
+        text-align: center;
+    }
+}
+
+@mixin bordeAnimado{
+    border: 2px solid;
+    animation: intercambioColores 5s infinite linear;
+    transition: filter 0.5s ease;
+    @keyframes intercambioColores {
+        0% {
+          border-image: linear-gradient(to bottom, $moradoPrincipal, $moradoH3, white, $moradoTabla) 1;
+        }
+        25% {
+            border-image: linear-gradient(to bottom, $moradoH3, white, $moradoTabla, $moradoPrincipal) 1;
+        }
+        50% {
+          border-image: linear-gradient(to bottom, white, $moradoTabla, $moradoPrincipal, $moradoH3) 1;
+        }
+        75% {
+            border-image: linear-gradient(to bottom, $moradoTabla, $moradoPrincipal, $moradoH3, white) 1;
+        }
+        100% {
+          border-image: linear-gradient(to bottom, $moradoPrincipal, $moradoH3, white, $moradoTabla) 1;
+        }
+      } 
+}

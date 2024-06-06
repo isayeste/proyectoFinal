@@ -259,6 +259,27 @@
   padding-right: 50px;
 }
 
+.navbar {
+  border-bottom: 1px solid #AC9ACF;
+}
+.navbar .logo {
+  margin: 20px 50px;
+  width: 200px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.navbar .navbar-toggler {
+  border-color: #AC9ACF;
+}
+.navbar .navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(128,0,128, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.navbar a {
+  color: #AC9ACF;
+}
+.navbar a:hover {
+  color: rgb(51, 41, 61);
+}
+
 .preInicio {
   background-image: url("../imagenes/preInicio.jpg");
   background-size: cover;
@@ -348,6 +369,81 @@
 .modal .modal-content .boton:hover {
   background-color: #B4AFC8;
   border: 1px solid black;
+}
+
+.main h2 {
+  color: #AC9ACF;
+}
+.main h3 {
+  color: #4e465f;
+}
+.main .primero, .main .segundo, .main .tercero {
+  height: 800px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.main .primero .texto, .main .segundo .texto, .main .tercero .texto {
+  display: grid;
+  justify-items: center;
+  width: 1000px;
+}
+.main .primero p, .main .segundo p, .main .tercero p {
+  text-align: center;
+}
+.main .trastorno {
+  height: auto;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 100px;
+  height: 700px;
+}
+.main .trastorno .texto {
+  display: grid;
+  justify-items: center;
+  width: auto;
+}
+.main .trastorno p {
+  text-align: center;
+}
+.main .trastorno h2 {
+  margin-top: 50px;
+}
+.main .trastorno h3 {
+  margin-bottom: 30px;
+}
+.main .trastorno .ul {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.main .trastorno .ul .li {
+  padding: 10px;
+  border: 2px solid;
+  animation: intercambioColores 5s infinite linear;
+  transition: filter 0.5s ease;
+}
+@keyframes intercambioColores {
+  0% {
+    border-image: linear-gradient(to bottom, #AC9ACF, #4e465f, white, rgb(85, 68, 102)) 1;
+  }
+  25% {
+    border-image: linear-gradient(to bottom, #4e465f, white, rgb(85, 68, 102), #AC9ACF) 1;
+  }
+  50% {
+    border-image: linear-gradient(to bottom, white, rgb(85, 68, 102), #AC9ACF, #4e465f) 1;
+  }
+  75% {
+    border-image: linear-gradient(to bottom, rgb(85, 68, 102), #AC9ACF, #4e465f, white) 1;
+  }
+  100% {
+    border-image: linear-gradient(to bottom, #AC9ACF, #4e465f, white, rgb(85, 68, 102)) 1;
+  }
+}
+.main .moradoDiv {
+  background-color: #f3f0fb;
+  border-radius: 85% 15rem;
 }
 
 /*# sourceMappingURL=index.css.map */

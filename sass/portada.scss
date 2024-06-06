@@ -1,0 +1,66 @@
+@use 'partials/_variables.scss';
+@use 'partials/_mixins.scss'; 
+@use 'partials/_breakpoint.scss';
+.main{
+    h2{
+        color: $moradoPrincipal;
+    }
+    h3{
+        color: $moradoH3;
+    }
+    .carrusel{
+        // height: 20px;
+    
+    }
+    
+    .primero, .segundo, .tercero {
+        @include distribucionPortada(800px, 1000px);
+    }
+    .trastorno{
+        @include distribucionPortada(auto, auto);
+        padding: 100px;
+        height: 700px;
+        // padding-left: 100px;
+        // padding-right: 100px;
+        // padding-bottom: 100px;
+        // background-color: orange;
+        // p{
+        //     padding: 0 100px;
+        // }
+        h2{
+            margin-top: 50px;
+        }
+        h3{
+            margin-bottom: 30px;
+        }
+        .ul{
+            display: grid;
+            // background-color: aqua;
+            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            .li{
+                // background-color: red;
+                padding: 10px;
+                @include bordeAnimado;
+                //animation: changeColor 4s infinite;
+            }
+            
+        }
+    }
+    .moradoDiv{
+        background-color: $moradoDiv;
+        border-radius: 85% 15rem;
+        // background: rgb(255,255,255);
+        // background: linear-gradient(0deg, rgba(255,255,255,1) 0%, $moradoDiv 15%, $moradoDiv 85%, rgba(255,255,255,1) 100%);
+    }
+    
+    // .segundo{
+    //     @include distribucionPortada;
+    // }
+    
+    
+    // .tercero{
+    //     @include distribucionPortada;
+    // }
+    
+}
