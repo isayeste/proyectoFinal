@@ -34,18 +34,21 @@
 }
 .cont .contenedor .contenido .interiorContenido .enlace {
   padding: 25px 40px;
-  border: 0.5px solid white;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
   display: grid;
   align-items: center;
   justify-items: center;
   font-size: 16px;
   text-align: center;
-  color: white;
+  color: #AC9ACF;
   text-decoration: none;
 }
 .cont .contenedor .contenido .interiorContenido .enlace:hover {
   background-color: rgba(51, 50, 86, 0.5);
-  border: 0.5px solid rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
 }
 .cont .portada {
   background-image: url("../imagenes/portada.jpg");
@@ -92,19 +95,22 @@
 }
 .contenedorCalendario .botones div .boton {
   padding: 25px 40px;
-  border: 0.5px solid white;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
   display: grid;
   align-items: center;
   justify-items: center;
   font-size: 16px;
   text-align: center;
-  color: white;
+  color: #AC9ACF;
   text-decoration: none;
   background-color: rgb(85, 68, 102);
 }
 .contenedorCalendario .botones div .boton:hover {
   background-color: rgba(51, 50, 86, 0.5);
-  border: 0.5px solid rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
 }
 .contenedorCalendario .botones .final {
   display: flex;
@@ -167,18 +173,21 @@
 }
 .contenidoF .botonVolver .volver {
   padding: 25px 40px;
-  border: 0.5px solid white;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
   display: grid;
   align-items: center;
   justify-items: center;
   font-size: 16px;
   text-align: center;
-  color: white;
+  color: #AC9ACF;
   text-decoration: none;
 }
 .contenidoF .botonVolver .volver:hover {
   background-color: rgba(51, 50, 86, 0.5);
-  border: 0.5px solid rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
 }
 
 .contenedorHorario {
@@ -209,18 +218,21 @@
 }
 .contenidoPsi .interiorContenidoPsi .enlace {
   padding: 25px 40px;
-  border: 0.5px solid white;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
   display: grid;
   align-items: center;
   justify-items: center;
   font-size: 16px;
   text-align: center;
-  color: white;
+  color: #AC9ACF;
   text-decoration: none;
 }
 .contenidoPsi .interiorContenidoPsi .enlace:hover {
   background-color: rgba(51, 50, 86, 0.5);
-  border: 0.5px solid rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
 }
 
 .superior {
@@ -371,25 +383,55 @@
   border: 1px solid black;
 }
 
-.main h2 {
+.main .titulo {
   color: #AC9ACF;
+  font-size: 65px;
 }
-.main h3 {
-  color: #4e465f;
+.main .transicion {
+  width: 100%;
+  height: 300px;
+}
+.main a {
+  color: rgb(51, 41, 61);
+}
+.main a:hover {
+  color: rgba(51, 50, 86, 0.5);
 }
 .main .primero, .main .segundo, .main .tercero {
-  height: 800px;
+  height: 600px;
   display: grid;
   justify-items: center;
   align-items: center;
+  padding: 0 100px;
 }
 .main .primero .texto, .main .segundo .texto, .main .tercero .texto {
   display: grid;
   justify-items: center;
-  width: 1000px;
+  width: auto;
 }
 .main .primero p, .main .segundo p, .main .tercero p {
   text-align: center;
+}
+.main .primero .boton, .main .segundo .boton, .main .tercero .boton {
+  padding: 25px 40px;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 16px;
+  text-align: center;
+  color: #AC9ACF;
+  text-decoration: none;
+}
+.main .primero .boton:hover, .main .segundo .boton:hover, .main .tercero .boton:hover {
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
+}
+.main .segundo {
+  background-color: #f3f0fb;
 }
 .main .trastorno {
   height: auto;
@@ -516,6 +558,11 @@
   padding: 30px;
 }
 
+.politicas {
+  background-color: #f3f0fb;
+  padding: 100px;
+}
+
 .footer {
   border-top: 2px solid;
   animation: intercambioColores 5s infinite linear;
@@ -523,8 +570,8 @@
   border-bottom: 2px solid;
   animation: intercambioColores 5s infinite linear;
   transition: filter 0.5s ease;
-  margin-top: 50px;
   padding: 50px;
+  color: rgb(51, 41, 61);
 }
 @keyframes intercambioColores {
   0% {
@@ -562,7 +609,7 @@
 }
 .footer a {
   text-decoration: none;
-  color: black;
+  color: #AC9ACF;
 }
 .footer a:hover {
   color: rgba(51, 50, 86, 0.5);
@@ -572,6 +619,12 @@
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
+}
+.footer .footerUno .footerLinks {
+  color: #AC9ACF;
+}
+.footer .footerUno .footerContacto {
+  color: #AC9ACF;
 }
 .footer .footerUno .redes {
   display: grid;
@@ -587,6 +640,7 @@
 }
 .footer .footerUno .redes ul li {
   margin: 0 15px;
+  color: #AC9ACF;
 }
 
 .footerDos {
@@ -594,6 +648,24 @@
   display: grid;
   justify-items: center;
   align-items: center;
+  background-color: #AC9ACF;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body h1 {
+  text-align: center;
+  color: rgb(51, 41, 61);
+}
+body h2 {
+  color: #AC9ACF;
+}
+body h3 {
+  color: #4e465f;
+}
+body p {
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,12 +1,13 @@
 .footer{
     @include bordeTop;
     @include bordeBottom;
-    margin-top: 50px;
+    // margin-top: 50px;
     padding: 50px;
+    color: $moradoFooter;
 
     a{
         text-decoration: none;
-        color: black;
+        color: $moradoPrincipal;
     }
 
     a:hover{
@@ -21,10 +22,10 @@
         text-align: center;
         
         .footerLinks{
-            
+            color: $moradoPrincipal;
         }
         .footerContacto{
-            
+            color: $moradoPrincipal; 
         }
         .redes{
             display: grid;
@@ -39,6 +40,7 @@
 
                 li{
                     margin: 0 15px;
+                    color: $moradoPrincipal;
                 }
             }
         }
@@ -50,4 +52,5 @@
     display: grid;
     justify-items: center;
     align-items: center;
+    background-color: $moradoPrincipal;
 }

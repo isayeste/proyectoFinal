@@ -2,19 +2,54 @@
 @use 'partials/_mixins.scss'; 
 @use 'partials/_breakpoint.scss';
 .main{
-    h2{
+    // height: 100vh;
+    .titulo{
         color: $moradoPrincipal;
+        font-size: 65px;
     }
-    h3{
-        color: $moradoH3;
+
+    .transicion{
+        width: 100%;
+        height: 300px;
     }
+
     .carrusel{
         // height: 20px;
     
     }
+
+    a{
+        color: $moradoFooter;
+    }
+    a:hover{
+        color: $moradoHover;
+    }
     
     .primero, .segundo, .tercero {
-        @include distribucionPortada(800px, 1000px);
+        @include distribucionPortada(600px, auto);
+        padding: 0 100px;
+        // padding-left: 100px;
+        // background-color: aqua;
+
+        // padding: 1000px;
+        .texto{
+	        // border-radius: 0 100% 0 100%;
+	        // background: linear-gradient(45deg, $moradoPrincipal 0%, white 50%, white 51%, white 51%, $moradoPrincipal 100%);
+            // // height: 500px;
+            // // width: 100%;
+            // display: grid;
+            // gap: 20px;
+        }
+        .boton{
+            @include boton;
+            
+        }
+        .boton:hover{
+            @include botonHover;
+        }
+    }
+    .segundo{
+        background-color: $moradoDiv;
     }
     .trastorno{
         @include distribucionPortada(auto, auto);
@@ -126,4 +161,9 @@
         }
     }
     
+}
+
+.politicas{
+    background-color: $moradoDiv;
+    padding: 100px;
 }

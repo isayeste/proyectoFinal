@@ -11,3 +11,20 @@
 @import 'modal.scss';
 @import 'portada.scss';
 @import 'footer.scss';
+
+body{
+    font-family: $fuenteLetra;
+    h1{
+        text-align: center;
+        color: $moradoFooter;
+    }
+    h2{
+        color: $moradoPrincipal;
+    }
+    h3{
+        color: $moradoH3;
+    }
+    p{
+        font-size: 18px;
+    }
+}
