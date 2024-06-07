@@ -15,7 +15,7 @@ CREATE TABLE horarios(
     idHorario INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     fechaInicio DATETIME,
     fechaFin DATETIME,  
-    estado ENUM('libre', 'ocupado', 'noLaboral')
+    estado ENUM('libre', 'ocupado', 'espera')
 );
 
 -- CITAS

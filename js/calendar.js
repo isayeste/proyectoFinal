@@ -203,6 +203,22 @@ document.addEventListener('DOMContentLoaded', function() {
                             })
                             .then(data => {
                                 console.log(data); // Imprimir la respuesta del servidor
+                                // Ocultar el primer modal y mostrar el segundo modal
+                                myModal.style.display = "none";
+                                myModal2.style.display = "block";
+
+                                // 
+                                // Botón salir en el segundo modal
+                                botonSalir.onclick = function() {
+                                    myModal2.style.display = "none";
+                                };
+                            
+                                // Cerrar el segundo modal al hacer clic fuera
+                                window.onclick = function(event) {
+                                    if (event.target == myModal2modal2) {
+                                        myModal2.style.display = "none";
+                                    }
+                                };
                             })
                             .catch(error => console.error('Error:', error));
                         };
@@ -223,5 +239,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         };
                     }
                 });
+
+                 
+
             });
+           
             
