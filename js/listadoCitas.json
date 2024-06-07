@@ -1,1 +1,1 @@
-[]
+[{"idCita":14,"motivo":"fdsfs","via":"online","emailPaciente":"email@gmail.com","idHorario":427,"fechaInicio":"2024-06-13 19:02:00","fechaFin":"2024-06-13 20:01:00","nombre":"usuario"},{"idCita":15,"motivo":"cita","via":"presencial","emailPaciente":"email@gmail.com","idHorario":439,"fechaInicio":"2024-07-25 19:02:00","fechaFin":"2024-07-25 20:01:00","nombre":"usuario"},{"idCita":16,"motivo":"cita psico","via":"online","emailPaciente":"email@gmail.com","idHorario":427,"fechaInicio":"2024-06-13 19:02:00","fechaFin":"2024-06-13 20:01:00","nombre":"usuario"}]
