@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             
                                 // Cerrar el segundo modal al hacer clic fuera
                                 window.onclick = function(event) {
-                                    if (event.target == myModal2modal2) {
+                                    if (event.target == myModal2) {
                                         myModal2.style.display = "none";
                                     }
                                 };

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tabla = document.createElement('table');
         tabla.classList.add('tablaCitas');
 
-        //Crear el thead de la tabla
+        // Crear el thead de la tabla
         const thead = document.createElement('thead');
         const encabezadoFila = document.createElement('tr');
 
@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
         thead.append(encabezadoFila);
         tabla.append(thead);
 
-        //Crear el body de la tabla
+        // Crear el body de la tabla
         const tbody = document.createElement('tbody');
-        
-        //Iterar sobre cada cita y crear una fila en la tabla para cada una -> añadir info de cada una
+
+        // Iterar sobre cada cita y crear una fila en la tabla para cada una -> añadir info de cada una
         citas.forEach(cita => {
             const fila = document.createElement('tr');
-            
+
             const fechaInicio = document.createElement('td');
             fechaInicio.textContent = cita.fechaInicio;
             fila.append(fechaInicio);
@@ -55,66 +55,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const btnAceptar = document.createElement('button');
             btnAceptar.textContent = 'Aceptar';
+            // Agregar un event listener para el botón de Aceptar
+            btnAceptar.addEventListener('click', function() {
+                // ACEPTAR LA CITA
+                const citaData = {
+                    idCita: cita.idCita,
+                    idHorario: cita.idHorario,  // Asegúrate de que esto esté presente
+                    fechaInicio: cita.fechaInicio,
+                    fechaFin: cita.fechaFin,
+                    nombre: cita.nombre,
+                    emailPaciente: cita.emailPaciente,
+                    motivo: cita.motivo,
+                    via: cita.via
+                };
 
-            btnAceptar.addEventListener('click', function () {
-                const token = localStorage.getItem('googleAccessToken');
-                if (!token) {
-                    console.log('No hay sesión con Google');
-                    return;
-                }
-                // Actualizar la BBDD
-                fetch('../php/citaOcupado.php', {
+                //console.log('Datos a enviar:', citaData);
+
+                // Enviar la información de la cita al archivo PHP mediante una solicitud HTTP POST
+                fetch('../php/aceptarCita.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ idHorario: cita.idHorario })
+                    body: JSON.stringify(citaData)
                 })
-                .then(response => response.json())
+                .then(response => response.text())  // Cambiar a .text() para ver la respuesta como texto
                 .then(data => {
-                    if (data.message === "Estado actualizado correctamente") {
-                        // Enviar token y ID de la cita a crearEventoGoogleCalendar.php
-                        fetch('../php/crearEventoGoogleCalendar.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                token: token,
-                                idHorario: cita.idHorario
-                            })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                // Si la respuesta no es OK -> lanza un error para ser atrapado por catch
-                                return response.text().then(text => { throw new Error(text) });
-                            }
-                            return response.json();
-                        })
-                        .then(eventData => {
-                            if (eventData.success) {
-                                console.log('Evento creado en Google Calendar');
-                            } else {
-                                console.log('Error al crear el evento en Google Calendar:', eventData.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error al crear el evento:', error.message);
-                        });
-                    } else {
-                        console.log(data.message);
-                    }
+                    console.log('Respuesta del servidor:', data);
                 })
-                .catch(error => console.error('Error al actualizar el estado:', error.message));
+                .catch(error => console.error('Error:', error));
             });
-            
-            
-
 
             const btnCancelar = document.createElement('button');
             btnCancelar.textContent = 'Cancelar';
-            btnCancelar.addEventListener('click', function () {
-                // DENEGAR LA CITA
+            // Agregar un event listener para el botón de Cancelar
+            btnCancelar.addEventListener('click', function() {
+                // CANCELAR LA CITA
+                console.log('Cita cancelada');
             });
 
             acciones.append(btnAceptar, btnCancelar);
@@ -127,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         contenedor.append(tabla);
     }
 
+    // Fetch los datos del archivo JSON y llamar a la función crearTablaCitas
     fetch(url)
         .then(response => response.json())
         .then(data => crearTablaCitas(data))

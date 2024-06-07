@@ -103,8 +103,6 @@ try {
 
     // Guardar los datos en un archivo JSON
     guardarJson($horarios);
-
-    // Redirección (puedes ajustar la URL según sea necesario)
     header("Location: ../html/inicioPsicologo.php");
     exit();
 

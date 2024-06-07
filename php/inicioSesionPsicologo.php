@@ -11,14 +11,17 @@ $client = new Client();
 // Establecer la ruta al archivo JSON de credenciales descargado desde la Consola de Desarrolladores de Google
 $client->setAuthConfig('../config/client_secret_817642552550-grgavacspiedvqco6uu785u561bepi4o.apps.googleusercontent.com.json');
 
-// Añadir el alcance necesario para la autenticación (email y perfil)
+// Añadir el alcance necesario para la autenticación (email, perfil y calendario)
 $client->addScope('email');
 $client->addScope('profile');
+$client->addScope('https://www.googleapis.com/auth/calendar');
 
 
 // Establecer la URL de redireccionamiento después de la autorización
 $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/proyectoFinal/proyectoFinal/php/inicioSesionPsicologo.php';
 $client->setRedirectUri($redirect_uri);
+
+
 
 // Si se recibió un código de autorización -> intercambia el código por un token de acceso
 if (isset($_GET['code'])) {
@@ -39,6 +42,6 @@ if (isset($_GET['code'])) {
 if (!isset($_SESSION['access_token'])) {
     $authUrl = $client->createAuthUrl();
     header('Location: ' . $authUrl);
-    //exit;
+    exit;
 }
 ?>
