@@ -1,219 +1,102 @@
+// Este evento se dispara cuando el DOM ha sido completamente cargado y parseado
 document.addEventListener('DOMContentLoaded', function() {
-    const url = '../js/lecturaHorario.json';
+    // Selecciona todos los elementos con la clase 'btnAceptar' y los almacena en btnAceptar
+    const btnAceptar = document.querySelectorAll('.btnAceptar');
+    // Selecciona todos los elementos con la clase 'btnCancelarEspera' y los almacena en btnCancelarEspera
+    const btnCancelarEspera = document.querySelectorAll('.btnCancelarEspera');
+    // Selecciona todos los elementos con la clase 'btnCancelarOcupado' y los almacena en btnCancelarOcupado
+    const btnCancelarOcupado = document.querySelectorAll('.btnCancelarOcupado');
 
-    function crearTablaCitasEnEspera(citas) {
-        const contenedor = document.querySelector('.contenidoListado');
-        const tabla = document.createElement('table');
-        tabla.classList.add('tablaCitas');
-
-        const thead = document.createElement('thead');
-        const encabezadoFila = document.createElement('tr');
-
-        const encabezados = ['Fecha Inicio', 'Fecha Fin', 'Nombre', 'Email', 'Motivo Consulta', 'Vía', 'Acciones'];
-        encabezados.forEach(texto => {
-            const th = document.createElement('th');
-            th.textContent = texto;
-            encabezadoFila.append(th);
+    // Itera sobre cada botón de aceptar
+    btnAceptar.forEach(btn => {
+        // Añade un event listener para el evento 'click' a cada botón de aceptar
+        btn.addEventListener('click', function() {
+            const idHorario = this.dataset.idhorario;
+            console.log(idHorario);
+            // Obtiene los datos de la cita desde el atributo 'data-cita' del elemento padre del botón
+            //const cita = this.parentElement.parentElement.dataset.cita;
+            //console.dir(cita);
+            // Llama a la función 'aceptarCita' pasando los datos de la cita como argumento
+            //console.log('ID del horario asociado al botón Aceptar:', idHorario);
+            aceptarCita(idHorario);
         });
+    });
 
-        thead.append(encabezadoFila);
-        tabla.append(thead);
-
-        const tbody = document.createElement('tbody');
-
-        citas.forEach(cita => {
-            const fila = document.createElement('tr');
-
-            const fechaInicio = document.createElement('td');
-            fechaInicio.textContent = cita.fechaInicio;
-            fila.append(fechaInicio);
-
-            const fechaFin = document.createElement('td');
-            fechaFin.textContent = cita.fechaFin;
-            fila.append(fechaFin);
-
-            const nombre = document.createElement('td');
-            nombre.textContent = cita.nombre;
-            fila.append(nombre);
-
-            const email = document.createElement('td');
-            email.textContent = cita.emailPaciente;
-            fila.append(email);
-
-            const motivoConsulta = document.createElement('td');
-            motivoConsulta.textContent = cita.motivo;
-            fila.append(motivoConsulta);
-
-            const via = document.createElement('td');
-            via.textContent = cita.via;
-            fila.append(via);
-
-            const acciones = document.createElement('td');
-
-            const btnAceptar = document.createElement('button');
-            btnAceptar.textContent = 'Aceptar';
-            btnAceptar.addEventListener('click', function() {
-                const citaData = {
-                    idCita: cita.idCita,
-                    idHorario: cita.idHorario, 
-                    fechaInicio: cita.fechaInicio,
-                    fechaFin: cita.fechaFin,
-                    nombre: cita.nombre,
-                    emailPaciente: cita.emailPaciente,
-                    motivo: cita.motivo,
-                    via: cita.via
-                };
-
-                fetch('../php/aceptarCita.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(citaData)
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log('Respuesta del servidor:', data);
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            const btnCancelar = document.createElement('button');
-            btnCancelar.textContent = 'Cancelar';
-            btnCancelar.addEventListener('click', function() {
-                const citaData = {
-                    idCita: cita.idCita,
-                    idHorario: cita.idHorario,
-                    fechaInicio: cita.fechaInicio,
-                    fechaFin: cita.fechaFin,
-                    nombre: cita.nombre,
-                    emailPaciente: cita.emailPaciente,
-                    motivo: cita.motivo,
-                    via: cita.via
-                };
-
-                fetch('../php/cancelarCita.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(citaData)
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log('Respuesta del servidor:', data);
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            acciones.append(btnAceptar, btnCancelar);
-            fila.append(acciones);
-
-            tbody.append(fila);
+    // Itera sobre cada botón de cancelar espera
+    btnCancelarEspera.forEach(btn => {
+        // Añade un event listener para el evento 'click' a cada botón de cancelar espera
+        btn.addEventListener('click', function() {
+            const idHorario = this.dataset.idhorario;
+            console.log('ID del horario asociado al botón Cancelar Espera:', idHorario);
+            cancelarCitaEspera(idHorario);
         });
+    });
 
-        tabla.append(tbody);
-        contenedor.append(tabla);
+    // Itera sobre cada botón de cancelar ocupado
+    btnCancelarOcupado.forEach(btn => {
+        // Añade un event listener para el evento 'click' a cada botón de cancelar ocupado
+        btn.addEventListener('click', function() {
+            const idHorario = this.dataset.idhorario; 
+            console.log('ID del horario asociado al botón Cancelar Ocupado:', idHorario);
+            cancelarCitaOcupado(idHorario);
+        });
+    });
+
+    // Función para enviar una solicitud al servidor para aceptar una cita
+    function aceptarCita(cita) {
+        //console.log("cita aceptada");
+        fetch('../php/aceptarCita.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cita)
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Muestra la respuesta del servidor en la consola
+            console.log('Respuesta del servidor:', data);
+            // Recarga la página después de aceptar la cita
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
     }
 
-    function crearTablaCitasAceptadas(citas) {
-        const contenedor = document.querySelector('.contenidoListadoAceptadas');
-        const tabla = document.createElement('table');
-        tabla.classList.add('tablaCitas');
-
-        const thead = document.createElement('thead');
-        const encabezadoFila = document.createElement('tr');
-
-        const encabezados = ['Fecha Inicio', 'Fecha Fin', 'Nombre', 'Email', 'Motivo Consulta', 'Vía', 'Acciones'];
-        encabezados.forEach(texto => {
-            const th = document.createElement('th');
-            th.textContent = texto;
-            encabezadoFila.append(th);
-        });
-
-        thead.append(encabezadoFila);
-        tabla.append(thead);
-
-        const tbody = document.createElement('tbody');
-
-        citas.forEach(cita => {
-            const fila = document.createElement('tr');
-
-            const fechaInicio = document.createElement('td');
-            fechaInicio.textContent = cita.fechaInicio;
-            fila.append(fechaInicio);
-
-            const fechaFin = document.createElement('td');
-            fechaFin.textContent = cita.fechaFin;
-            fila.append(fechaFin);
-
-            const nombre = document.createElement('td');
-            nombre.textContent = cita.nombre;
-            fila.append(nombre);
-
-            const email = document.createElement('td');
-            email.textContent = cita.emailPaciente;
-            fila.append(email);
-
-            const motivoConsulta = document.createElement('td');
-            motivoConsulta.textContent = cita.motivo;
-            fila.append(motivoConsulta);
-
-            const via = document.createElement('td');
-            via.textContent = cita.via;
-            fila.append(via);
-
-            const acciones = document.createElement('td');
-
-            const btnCancelar = document.createElement('button');
-            btnCancelar.textContent = 'Cancelar';
-            btnCancelar.addEventListener('click', function() {
-                const citaData = {
-                    idCita: cita.idCita,
-                    idHorario: cita.idHorario,
-                    fechaInicio: cita.fechaInicio,
-                    fechaFin: cita.fechaFin,
-                    nombre: cita.nombre,
-                    emailPaciente: cita.emailPaciente,
-                    motivo: cita.motivo,
-                    via: cita.via
-                };
-
-                fetch('../php/cancelarCitaAceptada.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(citaData)
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log('Respuesta del servidor:', data);
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            acciones.append(btnCancelar);
-            fila.append(acciones);
-
-            tbody.append(fila);
-        });
-
-        tabla.append(tbody);
-        contenedor.append(tabla);
+    // Función para enviar una solicitud al servidor para cancelar una cita en espera
+    function cancelarCitaEspera(cita) {
+        fetch('../php/cancelarCita.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cita)
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Muestra la respuesta del servidor en la consola
+            console.log('Respuesta del servidor:', data);
+            // Recarga la página después de cancelar la cita en espera
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
     }
 
-    setTimeout(function() {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Datos cargados del JSON:', data); // Verifica los datos aquí
-                const citasEnEspera = data.filter(cita => cita.estado === "espera");
-                crearTablaCitasEnEspera(citasEnEspera);
-
-                const citasAceptadas = data.filter(cita => cita.estado === "ocupado");
-                crearTablaCitasAceptadas(citasAceptadas);
-            })
-            .catch(error => console.error('Error al cargar el archivo JSON:', error));
-    }, 1000);
+    // Función para enviar una solicitud al servidor para cancelar una cita ocupada
+    function cancelarCitaOcupado(cita) {
+        fetch('../php/cancelarCitaAceptada.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cita)
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Muestra la respuesta del servidor en la consola
+            console.log('Respuesta del servidor:', data);
+            // Recarga la página después de cancelar la cita ocupada
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+    }
 });

@@ -1,67 +1,97 @@
 <?php
+    
     require_once '../vendor/autoload.php';
     use Google\Client;
     use Google\Service\Calendar;
     use Google\Service\Calendar\Event;
-    use Google\Service\Gmail;
-    use Google\Service\Gmail\Message;
-    use Google\Service\Gmail\MessagePart;
-    use Google\Service\Gmail\MessagePartHeader;
-    // use PHPMailer\PHPMailer\PHPMailer;
-    // use PHPMailer\PHPMailer\Exception;
 
-
-    $json = file_get_contents('php://input');
+    $json= file_get_contents('php://input');
     $data = json_decode($json, true); 
-
-    // Imprimir el contenido recibido
-    echo '<pre>';
+    //$data = 17;
     print_r($data);
-    echo '</pre>';
-
-    $idCita = $data['idCita'];
-    $idHorario = $data['idHorario'];
-    $fechaInicio = $data['fechaInicio'];
-    $fechaFin = $data['fechaFin'];
-    $nombre = $data['nombre'];
-    $emailPaciente = $data['emailPaciente'];
-    $motivo = $data['motivo'];
-    $via = $data['via'];
 
     $servidor = 'localhost';
     $usuario = 'root';
     $password = '';
     $nombreBD = 'psyconnect';
 
+    $idCita = null;
+    $idHorario = null;
+    $fechaInicio = null;
+    $fechaFin = null;
+    $nombre = null;
+    $emailPaciente = null;
+    $motivo = null;
+    $via = null;
+
     try {
-        $conexion = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Crear una nueva conexión PDO
+        $pdo = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // SQL para actualizar el estado del horario a "ocupado"
-        $sql = "UPDATE horarios SET estado = 'ocupado' WHERE idHorario = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->execute([$idHorario]);
+        $sql = "
+            SELECT 
+                citas.idCita, 
+                citas.idHorario, 
+                horarios.fechaInicio, 
+                horarios.fechaFin, 
+                pacientes.nombre, 
+                citas.emailPaciente, 
+                citas.motivo, 
+                citas.via 
+            FROM 
+                citas 
+            JOIN 
+                pacientes ON citas.emailPaciente = pacientes.emailPaciente 
+            JOIN 
+                horarios ON citas.idHorario = horarios.idHorario
+            WHERE 
+                horarios.idHorario = :idHorario
+        ";
 
-        // Leer los datos de la tabla horarios
-        $sqlHorarios = "SELECT * FROM horarios";
-        $stmtHorarios = $conexion->query($sqlHorarios);
-        $horarios = $stmtHorarios->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idHorario', $data, PDO::PARAM_INT);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Escribir el archivo JSON lecturaHorario.json
-        file_put_contents('../js/lecturaHorario.json', json_encode($horarios));
+        // Si hay un resultado, guardar los valores en las variables correspondientes
+        if ($fila) {
+            $idCita = $fila['idCita'];
+            $idHorario = $fila['idHorario'];
+            $fechaInicio = $fila['fechaInicio'];
+            $fechaFin = $fila['fechaFin'];
+            $nombre = $fila['nombre'];
+            $emailPaciente = $fila['emailPaciente'];
+            $motivo = $fila['motivo'];
+            $via = $fila['via'];
 
-        // Leer los datos de la tabla citas
-        $sqlCitas = "SELECT * FROM citas";
-        $stmtCitas = $conexion->query($sqlCitas);
-        $citas = $stmtCitas->fetchAll(PDO::FETCH_ASSOC);
+            // Actualizar el estado del horario a 'ocupado'
+            $sqlUpdate = "UPDATE horarios SET estado = 'ocupado' WHERE idHorario = :idHorario";
+            $stmtUpdate = $pdo->prepare($sqlUpdate);
+            $stmtUpdate->bindParam(':idHorario', $idHorario, PDO::PARAM_INT);
+            $stmtUpdate->execute();
+            // Sobreescribir JSON
+            $sql2 = "SELECT idHorario, fechaInicio, fechaFin, estado FROM horarios";
+            $stmt = $pdo->prepare($sql2);
+            $stmt->execute();
+            $horarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $jsonHorarios = json_encode($horarios, JSON_PRETTY_PRINT);
 
-        // Escribir el archivo JSON listadoCitas.json
-        file_put_contents('../js/listadoCitas.json', json_encode($citas));
+            // Guardar los datos en el archivo JSON
+            $filePath = '../js/lecturaHorario.json';
+            file_put_contents($filePath, $jsonHorarios);
 
-        echo "Conexión exitosa. Archivos JSON actualizados correctamente.";
+        } else {
+            echo "No se encontraron resultados para el idHorario especificado.";
+        }
+
     } catch (PDOException $e) {
-        echo "Error al conectar con la base de datos: " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
+
+    // Cerrar la conexión
+    $pdo = null;
+
 
     //Generar evento en google calendar
     // Iniciar sesión si no está activa
@@ -94,12 +124,10 @@
     $nombreEvento = $nombre. ", ". $via;
     $horaInicio = strstr($fechaInicio, ' ');
     $horaInicio = ltrim($horaInicio);
-    //echo $horaInicio;
+    
     $horaFin = strstr($fechaFin, ' ');
     $horaFin = ltrim($horaFin);
-    //echo $nombreEvento;
-    //echo '<br>'. $fechaEvento;
-    // Crear un nuevo evento para el 8 de julio
+    
     $fecha = new DateTime($fechaEvento);
 
     $newEvent = new Event([
@@ -118,70 +146,90 @@
     $eventId = $createdEvent->getId();
     echo 'Evento creado: ' . $eventId;
 
-    //Guardar el eventId en la base de datos
+    // Actualizar el idGoogleCalendar en la base de datos
     try {
-        $sqlUpdateCita = "UPDATE citas SET idGoogleCalendar = ? WHERE idCita = ?";
-        $stmtUpdateCita = $conexion->prepare($sqlUpdateCita);
-        $stmtUpdateCita->execute([$eventId, $idCita]);
-        echo 'Evento guardado en la base de datos con ID de evento: ' . $eventId;
+        // Crear una nueva conexión PDO
+        $pdo = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sqlUpdateEventId = "UPDATE citas SET idGoogleCalendar = :idGoogleCalendar WHERE idCita = :idCita";
+        $stmtUpdateEventId = $pdo->prepare($sqlUpdateEventId);
+        $stmtUpdateEventId->bindParam(':idGoogleCalendar', $eventId, PDO::PARAM_STR);
+        $stmtUpdateEventId->bindParam(':idCita', $idCita, PDO::PARAM_INT);
+        $stmtUpdateEventId->execute();
+
+        echo 'ID de Google Calendar actualizado en la base de datos.';
+
     } catch (PDOException $e) {
-        echo "Error al actualizar la cita con el ID del evento: " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 
-    //Enviar email
-    // $subject = 'Cita confirmada';
-    // $body = 'Tu cita ha sido confirmada correctamente. Fecha: '. $fechaEvento . " a las: " . $horaInicio . " horas.";
-    // $to = $emailPaciente;
-    // $client->setAccessType('offline');
 
-    // $serviceGmail = new Gmail($client);
-    // $message = new Message();
-    // $message->setRaw(
-    //     base64_encode(
-    //         "From: Tu Nombre <psicologodaw@gmail.com>\r\n" .
-    //         "To: " . $to . "\r\n" .
-    //         "Subject: " . $subject . "\r\n" .
-    //         "MIME-Version: 1.0\r\n" .
-    //         "Content-Type: text/plain; charset=UTF-8\r\n" .
-    //         "Content-Transfer-Encoding: base64\r\n\r\n" .
-    //         rtrim(strtr(base64_encode($body), '+/', '-_'), '=') . "\r\n"
-    //     )
-    // );
 
+    // //Guardar el eventId en la base de datos
     // try {
-    //     $serviceGmail->users_messages->send('me', $message);
-    //     echo 'Correo electrónico enviado correctamente.';
-    // } catch (Exception $e) {
-    //     echo 'Error al enviar el correo electrónico: ' . $e->getMessage();
+    //     $sqlUpdateCita = "UPDATE citas SET idGoogleCalendar = ? WHERE idCita = ?";
+    //     $stmtUpdateCita = $conexion->prepare($sqlUpdateCita);
+    //     $stmtUpdateCita->execute([$eventId, $idCita]);
+    //     echo 'Evento guardado en la base de datos con ID de evento: ' . $eventId;
+    // } catch (PDOException $e) {
+    //     echo "Error al actualizar la cita con el ID del evento: " . $e->getMessage();
     // }
 
-    // $mail = new PHPMailer(true);
-    // try {
-    //     // Configuración del servidor
-    //     $mail->isSMTP();                                            // Usar SMTP
-    //     $mail->Host       = 'smtp.gmail.com';                       // Servidor SMTP de Gmail
-    //     $mail->SMTPAuth   = true;                                   // Habilitar autenticación SMTP
-    //     $mail->Username   = 'psiscologodaw@gmail.com';                   // Tu dirección de correo de Gmail
-    //     $mail->Password   = '';               // Tu contraseña de Gmail o la contraseña de aplicación (si tienes habilitada la verificación en dos pasos)
-    //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Habilitar encriptación TLS, también puedes usar 'ssl'
-    //     $mail->Port       = 465;                                    // Puerto TCP para SSL
+    // //Enviar email
+    // // $subject = 'Cita confirmada';
+    // // $body = 'Tu cita ha sido confirmada correctamente. Fecha: '. $fechaEvento . " a las: " . $horaInicio . " horas.";
+    // // $to = $emailPaciente;
+    // // $client->setAccessType('offline');
+
+    // // $serviceGmail = new Gmail($client);
+    // // $message = new Message();
+    // // $message->setRaw(
+    // //     base64_encode(
+    // //         "From: Tu Nombre <psicologodaw@gmail.com>\r\n" .
+    // //         "To: " . $to . "\r\n" .
+    // //         "Subject: " . $subject . "\r\n" .
+    // //         "MIME-Version: 1.0\r\n" .
+    // //         "Content-Type: text/plain; charset=UTF-8\r\n" .
+    // //         "Content-Transfer-Encoding: base64\r\n\r\n" .
+    // //         rtrim(strtr(base64_encode($body), '+/', '-_'), '=') . "\r\n"
+    // //     )
+    // // );
+
+    // // try {
+    // //     $serviceGmail->users_messages->send('me', $message);
+    // //     echo 'Correo electrónico enviado correctamente.';
+    // // } catch (Exception $e) {
+    // //     echo 'Error al enviar el correo electrónico: ' . $e->getMessage();
+    // // }
+
+    // // $mail = new PHPMailer(true);
+    // // try {
+    // //     // Configuración del servidor
+    // //     $mail->isSMTP();                                            // Usar SMTP
+    // //     $mail->Host       = 'smtp.gmail.com';                       // Servidor SMTP de Gmail
+    // //     $mail->SMTPAuth   = true;                                   // Habilitar autenticación SMTP
+    // //     $mail->Username   = 'psiscologodaw@gmail.com';                   // Tu dirección de correo de Gmail
+    // //     $mail->Password   = '';               // Tu contraseña de Gmail o la contraseña de aplicación (si tienes habilitada la verificación en dos pasos)
+    // //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Habilitar encriptación TLS, también puedes usar 'ssl'
+    // //     $mail->Port       = 465;                                    // Puerto TCP para SSL
     
-    //     // Configuración del correo
-    //     $mail->setFrom('psiscologodaw@gmail.com', 'Isa');          // Dirección y nombre del remitente
-    //     $mail->addAddress($emailPaciente, $nombre); // Dirección del destinatario y nombre opcional
+    // //     // Configuración del correo
+    // //     $mail->setFrom('psiscologodaw@gmail.com', 'Isa');          // Dirección y nombre del remitente
+    // //     $mail->addAddress($emailPaciente, $nombre); // Dirección del destinatario y nombre opcional
     
-    //     // Contenido del correo
-    //     $mail->isHTML(true);                                        // Establecer el formato del correo en HTML
-    //     $mail->Subject = 'Asunto del correo';
-    //     $mail->Body    = 'Este es el contenido del <b>correo</b> en HTML.';
-    //     $mail->AltBody = 'Este es el contenido del correo en texto plano para clientes de correo que no soportan HTML.';
+    // //     // Contenido del correo
+    // //     $mail->isHTML(true);                                        // Establecer el formato del correo en HTML
+    // //     $mail->Subject = 'Asunto del correo';
+    // //     $mail->Body    = 'Este es el contenido del <b>correo</b> en HTML.';
+    // //     $mail->AltBody = 'Este es el contenido del correo en texto plano para clientes de correo que no soportan HTML.';
     
-    //     // Enviar el correo
-    //     $mail->send();
-    //     echo 'El correo ha sido enviado correctamente.';
-    // } catch (Exception $e) {
-    //     echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
-    // }
+    // //     // Enviar el correo
+    // //     $mail->send();
+    // //     echo 'El correo ha sido enviado correctamente.';
+    // // } catch (Exception $e) {
+    // //     echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
+    // // }
 
 
 
