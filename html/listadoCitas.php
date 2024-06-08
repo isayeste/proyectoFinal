@@ -21,7 +21,10 @@
                 </a>
             </div>
             <div class="contenidoListado contenidoF">
-                <!-- INSERTAR AQUÍ LA TABLA DE LAS CITAS CON LA OPCIÓN PARA ACEPTAR/CANCELAR -->
+                <!-- INSERTAR AQUÍ LA TABLA DE LAS CITAS EN ESPERA CON LA OPCIÓN PARA ACEPTAR/CANCELAR -->
+            </div>
+            <div class="contenidoListadoAceptadas">
+                <!-- INSERTAR AQUÍ LA TABLA DE LAS CITAS ACEPTADAS CON LA OPCIÓN PARA CANCELAR -->
             </div>
         </div>
         <footer>

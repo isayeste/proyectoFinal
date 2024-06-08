@@ -25,6 +25,7 @@ CREATE TABLE citas(
     via ENUM('online', 'presencial'),
     emailPaciente VARCHAR(100),
     idHorario INT,
+    idGoogleCalendar VARCHAR(255),
     FOREIGN KEY (emailPaciente) REFERENCES pacientes(emailPaciente),
     FOREIGN KEY (idHorario) REFERENCES horarios(idHorario)
 );

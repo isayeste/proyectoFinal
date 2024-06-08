@@ -3,12 +3,7 @@
     use Google\Client;
     use Google\Service\Calendar;
     use Google\Service\Calendar\Event;
-    use Google\Service\Gmail;
-    use Google\Service\Gmail\Message;
-    use Google\Service\Gmail\MessagePart;
-    use Google\Service\Gmail\MessagePartHeader;
-    // use PHPMailer\PHPMailer\PHPMailer;
-    // use PHPMailer\PHPMailer\Exception;
+    
 
 
     $json = file_get_contents('php://input');
@@ -38,7 +33,7 @@
         $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // SQL para actualizar el estado del horario a "ocupado"
-        $sql = "UPDATE horarios SET estado = 'ocupado' WHERE idHorario = ?";
+        $sql = "UPDATE horarios SET estado = 'libre' WHERE idHorario = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->execute([$idHorario]);
 
@@ -115,74 +110,9 @@
     $createdEvent = $calendarService->events->insert($calendarId, $newEvent);
 
     // // Mostrar el ID del evento creado
-    $eventId = $createdEvent->getId();
-    echo 'Evento creado: ' . $eventId;
+    echo 'Evento creado: ' . $createdEvent->getId();
 
-    //Guardar el eventId en la base de datos
-    try {
-        $sqlUpdateCita = "UPDATE citas SET idGoogleCalendar = ? WHERE idCita = ?";
-        $stmtUpdateCita = $conexion->prepare($sqlUpdateCita);
-        $stmtUpdateCita->execute([$eventId, $idCita]);
-        echo 'Evento guardado en la base de datos con ID de evento: ' . $eventId;
-    } catch (PDOException $e) {
-        echo "Error al actualizar la cita con el ID del evento: " . $e->getMessage();
-    }
-
-    //Enviar email
-    // $subject = 'Cita confirmada';
-    // $body = 'Tu cita ha sido confirmada correctamente. Fecha: '. $fechaEvento . " a las: " . $horaInicio . " horas.";
-    // $to = $emailPaciente;
-    // $client->setAccessType('offline');
-
-    // $serviceGmail = new Gmail($client);
-    // $message = new Message();
-    // $message->setRaw(
-    //     base64_encode(
-    //         "From: Tu Nombre <psicologodaw@gmail.com>\r\n" .
-    //         "To: " . $to . "\r\n" .
-    //         "Subject: " . $subject . "\r\n" .
-    //         "MIME-Version: 1.0\r\n" .
-    //         "Content-Type: text/plain; charset=UTF-8\r\n" .
-    //         "Content-Transfer-Encoding: base64\r\n\r\n" .
-    //         rtrim(strtr(base64_encode($body), '+/', '-_'), '=') . "\r\n"
-    //     )
-    // );
-
-    // try {
-    //     $serviceGmail->users_messages->send('me', $message);
-    //     echo 'Correo electrónico enviado correctamente.';
-    // } catch (Exception $e) {
-    //     echo 'Error al enviar el correo electrónico: ' . $e->getMessage();
-    // }
-
-    // $mail = new PHPMailer(true);
-    // try {
-    //     // Configuración del servidor
-    //     $mail->isSMTP();                                            // Usar SMTP
-    //     $mail->Host       = 'smtp.gmail.com';                       // Servidor SMTP de Gmail
-    //     $mail->SMTPAuth   = true;                                   // Habilitar autenticación SMTP
-    //     $mail->Username   = 'psiscologodaw@gmail.com';                   // Tu dirección de correo de Gmail
-    //     $mail->Password   = '';               // Tu contraseña de Gmail o la contraseña de aplicación (si tienes habilitada la verificación en dos pasos)
-    //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Habilitar encriptación TLS, también puedes usar 'ssl'
-    //     $mail->Port       = 465;                                    // Puerto TCP para SSL
-    
-    //     // Configuración del correo
-    //     $mail->setFrom('psiscologodaw@gmail.com', 'Isa');          // Dirección y nombre del remitente
-    //     $mail->addAddress($emailPaciente, $nombre); // Dirección del destinatario y nombre opcional
-    
-    //     // Contenido del correo
-    //     $mail->isHTML(true);                                        // Establecer el formato del correo en HTML
-    //     $mail->Subject = 'Asunto del correo';
-    //     $mail->Body    = 'Este es el contenido del <b>correo</b> en HTML.';
-    //     $mail->AltBody = 'Este es el contenido del correo en texto plano para clientes de correo que no soportan HTML.';
-    
-    //     // Enviar el correo
-    //     $mail->send();
-    //     echo 'El correo ha sido enviado correctamente.';
-    // } catch (Exception $e) {
-    //     echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
-    // }
-
+    //cambiar mensaje de confirmacion
 
 
 
