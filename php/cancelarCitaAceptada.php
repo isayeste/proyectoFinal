@@ -92,10 +92,10 @@
             $horarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Eliminar la cita cuyo idHorario $data
-            $sqlDeleteCita = "DELETE FROM citas WHERE idHorario = :idHorario";
-            $stmtDeleteCita = $pdo->prepare($sqlDeleteCita);
-            $stmtDeleteCita->bindParam(':idHorario', $data, PDO::PARAM_INT);
-            $stmtDeleteCita->execute();
+            // $sqlDeleteCita = "DELETE FROM citas WHERE idHorario = :idHorario";
+            // $stmtDeleteCita = $pdo->prepare($sqlDeleteCita);
+            // $stmtDeleteCita->bindParam(':idHorario', $data, PDO::PARAM_INT);
+            // $stmtDeleteCita->execute();
 
             // Convertir los resultados a JSON
             $jsonHorarios = json_encode($horarios, JSON_PRETTY_PRINT);

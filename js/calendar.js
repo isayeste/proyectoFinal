@@ -219,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         myModal2.style.display = "none";
                                     }
                                 };
+                                location.reload();
                             })
                             .catch(error => console.error('Error:', error));
                         };
@@ -240,8 +241,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                 
+                  
 
             });
+
            
             
