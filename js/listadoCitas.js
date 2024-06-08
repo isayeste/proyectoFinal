@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     via: cita.via
                 };
 
-                //console.log('Datos a enviar:', citaData);
+                console.log('Datos a enviar:', citaData); //BORRAR ESTO
 
                 // Enviar la información de la cita al archivo PHP mediante una solicitud HTTP POST
                 fetch('../php/aceptarCita.php', {
