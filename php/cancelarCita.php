@@ -7,9 +7,6 @@
     use Google\Service\Gmail\Message;
     use Google\Service\Gmail\MessagePart;
     use Google\Service\Gmail\MessagePartHeader;
-    // use PHPMailer\PHPMailer\PHPMailer;
-    // use PHPMailer\PHPMailer\Exception;
-
 
     $json = file_get_contents('php://input');
     $data = json_decode($json, true); 
@@ -38,7 +35,7 @@
         $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // SQL para actualizar el estado del horario a "ocupado"
-        $sql = "UPDATE horarios SET estado = 'ocupado' WHERE idHorario = ?";
+        $sql = "UPDATE horarios SET estado = 'libre' WHERE idHorario = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->execute([$idHorario]);
 
@@ -87,35 +84,9 @@
         exit;
     }
 
-    // Crea una instancia del servicio de Google Calendar
-    $calendarService = new Google\Service\Calendar($client);
+    
 
-    $fechaEvento = strstr($fechaInicio, ' ', true);
-    $nombreEvento = $nombre. ", ". $via;
-    $horaInicio = strstr($fechaInicio, ' ');
-    $horaInicio = ltrim($horaInicio);
-    //echo $horaInicio;
-    $horaFin = strstr($fechaFin, ' ');
-    $horaFin = ltrim($horaFin);
-    //echo $nombreEvento;
-    //echo '<br>'. $fechaEvento;
-    // Crear un nuevo evento para el 8 de julio
-    $fecha = new DateTime($fechaEvento);
-
-    $newEvent = new Event([
-        'summary' => $nombreEvento,
-        'start' => ['dateTime' => $fecha->format('Y-m-d') . 'T'. $horaInicio, 'timeZone' => 'Europe/Madrid'],
-        'end' => ['dateTime' => $fecha->format('Y-m-d') . 'T' . $horaFin, 'timeZone' => 'Europe/Madrid'],
-    ]);
-
-    //var_dump($newEvent);
-
-    // // Insertar el evento en el calendario del usuario
-    $calendarId = 'primary';
-    $createdEvent = $calendarService->events->insert($calendarId, $newEvent);
-
-    // // Mostrar el ID del evento creado
-    echo 'Evento creado: ' . $createdEvent->getId();
+//----------------------------------------------------------------------------------------------------------------------
 
     //Enviar email
     $subject = 'Cita confirmada';
@@ -143,36 +114,5 @@
     } catch (Exception $e) {
         echo 'Error al enviar el correo electrónico: ' . $e->getMessage();
     }
-
-    // $mail = new PHPMailer(true);
-    // try {
-    //     // Configuración del servidor
-    //     $mail->isSMTP();                                            // Usar SMTP
-    //     $mail->Host       = 'smtp.gmail.com';                       // Servidor SMTP de Gmail
-    //     $mail->SMTPAuth   = true;                                   // Habilitar autenticación SMTP
-    //     $mail->Username   = 'psiscologodaw@gmail.com';                   // Tu dirección de correo de Gmail
-    //     $mail->Password   = '';               // Tu contraseña de Gmail o la contraseña de aplicación (si tienes habilitada la verificación en dos pasos)
-    //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Habilitar encriptación TLS, también puedes usar 'ssl'
-    //     $mail->Port       = 465;                                    // Puerto TCP para SSL
-    
-    //     // Configuración del correo
-    //     $mail->setFrom('psiscologodaw@gmail.com', 'Isa');          // Dirección y nombre del remitente
-    //     $mail->addAddress($emailPaciente, $nombre); // Dirección del destinatario y nombre opcional
-    
-    //     // Contenido del correo
-    //     $mail->isHTML(true);                                        // Establecer el formato del correo en HTML
-    //     $mail->Subject = 'Asunto del correo';
-    //     $mail->Body    = 'Este es el contenido del <b>correo</b> en HTML.';
-    //     $mail->AltBody = 'Este es el contenido del correo en texto plano para clientes de correo que no soportan HTML.';
-    
-    //     // Enviar el correo
-    //     $mail->send();
-    //     echo 'El correo ha sido enviado correctamente.';
-    // } catch (Exception $e) {
-    //     echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
-    // }
-
-
-
 
 ?>

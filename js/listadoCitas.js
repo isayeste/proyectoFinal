@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // ACEPTAR LA CITA
                 const citaData = {
                     idCita: cita.idCita,
-                    idHorario: cita.idHorario,  // Asegúrate de que esto esté presente
+                    idHorario: cita.idHorario, 
                     fechaInicio: cita.fechaInicio,
                     fechaFin: cita.fechaFin,
                     nombre: cita.nombre,
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     via: cita.via
                 };
 
-                console.log('Datos a enviar:', citaData); //BORRAR ESTO
+                //console.log('Datos a enviar:', citaData); //BORRAR ESTO
 
                 // Enviar la información de la cita al archivo PHP mediante una solicitud HTTP POST
                 fetch('../php/aceptarCita.php', {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(citaData)
                 })
-                .then(response => response.text())  // Cambiar a .text() para ver la respuesta como texto
+                .then(response => response.text()) 
                 .then(data => {
                     console.log('Respuesta del servidor:', data);
                 })
@@ -92,6 +92,35 @@ document.addEventListener('DOMContentLoaded', function() {
             btnCancelar.addEventListener('click', function() {
                 // CANCELAR LA CITA
                 console.log('Cita cancelada');
+                //----------------------------------
+                const citaData = {
+                    idCita: cita.idCita,
+                    idHorario: cita.idHorario,
+                    fechaInicio: cita.fechaInicio,
+                    fechaFin: cita.fechaFin,
+                    nombre: cita.nombre,
+                    emailPaciente: cita.emailPaciente,
+                    motivo: cita.motivo,
+                    via: cita.via
+                };
+
+                //console.log('Datos a enviar:', citaData); //BORRAR ESTO
+
+                // Enviar la información de la cita al archivo PHP mediante una solicitud HTTP POST
+                fetch('../php/cancelarCita.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(citaData)
+                })
+                .then(response => response.text())  // Cambiar a .text() para ver la respuesta como texto
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => console.error('Error:', error));
+
+                //AQUI
             });
 
             acciones.append(btnAceptar, btnCancelar);
