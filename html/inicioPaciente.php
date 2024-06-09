@@ -91,6 +91,11 @@
                     <h2 id="nombreMes"></h2>
                 </div>
                 <table class="calendar" id="calendario"></table>
+                <div class="leyenda">
+                    <div class="colorLeyenda" style="height: 10px; background-color: #ACF2D4; border: 1px, solid, black;"></div>
+                    <div><p>Días disponibles</p></div>
+                </div>
+                
                 <div id="botones" class="botones">
                     <div><button class="boton" id="anterior"></button></div>
                     <div class="final"><button class="boton" id="siguiente"></button></div>
