@@ -30,17 +30,17 @@ try {
             exit();
         } else {
             // Redirigir con mensaje de error de contraseña incorrecta
-            header("Location: ../html/preInicioSesion.html?error=Contraseña incorrecta");
+            header("Location: ../html/preInicioSesion.html?error=Contraseña+incorrecta");
             exit();
         }
     } else {
         // Redirigir con mensaje de error de email no encontrado
-        header("Location: ../html/preInicioSesion.html?error=Email no registrado");
+        header("Location: ../html/preInicioSesion.html?error=Email+no+registrado");
         exit();
     }
 } catch (PDOException $e) {
     // Redirigir con mensaje de error de excepción
-    header("Location: ../html/preInicioSesion.html?error=Error al iniciar sesión: " . $e->getMessage());
+    header("Location: ../html/preInicioSesion.html?error=Error+al+iniciar+sesión:+".urlencode($e->getMessage()));
     exit();
 } finally {
     // Cerrar la conexión

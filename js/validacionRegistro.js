@@ -1,24 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
 
-    if (urlParams.has('error')) {
-        const error = urlParams.get('error');
-        document.getElementById('errorEmail').textContent= error;
-        //alert(error);
+    if (urlParams.has('errorRegistro')) {
+        const error = urlParams.get('errorRegistro');
+        document.getElementById('errorEmail').textContent = error;
     }
 
-    if (urlParams.has('success')) {
-        const success = urlParams.get('success');
-        //document.getElementById('error').textContent= error;
-        alert(success);
-    }
+    // if (urlParams.has('success')) {
+    //     const success = urlParams.get('success');
+    //     alert(success);
+    // }
 
-    const error = urlParams.get('error');
-            if (error) {
-                document.getElementById('errorEmail').textContent = error;
-            }
-
-    document.getElementById('registroForm').addEventListener('submit', function (event) {
+    document.getElementById('registroForm').addEventListener('submit', function(event) {
         let valid = true;
 
         // Validar email

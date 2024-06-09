@@ -94,8 +94,8 @@
                 </div>
                 <table class="calendar" id="calendario"></table>
                 <div id="botones" class="botones">
-                    <div><button class="boton" id="anterior">Anterior</button></div>
-                    <div class="final"><button class="boton" id="siguiente">Siguiente</button></div>
+                    <div><button class="boton" id="anterior"></button></div>
+                    <div class="final"><button class="boton" id="siguiente"></button></div>
                 </div>
                 <div id="horas" class="horas">
                     <h3>Horarios disponibles</h3>

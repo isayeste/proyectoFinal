@@ -23,7 +23,7 @@ try {
 
     if ($result) {
         // Redirigir con un mensaje de error si el email ya está registrado
-        header("Location: ../html/preInicioSesion.html?error=El+email+ya+está+registrado.");
+        header("Location: ../html/preInicioSesion.html?errorRegistro=El+email+ya+está+registrado.");
         exit();
     }
 
@@ -32,7 +32,7 @@ try {
         $allowedExtensions = ['jpg', 'jpeg', 'png'];
         $fileExtension = strtolower(pathinfo($_FILES['fotoPerfil']['name'], PATHINFO_EXTENSION));
         if (!in_array($fileExtension, $allowedExtensions)) {
-            header("Location: ../html/preInicioSesion.html?error=La+foto+de+perfil+debe+ser+un+archivo+JPG+o+PNG.");
+            header("Location: ../html/preInicioSesion.html?errorRegistro=La+foto+de+perfil+debe+ser+un+archivo+JPG+o+PNG.");
             exit();
         }
         $fotoPerfilData = file_get_contents($_FILES['fotoPerfil']['tmp_name']);
@@ -47,7 +47,7 @@ try {
 
     header("Location: ../html/inicioPaciente.php?email=" . urlencode($emailPaciente));
 } catch (PDOException $e) {
-    header("Location: ../html/preInicioSesion.html?error=Error+al+insertar+los+datos:+".urlencode($e->getMessage()));
+    header("Location: ../html/preInicioSesion.html?errorRegistro=Error+al+insertar+los+datos:+".urlencode($e->getMessage()));
 } finally {
     // Cerrar la conexión
     $conexion = null;

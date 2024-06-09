@@ -83,6 +83,18 @@ function generarCalendario(fecha) {
         // Mostrar el nombre del mes
         let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         nombreMesElemento.textContent = `${meses[fecha.getMonth()]} ${fecha.getFullYear()}`;
+
+        //botones
+        let btnAnterior = document.getElementById('anterior');
+        let btnSiguiente = document.getElementById('siguiente');
+        
+
+        let mesAnterior = new Date(fecha.getFullYear(), fecha.getMonth() - 1, 1);
+        let mesSiguiente = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 1);
+    
+        btnAnterior.textContent = meses[mesAnterior.getMonth()];
+        btnSiguiente.textContent = meses[mesSiguiente.getMonth()];
+
     }).catch(function(error) {
         console.error(error);
     });
@@ -205,20 +217,20 @@ document.addEventListener('DOMContentLoaded', function() {
                                 console.log(data); // Imprimir la respuesta del servidor
                                 // Ocultar el primer modal y mostrar el segundo modal
                                 myModal.style.display = "none";
-                                myModal2.style.display = "block";
+                                // myModal2.style.display = "block";
 
                                 // 
                                 // Botón salir en el segundo modal
-                                botonSalir.onclick = function() {
-                                    myModal2.style.display = "none";
-                                };
+                                // botonSalir.onclick = function() {
+                                //     // myModal2.style.display = "none";
+                                // };
                             
                                 // Cerrar el segundo modal al hacer clic fuera
-                                window.onclick = function(event) {
-                                    if (event.target == myModal2) {
-                                        myModal2.style.display = "none";
-                                    }
-                                };
+                                // window.onclick = function(event) {
+                                //     if (event.target == myModal2) {
+                                //         // myModal2.style.display = "none";
+                                //     }
+                                // };
                                 location.reload();
                             })
                             .catch(error => console.error('Error:', error));
