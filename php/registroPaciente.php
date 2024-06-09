@@ -14,12 +14,40 @@ $nombreBD = 'psyconnect';
 
 try {
     $conexion = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Verificar si el email ya está registrado
+    $stmt = $conexion->prepare("SELECT * FROM pacientes WHERE emailPaciente = ?");
+    $stmt->execute([$emailPaciente]);
+    $result = $stmt->fetch();
+
+    if ($result) {
+        // Redirigir con un mensaje de error si el email ya está registrado
+        header("Location: ../html/preInicioSesion.html?error=El+email+ya+está+registrado.");
+        exit();
+    }
+
+    // Validar y guardar foto de perfil
+    if ($_FILES['fotoPerfil']['error'] == 0) {
+        $allowedExtensions = ['jpg', 'jpeg', 'png'];
+        $fileExtension = strtolower(pathinfo($_FILES['fotoPerfil']['name'], PATHINFO_EXTENSION));
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            header("Location: ../html/preInicioSesion.html?error=La+foto+de+perfil+debe+ser+un+archivo+JPG+o+PNG.");
+            exit();
+        }
+        $fotoPerfilData = file_get_contents($_FILES['fotoPerfil']['tmp_name']);
+    } else {
+        $fotoPerfilData = null;
+    }
+
+    // Insertar los datos en la base de datos
     $sql = "INSERT INTO pacientes (emailPaciente, contrasenia, nombre, fechaNacimiento, fotoPerfil) VALUES (?, ?, ?, ?, ?)";
-    //Preparar la consulta y devuelve un objeto PDOStatement. execute ejecuta la consulta
     $stmt = $conexion->prepare($sql);
-    $stmt->execute([$emailPaciente, $contrasenia, $nombre, $fechaNacimiento, $fotoPerfil]);
+    $stmt->execute([$emailPaciente, password_hash($contrasenia, PASSWORD_BCRYPT), $nombre, $fechaNacimiento, $fotoPerfilData]);
+
+    header("Location: ../html/inicioPaciente.php?email=" . urlencode($emailPaciente));
 } catch (PDOException $e) {
-    echo "Error al insertar los datos " . $e->getMessage();
+    header("Location: ../html/preInicioSesion.html?error=Error+al+insertar+los+datos:+".urlencode($e->getMessage()));
 } finally {
     // Cerrar la conexión
     $conexion = null;
