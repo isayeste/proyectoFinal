@@ -104,10 +104,14 @@ $conn->close();
                 <?php echo $tablaOcupado; ?>
             </div>
         </div>
+        <div>
+            <button id="volverPagAntPsi">Volver</button>
+        </div>
         <footer>
             <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
         </footer>
     </div>
     <script src="../js/listadoCitas.js"></script>
+    <script src="../js/botonVolverPagAntPsi.js"></script>
 </body>
 </html>
