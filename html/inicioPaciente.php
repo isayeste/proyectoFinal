@@ -68,12 +68,10 @@
                         
                                 // Verificar el valor del campo estado y mostrar el mensaje correspondiente
                                 if ($cita['estado'] == 'espera') {
-                                    echo "Cita Pendiente de Confirmación. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " . $via;
+                                    echo "<p>Cita Pendiente de Confirmación. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " . $via ."</p>";
                                 } elseif ($cita['estado'] == 'libre') {
-                                    echo "Cita Cancelada. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " .$via. ". Elija otra cita. Perdone por las molestias.";
+                                    echo "<p>Cita Cancelada. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " .$via. ". Elija otra cita. Perdone por las molestias.</p>";
                                 }
-                                // Puedes imprimir otros detalles de la cita aquí si lo deseas
-                                echo "<br>";
                             }
                         } catch (PDOException $e) {
                             // Manejar errores de conexión o consulta
@@ -98,8 +96,8 @@
                     <div class="final"><button class="boton" id="siguiente"></button></div>
                 </div>
                 <div id="horas" class="horas">
-                    <h3>Horarios disponibles</h3>
-                    <table id="horasDisponibles" class="horasDisponibles"></table>
+                    <h3 id="tituloHorariosDisponibles"></h3>
+                    <div id="horasDisponibles" class="horasDisponibles"></div>
                 </div>
             </div>
         </div>
@@ -134,12 +132,12 @@
         </div>
     </div>
     <!--  -->
-    <div id="myModal2" class="modal">
+    <!-- <div id="myModal2" class="modal">
         <div class="modal-content">
             <h3 id="">Espera la confirmación de la cita. Será indicada en el inicio de esta misma página</h3>
             <button id="botonSalir">Salir</button>
         </div>
-    </div>
+    </div> -->
     
 
     <script src="../js/calendar.js"></script>

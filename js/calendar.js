@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (target.tagName === 'TD') {
             fechaSeleccionada = target.getAttribute('data-fecha-legible');
             const fechaFormateada = target.getAttribute('data-fecha');
+            console.log(fechaSeleccionada);
+            document.getElementById('tituloHorariosDisponibles').textContent = `Horas disponibles para el ${fechaSeleccionada}`;
 
                         // Filtrar horarios para la fecha seleccionada
                         const horariosSeleccionados = horariosCompleto.filter(horario => horario.fechaInicio === fechaFormateada && horario.estado === 'libre');
@@ -164,13 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
                         // Añadir horas disponibles a la tabla
                         horasDisponibles.forEach(({ id, hora }) => {
-                            let fila = document.createElement('tr');
-                            let celda = document.createElement('td');
+                            //let fila = document.createElement('div');
+                            let celda = document.createElement('div');
                             celda.textContent = hora;
                             celda.setAttribute('data-hora', hora);
                             celda.setAttribute('data-id', id); // Guardar el ID de la cita
-                            fila.append(celda);
-                            tablaHorasDisponibles.append(fila);
+                            //fila.append(celda);
+                            //tablaHorasDisponibles.append(fila);
+                            tablaHorasDisponibles.append(celda);
                         });
                     }
                 });
@@ -178,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Click en una hora disponible
                 tablaHorasDisponibles.addEventListener('click', function(event) {
                     const target = event.target;
-                    if (target.tagName === 'TD') {
+                    if (target.tagName === 'DIV') {
                         const hora = target.getAttribute('data-hora');
                         citaSeleccionada = target.getAttribute('data-id'); // Guardar el ID de la cita seleccionada
                         console.log(`Cita ID: ${citaSeleccionada}`); // Imprimir el ID de la cita seleccionada
