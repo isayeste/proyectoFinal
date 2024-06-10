@@ -99,6 +99,51 @@
   color: white;
 }
 
+.boton {
+  padding: 2px 10px;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 16px;
+  text-align: center;
+  color: #AC9ACF;
+  text-decoration: none;
+}
+
+.boton:hover {
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
+}
+
+.contenidoFormularioHorario {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.contenidoFormularioHorario .formulario {
+  border-radius: 20px;
+  box-shadow: 4px 7px 5px 0px rgba(0, 0, 0, 0.2);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(349deg, rgb(255, 255, 255) 0%, #f3f0fb 51%, #f3f0fb 72%, rgb(255, 255, 255) 100%);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 50px;
+  margin: 50px;
+}
+.contenidoFormularioHorario .formulario .horas .horasContenido .fila {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.contenidoFormularioHorario .formulario .horas .horasContenido .fila .botonEnviar {
+  margin: 50px;
+  padding: 50px;
+}
+
 .inicioPsicologo {
   background: rgb(255, 255, 255);
   background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 44%, #ebe4fb 54%, #f3f0fb 64%, rgb(255, 255, 255) 100%);

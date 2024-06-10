@@ -43,38 +43,30 @@
             </div>
           </nav>
         <!--  -->
-        <div class="contenedor contenedorHorario">
-            <a href="../index.html">
-                <div class="superior">
-                    <div class="contSup">
-                        <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
-                    </div> 
-                </div>
-            </a>
+        <div class="contenedorPadre">
             
-            
-    
-            <div class="contenidoF">
+        
+            <div class="contenidoFormularioHorario">
                 <div class="formulario">
                     <h3>Generar Horario Trimestral</h3>
                     
                     <form action="../php/generarHorario.php" method="post">
-                        <div class="formularioGlobal">
+                        <!-- <div class="formularioGlobal"> -->
                             <div class="diasSemana">
                                 <h4>Indica tus días laborales</h4>
-                                <input type="checkbox" id="lunes" name="dias[]" value="1">
+                                <input  type="checkbox" id="lunes" name="dias[]" value="1">
                                 <label>Lunes</label><br>
-                                <input type="checkbox" id="martes" name="dias[]" value="2">
+                                <input  type="checkbox" id="martes" name="dias[]" value="2">
                                 <label>Martes</label><br>
-                                <input type="checkbox" id="miercoles" name="dias[]" value="3">
+                                <input  type="checkbox" id="miercoles" name="dias[]" value="3">
                                 <label>Miércoles</label><br>
-                                <input type="checkbox" id="jueves" name="dias[]" value="4">
+                                <input  type="checkbox" id="jueves" name="dias[]" value="4">
                                 <label>Jueves</label><br>
-                                <input type="checkbox" id="viernes" name="dias[]" value="5">
+                                <input  type="checkbox" id="viernes" name="dias[]" value="5">
                                 <label>Viernes</label><br>
-                                <input type="checkbox" id="sabado" name="dias[]" value="6">
+                                <input  type="checkbox" id="sabado" name="dias[]" value="6">
                                 <label>Sábado</label><br>
-                                <input type="checkbox" id="domingo" name="dias[]" value="7">
+                                <input  type="checkbox" id="domingo" name="dias[]" value="7">
                                 <label>Domingo</label><br>
                                 <br>
                             </div>
@@ -83,51 +75,68 @@
                             <!-- ------------------------------------------------------------------- -->
                             <div class="horas">
                                 <h4>Establece la duración de sesión y los horarios de entrada y salida de cada tramo horario</h4>
-                                <label>Hora de entrada por la mañana:</label>
-                                <input type="time" id="entradaManana" name="entradaManana" min="06:00" max="14:00"><br>
+                                <div class="horasContenido">
+                                  <div class="fila">
+                                    <div>
+                                      <label>Hora de entrada por la mañana:</label>
+                                      <input class="boton" type="time" id="entradaManana" name="entradaManana" min="06:00" max="14:00"><br>
+                                    </div>
+                                    <div>
+                                      <label>Hora de salida por la mañana:</label>
+                                      <input class="boton" type="time" id="salidaManana" name="salidaManana" min="06:00" max="14:00"><br>
+                                    </div>
+                                  </div>
+                                  <div class="fila">
+                                    <div>
+                                      <label>Hora de entrada por la tarde:</label>
+                                    <input class="boton" type="time" id="entradaTarde" name="entradaTarde" min="14:00" max="22:00"><br>
+                                    </div>
+                                    <div>
+                                      <label>Hora de salida por la tarde:</label>
+                                  <input class="boton" type="time" id="salidaTarde" name="salidaTarde" min="14:00" max="22:00"><br>
+                                    </div>
+                                  </div>
+                                  <div class="fila">
+                                    <div>
+                                      <label>Hora de entrada por la noche:</label>
+                                      <input class="boton" type="time" id="entradaNoche" name="entradaNoche" min="22:00" max="06:00"><br>
+                                    </div>
+                                    <div>
+                                      <label>Hora de salida por la noche:</label>
+                                  <input class="boton" type="time" id="salidaNoche" name="salidaNoche" min="22:00" max="06:00"><br> 
+                                    </div>
+                                  </div>
+                                  <div class="fila">
+                                    <div>
+                                      <label>Duración de la sesión (minutos):</label>
+                                      <input class="boton" type="number" id="duracion" name="duracion" min="1" max="240" required>
+                                    </div>
+                                    
+                                  </div>
+                                  <br>
+                                  <div class="botonEnviar">
+                                    <input class="boton" type="submit" value="Enviar">
+                                  </div>
+                                 
+                                </div>
                                 
-                                <label>Hora de salida por la mañana:</label>
-                                <input type="time" id="salidaManana" name="salidaManana" min="06:00" max="14:00"><br>
-                                
-                                <label>Hora de entrada por la tarde:</label>
-                                <input type="time" id="entradaTarde" name="entradaTarde" min="14:00" max="22:00"><br>
-                                
-                                <label>Hora de salida por la tarde:</label>
-                                <input type="time" id="salidaTarde" name="salidaTarde" min="14:00" max="22:00"><br>
-                                
-                                <label>Hora de entrada por la noche:</label>
-                                <input type="time" id="entradaNoche" name="entradaNoche" min="22:00" max="06:00"><br>
-                                
-                                <label>Hora de salida por la noche:</label>
-                                <input type="time" id="salidaNoche" name="salidaNoche" min="22:00" max="06:00"><br> 
-                                <br>
-                                <label>Duración de la sesión (minutos):</label>
-                                
-                                
-                                <input type="number" id="duracion" name="duracion" min="1" max="240" required>
-                                <br>
-                                <br>
+                      
                                 
                             </div>
-                            <!-- <div class="boton">
-                                <input type="submit" value="Enviar">
-                            </div> -->
-                        </div>
-                        <div class="boton">
-                            <input type="submit" value="Enviar">
-                        </div>
-                         
-                        
+                            
+          
                     </form>
                     
                     
                 </div>
                
 
+                <div class="botonVolver">
+                  <button class="boton" id="volverPagAntPsi">Volver</button>
+              </div>
+
             </div>
-            <div>
-                <button id="volverPagAntPsi">Volver</button>
-            </div>
+            
             
     </div>
     <div class="footer">
