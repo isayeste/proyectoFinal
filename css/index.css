@@ -31,7 +31,7 @@
   padding-top: 30px;
 }
 .contenedorCalendario .botones div .boton {
-  padding: 25px 40px;
+  padding: 2px 3px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;
@@ -109,7 +109,7 @@
   margin-right: 50px;
 }
 .contenidoF .botonVolver .volver {
-  padding: 25px 40px;
+  padding: 2px 10px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;
@@ -154,7 +154,7 @@
   grid-template-columns: repeat(3, 1fr);
 }
 .contenidoPsi .interiorContenidoPsi .enlace {
-  padding: 25px 40px;
+  padding: 2px 10px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;
@@ -230,26 +230,64 @@
 }
 
 .preInicio {
-  background-image: url("../imagenes/preInicio.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 54%, rgb(255, 255, 255) 100%);
+  display: grid;
+  align-items: center;
 }
 .preInicio .contFormularios {
-  background-color: rgba(51, 41, 61, 0.6);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   justify-content: center;
   align-items: center;
+  padding: 50px;
 }
 .preInicio .contFormularios .formulario {
-  background-color: rgba(0, 0, 0, 0.285);
-  height: 450px;
-  width: 400px;
+  height: 800px;
+  width: 600px;
   display: grid;
   justify-items: center;
   align-items: center;
+  border: 2px solid;
+  animation: intercambioColores 5s infinite linear;
+  transition: filter 0.5s ease;
+  padding: 100px;
+}
+@keyframes intercambioColores {
+  0% {
+    border-image: linear-gradient(to bottom, #AC9ACF, #4e465f, white, rgb(85, 68, 102)) 1;
+  }
+  25% {
+    border-image: linear-gradient(to bottom, #4e465f, white, rgb(85, 68, 102), #AC9ACF) 1;
+  }
+  50% {
+    border-image: linear-gradient(to bottom, white, rgb(85, 68, 102), #AC9ACF, #4e465f) 1;
+  }
+  75% {
+    border-image: linear-gradient(to bottom, rgb(85, 68, 102), #AC9ACF, #4e465f, white) 1;
+  }
+  100% {
+    border-image: linear-gradient(to bottom, #AC9ACF, #4e465f, white, rgb(85, 68, 102)) 1;
+  }
+}
+.preInicio .contFormularios .formulario form .boton {
+  padding: 2px 10px;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 16px;
+  text-align: center;
+  color: #AC9ACF;
+  text-decoration: none;
+}
+.preInicio .contFormularios .formulario form .boton:hover {
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
 }
 
 .modal {
@@ -350,7 +388,7 @@
   text-align: center;
 }
 .main .primero .boton, .main .segundo .boton, .main .tercero .boton {
-  padding: 25px 40px;
+  padding: 2px 10px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;
@@ -599,7 +637,8 @@
   padding: 50px;
   height: 700px;
   gap: 20px;
-  background-color: #f3f0fb;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 54%, rgb(255, 255, 255) 100%);
 }
 .contenedorPadre .agendarCita .fotoAgendaCita {
   background-image: url("../imagenes/portada.jpg");

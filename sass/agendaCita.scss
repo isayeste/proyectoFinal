@@ -12,7 +12,9 @@
         padding: 50px;
         height: 700px;
         gap: 20px;
-        background-color: $moradoDiv;
+        // background-color: $moradoDiv;
+        background: rgb(255,255,255);
+        background: linear-gradient(352deg, rgba(255,255,255,1) 0%, $moradoDiv 54%, rgba(255,255,255,1) 100%);
     
         .fotoAgendaCita{
             @include fondo('../imagenes/portada.jpg');
@@ -45,7 +47,7 @@
                 gap: 100px;
                 grid-template-columns: repeat(2, 1fr);
                 .enlace{
-                    @include boton;
+                    @include boton(25px, 40px);
                 }
                 .enlace:hover{
                     @include botonHover;

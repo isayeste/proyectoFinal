@@ -14,7 +14,7 @@
         div{
 
             .boton{
-                @include boton;
+                @include boton(2px, 3px);
                 background-color: $moradoTabla;
             }
             .boton:hover{

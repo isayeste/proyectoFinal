@@ -41,7 +41,7 @@
             // gap: 20px;
         }
         .boton{
-            @include boton;
+            @include boton(2px, 10px);
             
         }
         .boton:hover{

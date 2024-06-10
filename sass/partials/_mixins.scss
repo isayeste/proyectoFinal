@@ -1,7 +1,7 @@
 @import 'variables.scss';
 
-@mixin boton{
-    padding: 25px 40px;
+@mixin boton($p1, $p2){
+    padding: $p1 $p2;
     border: 0.5px solid $moradoPrincipal;
     background-color: white;
     display: grid;
@@ -24,6 +24,11 @@
     background-image: url($url);
     background-size: cover;
     background-position: center;
+}
+
+@mixin fondoMorado{
+  background: rgb(255,255,255);
+  background: linear-gradient(352deg, rgba(255,255,255,1) 0%, $moradoDiv 54%, rgba(255,255,255,1) 100%);
 }
 
 @mixin distribucionPortada ($altura, $ancho){

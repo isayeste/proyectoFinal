@@ -43,45 +43,54 @@
             </div>
           </nav>
         <!--  -->
-        <div class="contenedor preInicio">
+        <div class="preInicio">
             <div class="contFormularios">
-                <div class="registro formulario">
+              
+                <div class="formulario">
+                  <div>
+                    <h4>Formulario de Registro</h4>
                     <form id="registroForm" action="../php/registroPaciente.php" method="post" enctype="multipart/form-data">
                         <label>Email:</label><br>
-                        <input type="email" id="email" name="email" required><br>
+                        <input class="boton" type="email" id="email" name="email" required><br>
                         <div class="error" id="errorEmail"></div><br>
 
                         <label>Contraseña:</label><br>
-                        <input type="password" id="password" name="password" required><br>
+                        <input class="boton" type="password" id="password" name="password" required><br>
                         <div class="error" id="errorPassword"></div><br>
 
                         <label>Nombre:</label><br>
-                        <input type="text" id="nombre" name="nombre" required><br>
+                        <input class="boton" type="text" id="nombre" name="nombre" required><br>
                         <div class="error" id="errorNombre"></div><br>
 
                         <label>Fecha de Nacimiento:</label><br>
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>
+                        <input class="boton" type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>
                         <div class="error" id="errorFechaNacimiento"></div><br>
 
                         <label>Foto de Perfil:</label><br>
-                        <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*" required><br>
+                        <input class="boton" type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*" required><br>
                         <div class="error" id="errorFotoPerfil"></div><br>
 
-                        <input type="submit" value="Registrar">
+                        <input class="boton" type="submit" value="Registrar">
                     </form>
+                  </div>
+                  
                 </div>
                 
-                <div class="inicioSesion formulario">
+                <div class="formulario">
+                  <div>
+                    <h4>Inicio Sesión</h4>
                     <form action="../php/inicioSesionPaciente.php" method="post" enctype="multipart/form-data">
                         <label>Email:</label><br>
-                        <input type="email" id="emailInicio" name="email" required><br><br>
+                        <input class="boton" type="email" id="emailInicio" name="email" required><br><br>
 
                         <label>Contraseña:</label><br>
-                        <input type="password" id="contrasenia" name="contrasenia" required><br><br>
+                        <input class="boton" type="password" id="contrasenia" name="contrasenia" required><br><br>
                 
-                        <input type="submit" value="Inicio Sesión">
+                        <input class="boton" type="submit" value="Inicio Sesión">
                         <div id="mensajeErrorInicioSesion"></div>
                     </form>
+                  </div>
+                  
                 </div>
             </div>
         </div>

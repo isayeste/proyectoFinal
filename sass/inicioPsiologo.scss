@@ -15,7 +15,7 @@
         grid-template-columns: repeat(3, 1fr);
 
         .enlace{
-            @include boton;
+            @include boton(2px, 10px);
         }
         .enlace:hover{
             @include botonHover;

@@ -40,7 +40,7 @@
 
         .volver{
             // }
-            @include boton;
+            @include boton(2px, 10px);
         }
         .volver:hover{
             @include botonHover;
