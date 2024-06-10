@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/index.css">
+    
 </head>
 <body>
     <div class="cont">
@@ -49,22 +50,22 @@
                             <div class="horas">
                                 <h4>Establece la duración de sesión y los horarios de entrada y salida de cada tramo horario</h4>
                                 <label>Hora de entrada por la mañana:</label>
-                                <input type="time" id="entradaManana" name="entradaManana"><br>
+                                <input type="time" id="entradaManana" name="entradaManana" min="06:00" max="14:00"><br>
                                 
                                 <label>Hora de salida por la mañana:</label>
-                                <input type="time" id="salidaManana" name="salidaManana"><br>
+                                <input type="time" id="salidaManana" name="salidaManana" min="06:00" max="14:00"><br>
                                 
-                                <labe>Hora de entrada por la tarde:</label>
-                                <input type="time" id="entradaTarde" name="entradaTarde"><br>
+                                <label>Hora de entrada por la tarde:</label>
+                                <input type="time" id="entradaTarde" name="entradaTarde" min="14:00" max="22:00"><br>
                                 
                                 <label>Hora de salida por la tarde:</label>
-                                <input type="time" id="salidaTarde" name="salidaTarde"><br>
+                                <input type="time" id="salidaTarde" name="salidaTarde" min="14:00" max="22:00"><br>
                                 
                                 <label>Hora de entrada por la noche:</label>
-                                <input type="time" id="entradaNoche" name="entradaNoche"><br>
+                                <input type="time" id="entradaNoche" name="entradaNoche" min="22:00" max="06:00"><br>
                                 
                                 <label>Hora de salida por la noche:</label>
-                                <input type="time" id="salidaNoche" name="salidaNoche"><br> 
+                                <input type="time" id="salidaNoche" name="salidaNoche" min="22:00" max="06:00"><br> 
                                 <br>
                                 <label>Duración de la sesión (minutos):</label>
                                 
@@ -110,6 +111,9 @@
             <footer>
                 <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
             </footer>
+
+            
+            <script src="../js/establecerTramosHorariosFormulario.js"></script>
     </div>
     
 
