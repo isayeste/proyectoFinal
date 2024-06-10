@@ -100,16 +100,16 @@
                                     echo "<p>Cita Pendiente de Confirmación. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " . $via ."</p>";
                                 } elseif ($cita['estado'] == 'libre') {
                                     echo "<p>Cita Cancelada. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " .$via. ". Elija otra cita. Perdone por las molestias.</p>";
+                                } elseif ($cita['estado'] == 'ocupado') {
+                                    echo "<p>Cita Confirmada. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " .$via. ".</p>";
                                 }
                             }
                         } catch (PDOException $e) {
                             // Manejar errores de conexión o consulta
                             echo 'Error: ' . $e->getMessage();
                         }
-                    } else {
-                        // Si no se proporciona el correo electrónico en la URL
-                        echo 'Por favor proporciona el correo electrónico del paciente en la URL.';
-                    }
+                    } 
+                    
                 ?>
             </div>
             
