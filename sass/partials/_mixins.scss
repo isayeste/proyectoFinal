@@ -28,7 +28,7 @@
 
 @mixin fondoMorado{
   background: rgb(255,255,255);
-  background: linear-gradient(352deg, rgba(255,255,255,1) 0%, $moradoDiv 54%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(352deg, rgba(255,255,255,1) 0%, $moradoDiv 44%, $moradoPrincipal2 54%, $moradoDiv 64%, rgba(255,255,255,1) 100%);
 }
 
 @mixin distribucionPortada ($altura, $ancho){

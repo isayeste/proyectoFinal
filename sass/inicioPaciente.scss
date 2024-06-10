@@ -1,3 +1,8 @@
+.inicioPaciente{
+    @include fondoMorado;
+}
+
+
 .contenedorCalendario{
     padding: 60px;
     .h2{
@@ -48,8 +53,5 @@
     
 
 }
-.inicioPaciente{
-    @include fondo('../imagenes/fondoPaciente.png');
-    
-}
+
 

@@ -1,8 +1,9 @@
-.psi{
-    @include fondo('../imagenes/inicioPaciente.jpg');
+.inicioPsicologo{
+    // @include fondo('../imagenes/inicioPaciente.jpg');
+    @include fondoMorado;
 }
 .contenidoPsi{
-    background-color: $moradoFondo;
+    // background-color: $moradoFondo;
     display: grid;
     align-items: center;
     justify-items: center;
@@ -15,7 +16,7 @@
         grid-template-columns: repeat(3, 1fr);
 
         .enlace{
-            @include boton(2px, 10px);
+            @include boton(22px, 10px);
         }
         .enlace:hover{
             @include botonHover;

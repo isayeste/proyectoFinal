@@ -18,7 +18,7 @@ if (!isset($_SESSION['access_token'])) {
 
 </head>
 <body>
-<script>
+<!-- <script>
         // Función para obtener el valor de un parámetro GET por su nombre
         function getQueryParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -31,7 +31,7 @@ if (!isset($_SESSION['access_token'])) {
             // Guardar el token de acceso en localStorage
             localStorage.setItem('googleAccessToken', token);
         }
-    </script>
+    </script> -->
     <div class="contenedorPadre">
     <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -66,14 +66,14 @@ if (!isset($_SESSION['access_token'])) {
             </div>
           </nav>
     <!--  -->
-        <div class="contenedor psi">
-            <div class="superior">
+        <div class="inicioPsicologo">
+            <!-- <div class="superior">
                 <a href="../index.html">
                     <div class="contSup">
                         <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
                     </div>
                 </a>
-            </div>
+            </div> -->
             <div class="contenidoPsi">
                 <div class="interiorContenidoPsi">
                     <a href="listadoCitas.php">

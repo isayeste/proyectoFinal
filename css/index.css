@@ -17,6 +17,11 @@
   cursor: pointer;
 }
 
+.inicioPaciente {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 44%, #ebe4fb 54%, #f3f0fb 64%, rgb(255, 255, 255) 100%);
+}
+
 .contenedorCalendario {
   padding: 60px;
 }
@@ -69,20 +74,12 @@
   background-color: #D0CBD9;
 }
 
-.inicioPaciente {
-  background-image: url("../imagenes/fondoPaciente.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.psi {
-  background-image: url("../imagenes/inicioPaciente.jpg");
-  background-size: cover;
-  background-position: center;
+.inicioPsicologo {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 44%, #ebe4fb 54%, #f3f0fb 64%, rgb(255, 255, 255) 100%);
 }
 
 .contenidoPsi {
-  background-color: rgba(51, 41, 61, 0.6);
   display: grid;
   align-items: center;
   justify-items: center;
@@ -94,7 +91,7 @@
   grid-template-columns: repeat(3, 1fr);
 }
 .contenidoPsi .interiorContenidoPsi .enlace {
-  padding: 2px 10px;
+  padding: 22px 10px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;
@@ -171,7 +168,7 @@
 
 .preInicio {
   background: rgb(255, 255, 255);
-  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 54%, rgb(255, 255, 255) 100%);
+  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 44%, #ebe4fb 54%, #f3f0fb 64%, rgb(255, 255, 255) 100%);
   display: grid;
   align-items: center;
 }
@@ -633,12 +630,17 @@
 .listados {
   height: auto;
   display: grid;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 44%, #ebe4fb 54%, #f3f0fb 64%, rgb(255, 255, 255) 100%);
 }
 .listados .divLis {
   display: grid;
   padding: 50px;
   justify-items: center;
   align-items: center;
+}
+.listados .divLis .tablaCitas {
+  background-color: white;
 }
 .listados .divLis .tablaCitas .cabeceraTabla {
   background-color: #f3f0fb;
@@ -674,7 +676,7 @@
   padding: 50px;
 }
 .listados .divBtn .boton {
-  padding: 2px 10px;
+  padding: 20px 30px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;

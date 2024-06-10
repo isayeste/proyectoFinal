@@ -44,15 +44,9 @@
           </nav>
     <!--  -->
         <div class="contenedor inicioPaciente">
-            <a href="../index.html">
-                <div class="superior">
-                    <div class="contSup">
-                        <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
-                    </div> 
-                </div>
-            </a>
 
             <div class="contenedorMensaje">
+                <h4>Listado Estado de Citas Solicitadas</h4>
                 <?php
                     //hacer consulta de aquellas citas que tenga el paciente
                     if(isset($_GET['email'])) {
@@ -141,9 +135,7 @@
                 </div>
             </div>
         </div>
-        <!-- <footer>
-            <p>PsyConnect © 2024. Desarrollado por Isabel Apolonia Yeste Sánchez.</p>
-        </footer> -->
+        <!--  -->
         <div class="footer">
             <div class="footerUno">
                 <div class="footerLinks">
