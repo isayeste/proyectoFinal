@@ -43,7 +43,7 @@
             </div>
           </nav>
     <!--  -->
-        <div class="contenedor inicioPaciente">
+        <div class="inicioPaciente">
 
             <div class="contenedorMensaje">
                 <h4>Listado Estado de Citas Solicitadas</h4>
@@ -114,15 +114,16 @@
             </div>
             
             <div class="contenedorCalendario">
-                
+            <h4>Pedir Cita</h4>
                 <!-- Contenedor calendario -->
                 <div class="h2">
-                    <h2 id="nombreMes"></h2>
+                
+                    <h5 id="nombreMes"></h5>
                 </div>
                 <table class="calendar" id="calendario"></table>
                 <div class="leyenda">
-                    <div class="colorLeyenda" style="height: 10px; background-color: #ACF2D4; border: 1px, solid, black;"></div>
-                    <div><p>Días disponibles</p></div>
+                    <div class="colorLeyenda"></div>
+                    <div class="textoLeyenda"><p>Días disponibles</p></div>
                 </div>
                 
                 <div id="botones" class="botones">

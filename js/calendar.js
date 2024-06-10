@@ -92,8 +92,8 @@ function generarCalendario(fecha) {
         let mesAnterior = new Date(fecha.getFullYear(), fecha.getMonth() - 1, 1);
         let mesSiguiente = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 1);
     
-        btnAnterior.textContent = meses[mesAnterior.getMonth()];
-        btnSiguiente.textContent = meses[mesSiguiente.getMonth()];
+        btnAnterior.textContent = '<'+meses[mesAnterior.getMonth()];
+        btnSiguiente.textContent = meses[mesSiguiente.getMonth()]+'>';
 
     }).catch(function(error) {
         console.error(error);

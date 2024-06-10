@@ -20,6 +20,8 @@
 .inicioPaciente {
   background: rgb(255, 255, 255);
   background: linear-gradient(352deg, rgb(255, 255, 255) 0%, #f3f0fb 44%, #ebe4fb 54%, #f3f0fb 64%, rgb(255, 255, 255) 100%);
+  display: grid;
+  padding: 80px;
 }
 
 .contenedorCalendario {
@@ -29,6 +31,24 @@
   display: grid;
   justify-items: center;
   color: rgb(85, 68, 102);
+}
+.contenedorCalendario .leyenda {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 50px;
+  align-items: center;
+  height: 10px;
+}
+.contenedorCalendario .leyenda .colorLeyenda {
+  height: 20px;
+  background-color: #ACF2D4;
+  border: 1px, solid, black;
+  width: 20px;
+}
+.contenedorCalendario .leyenda .textoLeyenda {
+  display: flex;
+  align-items: center;
+  height: 20px;
 }
 .contenedorCalendario .botones {
   display: grid;
@@ -46,7 +66,6 @@
   text-align: center;
   color: #AC9ACF;
   text-decoration: none;
-  background-color: rgb(85, 68, 102);
 }
 .contenedorCalendario .botones div .boton:hover {
   background-color: rgba(51, 50, 86, 0.5);
@@ -65,13 +84,19 @@
 .contenedorCalendario .horas h3 {
   color: rgb(85, 68, 102);
 }
-.contenedorCalendario .horas .horasDisponibles td {
+.contenedorCalendario .horas .horasDisponibles {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 5px;
+}
+.contenedorCalendario .horas .horasDisponibles div {
   border: 1px solid rgb(85, 68, 102);
   padding: 10px;
   cursor: pointer;
 }
-.contenedorCalendario .horas .horasDisponibles td:hover {
-  background-color: #D0CBD9;
+.contenedorCalendario .horas .horasDisponibles div:hover {
+  background-color: #AC9ACF;
+  color: white;
 }
 
 .inicioPsicologo {
