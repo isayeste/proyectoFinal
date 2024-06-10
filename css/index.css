@@ -636,10 +636,42 @@
 }
 .listados .divLis {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   padding: 50px;
   justify-items: center;
   align-items: center;
+}
+.listados .divLis .tablaCitas .cabeceraTabla {
+  background-color: #f3f0fb;
+}
+.listados .divLis .tablaCitas tr {
+  border: 1px solid #AC9ACF;
+}
+.listados .divLis .tablaCitas td {
+  padding: 20px;
+}
+.listados .divLis .tablaCitas .boton {
+  padding: 2px 10px;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 16px;
+  text-align: center;
+  color: #AC9ACF;
+  text-decoration: none;
+}
+.listados .divLis .tablaCitas .boton:hover {
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
+}
+.listados .divBtn {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 50px;
 }
 .listados .divBtn .boton {
   padding: 2px 10px;

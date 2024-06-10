@@ -33,7 +33,7 @@ $resultOcupado = $conn->query($sqlOcupado);
 // Función para generar la tabla de horarios
 function generarTablaHorarios($result, $aceptadas = false) {
     $tabla = '<table class="tablaCitas">';
-    $tabla .= '<thead><tr>';
+    $tabla .= '<thead class="cabeceraTabla"><tr>';
     $encabezados = ['Fecha Inicio', 'Fecha Fin', 'Nombre', 'Email', 'Motivo Consulta', 'Vía', 'Acciones'];
     foreach ($encabezados as $encabezado) {
         $tabla .= '<th>' . $encabezado . '</th>';
