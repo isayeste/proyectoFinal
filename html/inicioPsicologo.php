@@ -75,7 +75,11 @@ if (!isset($_SESSION['access_token'])) {
                 </a>
             </div> -->
             <div class="contenidoPsi">
-                <div class="interiorContenidoPsi">
+              <div class="botones">
+                <button id="listadoCitas" class="boton">Listado de Citas</button>
+                <button id="insertarHorario" class="boton">Insertar Horario Trimestral</button>
+              </div>
+                <!-- <div class="interiorContenidoPsi">
                     <a href="listadoCitas.php">
                         <div class="enlace">
                             <p>Listado de Citas</p>
@@ -91,7 +95,7 @@ if (!isset($_SESSION['access_token'])) {
                             <p>Insertar Días No Laborables</p>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
         <!--  -->
@@ -130,6 +134,7 @@ if (!isset($_SESSION['access_token'])) {
     </div>
 
 
+    <script src="../js/botonesInicoPsicologo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>

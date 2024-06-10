@@ -9,17 +9,26 @@
     justify-items: center;
     padding: 10%;
     
-    .interiorContenidoPsi{
-        
-        display: grid;
-        gap: 100px;
-        grid-template-columns: repeat(3, 1fr);
+    // .interiorContenidoPsi{
+        .botones{
+            display: grid;
+            gap: 100px;
+            grid-template-columns: repeat(2, 1fr);
 
-        .enlace{
-            @include boton(22px, 10px);
+            .boton{
+                @include boton(35px, 40px);
+            }
+            .boton:hover{
+                @include botonHover;
+            }
         }
-        .enlace:hover{
-            @include botonHover;
-        }
-    }
+        
+
+        // .enlace{
+        //     @include boton(22px, 10px);
+        // }
+        // .enlace:hover{
+        //     @include botonHover;
+        // }
+    // }
 }

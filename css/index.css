@@ -155,13 +155,13 @@
   justify-items: center;
   padding: 10%;
 }
-.contenidoPsi .interiorContenidoPsi {
+.contenidoPsi .botones {
   display: grid;
   gap: 100px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
-.contenidoPsi .interiorContenidoPsi .enlace {
-  padding: 22px 10px;
+.contenidoPsi .botones .boton {
+  padding: 35px 40px;
   border: 0.5px solid #AC9ACF;
   background-color: white;
   display: grid;
@@ -172,7 +172,7 @@
   color: #AC9ACF;
   text-decoration: none;
 }
-.contenidoPsi .interiorContenidoPsi .enlace:hover {
+.contenidoPsi .botones .boton:hover {
   background-color: rgba(51, 50, 86, 0.5);
   border: 0.5px solid white;
   background-color: #AC9ACF;
