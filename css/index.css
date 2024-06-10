@@ -75,66 +75,6 @@
   background-position: center;
 }
 
-.contenidoF {
-  background-color: rgba(51, 41, 61, 0.656);
-}
-.contenidoF .formulario {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  color: white;
-}
-.contenidoF .formulario h3 {
-  font-size: 30px;
-  font-weight: 100;
-}
-.contenidoF .formulario .formularioGlobal {
-  display: grid;
-  padding: 10px;
-  grid-template-columns: repeat(2, 1fr);
-}
-.contenidoF .formulario .formularioGlobal h4 {
-  font-size: 20px;
-  font-weight: 400;
-}
-.contenidoF .formulario .formularioGlobal .diasSemana {
-  padding: 100px;
-}
-.contenidoF .formulario .formularioGlobal .horas {
-  padding: 100px;
-}
-.contenidoF .botonVolver {
-  display: grid;
-  justify-items: end;
-  margin-right: 50px;
-}
-.contenidoF .botonVolver .volver {
-  padding: 2px 10px;
-  border: 0.5px solid #AC9ACF;
-  background-color: white;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  font-size: 16px;
-  text-align: center;
-  color: #AC9ACF;
-  text-decoration: none;
-}
-.contenidoF .botonVolver .volver:hover {
-  background-color: rgba(51, 50, 86, 0.5);
-  border: 0.5px solid white;
-  background-color: #AC9ACF;
-  color: white;
-}
-
-.contenedorHorario {
-  display: grid;
-  grid-template-rows: 3fr, 1fr;
-  background-image: url("../imagenes/fondoFormularioHorario.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
 .psi {
   background-image: url("../imagenes/inicioPaciente.jpg");
   background-size: cover;
@@ -684,6 +624,36 @@
   text-decoration: none;
 }
 .contenedorPadre .agendarCita .contenido .interiorContenido .enlace:hover {
+  background-color: rgba(51, 50, 86, 0.5);
+  border: 0.5px solid white;
+  background-color: #AC9ACF;
+  color: white;
+}
+
+.listados {
+  height: auto;
+  display: grid;
+}
+.listados .divLis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 50px;
+  justify-items: center;
+  align-items: center;
+}
+.listados .divBtn .boton {
+  padding: 2px 10px;
+  border: 0.5px solid #AC9ACF;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 16px;
+  text-align: center;
+  color: #AC9ACF;
+  text-decoration: none;
+}
+.listados .divBtn .boton:hover {
   background-color: rgba(51, 50, 86, 0.5);
   border: 0.5px solid white;
   background-color: #AC9ACF;

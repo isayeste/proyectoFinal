@@ -52,10 +52,10 @@ function generarTablaHorarios($result, $aceptadas = false) {
         $tabla .= '<td>';
 
         if (!$aceptadas) {
-            $tabla .= '<button class="btnAceptar" data-idHorario="' . $row['idHorario'] . '">Aceptar</button>';
-            $tabla .= '<button class="btnCancelarEspera" data-idHorario="' . $row['idHorario'] . '">Cancelar</button>';
+            $tabla .= '<button class="boton btnAceptar" data-idHorario="' . $row['idHorario'] . '">Aceptar</button>';
+            $tabla .= '<button class="boton btnCancelarEspera" data-idHorario="' . $row['idHorario'] . '">Cancelar</button>';
         } else {
-            $tabla .= '<button class="btnCancelarOcupado" data-idHorario="' . $row['idHorario'] . '">Cancelar</button>';
+            $tabla .= '<button class="boton btnCancelarOcupado" data-idHorario="' . $row['idHorario'] . '">Cancelar</button>';
         }
         
         $tabla .= '</td>';
@@ -121,26 +121,24 @@ $conn->close();
             </div>
           </nav>
         <!--  -->
-        <div class="contenedor contenedorHorario">
-            <div class="superior">
-                <a href="../index.html">
-                    <div class="contSup">
-                        <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
-                    </div>
-                </a>
+          
+        <div class="listados">
+          <div class="divLis">
+            <div class="contenidoListado">
+              <h2>Horarios en espera</h2>
+              <?php echo $tablaEspera; ?>
             </div>
-            <div class="contenidoListado contenidoF">
-                <h2>Horarios en espera</h2>
-                <?php echo $tablaEspera; ?>
+            <div class="contenidoListado">
+              <h2>Horarios ocupados</h2>
+              <?php echo $tablaOcupado; ?>
             </div>
-            <div class="contenidoListadoAceptadas">
-                <h2>Horarios ocupados</h2>
-                <?php echo $tablaOcupado; ?>
-            </div>
+          </div>
+            
+          <div class="divBtn">
+            <button class="boton" id="volverPagAntPsi">Volver</button>
+          </div>
         </div>
-        <div>
-            <button id="volverPagAntPsi">Volver</button>
-        </div>
+        
         <div class="footer">
             <div class="footerUno">
                 <div class="footerLinks">

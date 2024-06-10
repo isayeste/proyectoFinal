@@ -1,0 +1,26 @@
+@use 'partials/_variables.scss';
+@use 'partials/_mixins.scss'; 
+@use 'partials/_breakpoint.scss';
+
+.listados{
+    height: auto;
+    display: grid;
+    
+    .divLis{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 50px;
+        justify-items: center;
+        align-items: center;
+        // background-color: aqua;
+    }
+    .divBtn{
+        .boton{
+            @include boton(2px, 10px);
+        }
+        .boton:hover{
+            @include botonHover;
+        }
+        
+    }
+}
