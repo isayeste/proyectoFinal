@@ -160,9 +160,11 @@
         <div class="modal-content">
             <h3 id="modalText"></h3>
             <div class="formularioModal">
-                <label for="motivoConsulta">Motivo de consulta:</label>
+                
                 <div>
+                    <label for="motivoConsulta">Motivo de consulta:</label>
                     <textarea id="motivoConsulta" rows="4" cols="50"></textarea>
+                    <div class="errorMotivo"></div>
                 </div>
                 <br>
                 <label for="tipoConsulta">Tipo de consulta:</label><br>
@@ -171,6 +173,7 @@
                     <label for="consultaOnline">Online</label><br>
                     <input type="radio" id="consultaPresencial" name="tipoConsulta" value="presencial">
                     <label for="consultaPresencial">Presencial</label>
+                    <div class="errorConsulta"></div>
                 </div>
                 <br>
             </div>
@@ -182,6 +185,7 @@
     </div>
     <!--  -->
     
+    <script src="../js/validarModal.js"></script>
     <script src="../js/calendar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
