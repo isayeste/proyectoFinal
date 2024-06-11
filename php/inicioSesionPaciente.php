@@ -19,9 +19,9 @@
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($resultado) {
-            // Verificar si la contraseña es correcta
-            if ($resultado['contrasenia'] === $contrasenia) {
-                // Redirigir al usuario a inicioPaciente.html con el email como parametro
+            // Verificar si la contraseña es correcta usando password_verify
+            if (password_verify($contrasenia, $resultado['contrasenia'])) {
+                // Redirigir al usuario a inicioPaciente.html con el email como parámetro
                 header("Location: ../html/inicioPaciente.php?email=" . urlencode($email));
                 exit();
             } else {
