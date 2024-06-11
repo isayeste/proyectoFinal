@@ -1,10 +1,10 @@
 <?php
-session_start();
+  session_start();
 
-if (!isset($_SESSION['access_token'])) {
-    header('Location: ../index.html');
-    exit();
-}
+  if (!isset($_SESSION['access_token'])) {
+      header('Location: ../index.html');
+      exit();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -18,20 +18,6 @@ if (!isset($_SESSION['access_token'])) {
 
 </head>
 <body>
-<!-- <script>
-        // Función para obtener el valor de un parámetro GET por su nombre
-        function getQueryParam(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        // Obtener el token de acceso de la URL
-        const token = getQueryParam('token');
-        if (token) {
-            // Guardar el token de acceso en localStorage
-            localStorage.setItem('googleAccessToken', token);
-        }
-    </script> -->
     <div class="contenedorPadre">
     <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -67,35 +53,12 @@ if (!isset($_SESSION['access_token'])) {
           </nav>
     <!--  -->
         <div class="inicioPsicologo">
-            <!-- <div class="superior">
-                <a href="../index.html">
-                    <div class="contSup">
-                        <img src="../imagenes/logoFiloBlanco-removebg-preview.png" alt="logo">
-                    </div>
-                </a>
-            </div> -->
             <div class="contenidoPsi">
               <div class="botones">
                 <button id="listadoCitas" class="boton">Listado de Citas</button>
                 <button id="insertarHorario" class="boton">Insertar Horario Trimestral</button>
               </div>
-                <!-- <div class="interiorContenidoPsi">
-                    <a href="listadoCitas.php">
-                        <div class="enlace">
-                            <p>Listado de Citas</p>
-                        </div>
-                    </a>
-                    <a href="formularioHorario.html">
-                        <div class="enlace">
-                            <p>Insertar Horario Trimestral</p>
-                        </div>
-                    </a>
-                    <a href="formularioDiasNoLaborales.html">
-                        <div class="enlace">
-                            <p>Insertar Días No Laborables</p>
-                        </div>
-                    </a>
-                </div> -->
+                
             </div>
         </div>
         <!--  -->

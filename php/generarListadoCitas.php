@@ -1,15 +1,12 @@
 <?php
-
-// Datos de la base de datos
 $servidor = 'localhost';
 $usuario = 'root';
 $password = '';
 $nombreBD = 'psyconnect';
 
-// Código para actualizar el archivo JSON
+// Actualizar el archivo JSON
 try {
     $conexion = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
-    // Habilitar el modo de errores
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Consulta para obtener las citas junto con las fechas de la tabla horarios
@@ -19,12 +16,10 @@ try {
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
     
-    // Obtener los datos como un array
+    // Guardar las citas en formato JSON
     $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $jsonCitas = json_encode($citas);
-    
-    // Guardar las citas en formato JSON
-    $fichero = "../js/listadoCitas.json";
+    // $fichero = "../js/listadoCitas.json";
     file_put_contents($fichero, $jsonCitas);
     
     echo "Horarios actualizados correctamente";

@@ -1,9 +1,10 @@
+<!-- Mostrar un calendario con las citas solicitadas y las horas con huecos para solicitar -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>InicioPaciente</title>
     <link rel="stylesheet" href="../css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -48,19 +49,14 @@
             <div class="contenedorMensaje">
                 <h4>Listado Estado de Citas Solicitadas</h4>
                 <?php
-                    //hacer consulta de aquellas citas que tenga el paciente
                     if(isset($_GET['email'])) {
                         $emailPaciente = $_GET['email'];
-                    
-                        // Datos de conexión a la base de datos
                         $host = 'localhost';
                         $db = 'psyconnect';
                         $user = 'root';
                         $password = '';
-                        $charset = 'utf8mb4';
                     
-                        // DSN (Data Source Name) para la conexión a la base de datos
-                        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+                        $dsn = "mysql:host=$host;dbname=$db";
                         $options = [
                             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -68,34 +64,24 @@
                         ];
                     
                         try {
-                            // Crear una instancia de PDO para la conexión
                             $pdo = new PDO($dsn, $user, $password, $options);
                         
-                            // Consulta para obtener las citas del paciente con información de la tabla horarios
                             $sql = "SELECT c.idCita, c.via, h.fechaInicio, h.estado 
                                     FROM citas c
                                     JOIN horarios h ON c.idHorario = h.idHorario
                                     WHERE c.emailPaciente = :emailPaciente";
-                        
-                            // Preparar la consulta
+
                             $stmt = $pdo->prepare($sql);
-                        
-                            // Ejecutar la consulta con el correo electrónico del paciente como parámetro
                             $stmt->execute(['emailPaciente' => $emailPaciente]);
-                        
-                            // Obtener todas las citas del paciente con información de la tabla horarios como un array
                             $citas = $stmt->fetchAll();
                         
-                            // Recorrer el array de citas
                             foreach ($citas as $cita) {
-                                // Obtener la fecha de inicio y la vía de la cita
                                 $fechaInicio = $cita['fechaInicio'];
                                 $via = $cita['via'];
                                 $fechaEvento = strstr($fechaInicio, ' ', true);
                                 $horaInicio = strstr($fechaInicio, ' ');
                                 $horaInicio = ltrim($horaInicio);
-                        
-                                // Verificar el valor del campo estado y mostrar el mensaje correspondiente
+                            
                                 if ($cita['estado'] == 'espera') {
                                     echo "<p>Cita Pendiente de Confirmación. Fecha: ". $fechaEvento. ", hora: ". $horaInicio .";  Vía: " . $via ."</p>";
                                 } elseif ($cita['estado'] == 'libre') {
@@ -105,17 +91,15 @@
                                 }
                             }
                         } catch (PDOException $e) {
-                            // Manejar errores de conexión o consulta
                             echo 'Error: ' . $e->getMessage();
                         }
-                    } 
-                    
+                    }
                 ?>
+
             </div>
             
             <div class="contenedorCalendario">
             <h4>Pedir Cita</h4>
-                <!-- Contenedor calendario -->
                 <div class="h2">
                 
                     <h5 id="nombreMes"></h5>
@@ -197,14 +181,7 @@
         </div>
     </div>
     <!--  -->
-    <!-- <div id="myModal2" class="modal">
-        <div class="modal-content">
-            <h3 id="">Espera la confirmación de la cita. Será indicada en el inicio de esta misma página</h3>
-            <button id="botonSalir">Salir</button>
-        </div>
-    </div> -->
     
-
     <script src="../js/calendar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

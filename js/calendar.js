@@ -1,5 +1,4 @@
-// Variable global para almacenar la fecha actual
-let fechaActual = new Date();
+let fechaActual = new Date(); // Variable global para almacenar la fecha actual
 let horariosCompleto = []; // Para almacenar todos los horarios desde el archivo JSON
 let fechaSeleccionada = ''; // Para almacenar la fecha seleccionada
 let email = "";
@@ -217,23 +216,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }
                             })
                             .then(data => {
-                                console.log(data); // Imprimir la respuesta del servidor
-                                // Ocultar el primer modal y mostrar el segundo modal
+                                console.log(data);
                                 myModal.style.display = "none";
-                                // myModal2.style.display = "block";
-
-                                // 
-                                // Botón salir en el segundo modal
-                                // botonSalir.onclick = function() {
-                                //     // myModal2.style.display = "none";
-                                // };
-                            
-                                // Cerrar el segundo modal al hacer clic fuera
-                                // window.onclick = function(event) {
-                                //     if (event.target == myModal2) {
-                                //         // myModal2.style.display = "none";
-                                //     }
-                                // };
+                                
                                 location.reload();
                             })
                             .catch(error => console.error('Error:', error));
@@ -247,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             modal.style.display = "none";
                         };
             
-                        // Cerrar el modal al hacer clic fuera del mismo
+                        // Cerrar el modal al hacer clic fuera
                         window.onclick = function(event) {
                             if (event.target == modal) {
                                 modal.style.display = "none";

@@ -8,9 +8,6 @@
     print_r($data);
     echo '</pre>';
 
-    // Extraer el idHorario de los datos recibidos
-    // $idHorario = $data;
-
     if ($data === null) {
         echo "Error: idHorario no está presente en los datos recibidos.";
         exit;
@@ -22,7 +19,6 @@
     $nombreBD = 'psyconnect';
 
     try {
-        // Crear una nueva conexión PDO
         $pdo = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -40,12 +36,6 @@
             $stmt->execute();
             $horarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Eliminar la cita cuyo idHorario $data
-            // $sqlDeleteCita = "DELETE FROM citas WHERE idHorario = :idHorario";
-            // $stmtDeleteCita = $pdo->prepare($sqlDeleteCita);
-            // $stmtDeleteCita->bindParam(':idHorario', $data, PDO::PARAM_INT);
-            // $stmtDeleteCita->execute();
-
             // Convertir los resultados a JSON
             $jsonHorarios = json_encode($horarios, JSON_PRETTY_PRINT);
 
@@ -62,7 +52,6 @@
         echo "Error: " . $e->getMessage();
     }
 
-    // Cerrar la conexión
     $pdo = null;
 
 ?>

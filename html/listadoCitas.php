@@ -1,12 +1,9 @@
 <?php
-
-// Conexión a la base de datos (reemplaza los valores con los de tu entorno)
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "psyconnect";
 
-// Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar la conexión
@@ -14,7 +11,7 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Consulta SQL para obtener la información de horarios en espera con detalles de cita y paciente
+// Horarios en espera
 $sqlEspera = "SELECT h.idHorario, h.fechaInicio, h.fechaFin, p.nombre, p.emailPaciente, c.motivo, c.via 
               FROM horarios h
               JOIN citas c ON h.idHorario = c.idHorario
@@ -22,7 +19,7 @@ $sqlEspera = "SELECT h.idHorario, h.fechaInicio, h.fechaFin, p.nombre, p.emailPa
               WHERE h.estado = 'espera'";
 $resultEspera = $conn->query($sqlEspera);
 
-// Consulta SQL para obtener la información de horarios ocupados con detalles de cita y paciente
+// Horarios ocupados
 $sqlOcupado = "SELECT h.idHorario, h.fechaInicio, h.fechaFin, p.nombre, p.emailPaciente, c.motivo, c.via 
                FROM horarios h
                JOIN citas c ON h.idHorario = c.idHorario
@@ -72,7 +69,6 @@ function generarTablaHorarios($result, $aceptadas = false) {
 $tablaEspera = generarTablaHorarios($resultEspera);
 $tablaOcupado = generarTablaHorarios($resultOcupado, true);
 
-// Cerrar conexión
 $conn->close();
 
 ?>
