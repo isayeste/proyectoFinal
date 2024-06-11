@@ -1,5 +1,4 @@
 <?php
-    
     require_once '../vendor/autoload.php';
     use Google\Client;
     use Google\Service\Calendar;
@@ -25,7 +24,6 @@
     $via = null;
 
     try {
-        // Crear una nueva conexión PDO
         $pdo = new PDO("mysql:host=$servidor;dbname=$nombreBD", $usuario, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
