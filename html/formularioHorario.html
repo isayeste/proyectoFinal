@@ -67,6 +67,7 @@
                                 <label>Sábado</label><br>
                                 <input  type="checkbox" id="domingo" name="dias[]" value="7">
                                 <label>Domingo</label><br>
+                                <div class="errorDias"></div>
                                 <br>
                             </div>
                             
@@ -75,6 +76,7 @@
                             <div class="horas">
                                 <h4>Establece la duración de sesión y los horarios de entrada y salida de cada tramo horario</h4>
                                 <div class="horasContenido">
+                                  <div class="errorTime"></div>
                                   <div class="fila">
                                     <div>
                                       <label>Hora de entrada por la mañana:</label>
@@ -109,6 +111,7 @@
                                     <div>
                                       <label>Duración de la sesión (minutos):</label>
                                       <input class="boton" type="number" id="duracion" name="duracion" min="1" max="240" required>
+                                      <div class="errorMinutos"></div>
                                     </div>
                                     
                                   </div>
@@ -175,6 +178,7 @@
 
     
 <script src="../js/botonVolverPagAntPsi.js"></script>
+<script src="../js/validarHorarios.js"></script>
 <script src="../js/establecerTramosHorariosFormulario.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
