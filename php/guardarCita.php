@@ -28,13 +28,6 @@
     
         $conexion->commit();
     
-        //Sobreescribir los json
-        // $sqlListadoCitas = "SELECT * FROM citas INNER JOIN horarios ON citas.idHorario = horarios.idHorario";
-        // $stmtListadoCitas = $conexion->query($sqlListadoCitas);
-        // $listadoCitas = $stmtListadoCitas->fetchAll(PDO::FETCH_ASSOC);
-    
-        // file_put_contents('../js/listadoCitas.json', json_encode($listadoCitas));
-    
         $sqlLecturaHorario = "SELECT * FROM horarios";
         $stmtLecturaHorario = $conexion->query($sqlLecturaHorario);
         $lecturaHorario = $stmtLecturaHorario->fetchAll(PDO::FETCH_ASSOC);
