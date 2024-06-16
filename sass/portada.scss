@@ -3,6 +3,10 @@
 @use 'partials/_breakpoint.scss';
 .main{
     // height: 100vh;
+    margin-top: 150px;
+    @include responder-a(pequeno){
+        margin-top: 100px;
+    }
     .titulo{
         color: $moradoPrincipal;
         font-size: 65px;
@@ -13,9 +17,8 @@
         height: 300px;
     }
 
-    .carrusel{
-        // height: 20px;
-    
+    .carousel{
+        height: 50%;
     }
 
     a{
@@ -24,10 +27,23 @@
     a:hover{
         color: $moradoHover;
     }
+
+
     
     .primero, .segundo, .tercero {
         @include distribucionPortada(600px, auto);
+        display: grid;
+        justify-items: center;
+        align-items: center;
         padding: 0 100px;
+        text-align: center;
+
+        @include responder-a(extrapequenio){
+            p{
+                font-size: 16px
+            }
+        }
+
         // padding-left: 100px;
         // background-color: aqua;
 
@@ -41,53 +57,129 @@
             // gap: 20px;
         }
         .boton{
-            @include boton(2px, 10px);
+            @include boton(10px, 20px);
             
         }
         .boton:hover{
             @include botonHover;
         }
     }
+    .primero{
+        // background-color: aqua;
+        height: 700px;
+        @include responder-a(muypequenio){
+            h1{
+                font-size: 40px;
+            }
+        }
+    }
     .segundo{
         background-color: $moradoDiv;
     }
+    .tercero{
+        // padding-bottom: 100px
+        // padding: 100px
+        // .texto{
+        //     padding: 100px
+        // }
+        @include responder-a(muypequenio){
+            height: 800px
+        }
+        // @include responder-a(extrapequenio){
+        //     height: 900px;
+        // }
+    }
+    // -----------------------------------------------------------
     .trastorno{
         @include distribucionPortada(auto, auto);
         padding: 100px;
-        height: 700px;
-        // padding-left: 100px;
-        // padding-right: 100px;
-        // padding-bottom: 100px;
-        // background-color: orange;
-        // p{
-        //     padding: 0 100px;
-        // }
+        height: 750px;
+        @include responder-a(mediano){
+            padding: 20px;
+        }
         h2{
+            font-size: 50px;
             margin-top: 50px;
+            text-align: center;
         }
         h3{
             margin-bottom: 30px;
+            font-size: 30px;
+            text-align: center;
+        }
+        h5{
+            text-decoration: underline;
+            text-align: center;
         }
         .ul{
             display: grid;
             // background-color: aqua;
             gap: 20px;
             grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            align-items: center;
             .li{
+                height: 200px;
+                width: 100%;
                 // background-color: red;
                 padding: 10px;
                 @include bordeAnimado;
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                @include responder-a(pequeno){
+                    height: auto;
+                }
                 //animation: changeColor 4s infinite;
             }
+            @include responder-a(extragrande){
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @include responder-a(mediano){
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @include responder-a(pequeno){
+                grid-template-columns: 1fr;
+                gap: 5px;
+                // padding: 20px;
+                // height: 300px;
+                // height: 1500px;
+            }
             
+        }
+        @include responder-a(mediano){
+            height: 900px;
+        }
+        @include responder-a(pequeno){
+            height: 1000px;
+            // margin-bottom: 200px;
         }
     }
     .moradoDiv{
         background-color: $moradoDiv;
         border-radius: 85% 15rem;
+        margin-bottom: 100px;
+
+        @include responder-a(mediano){
+            height: 950px;
+        }
+        
+        // @include responder-a(extragrande){
+        //     // height: 1000px;
+        // }
         // background: rgb(255,255,255);
         // background: linear-gradient(0deg, rgba(255,255,255,1) 0%, $moradoDiv 15%, $moradoDiv 85%, rgba(255,255,255,1) 100%);
     }
+    .paddingButtom{
+        @include responder-a(muypequenio){
+            margin-bottom: 200px;
+        }
+        @include responder-a(extrapequenio){
+            margin-bottom: 400px;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------
     
     // .segundo{
     //     @include distribucionPortada;
@@ -100,70 +192,267 @@
 
     .cv{
         background-color: $moradoDiv;
-        padding-top: 50px;
-        // background-color: aquamarine;
+        padding-top: 150px;
+       
+        
         .cv1{
-            // background-color: azure;
-            // height: 100px;
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            @include responder-a(mediano){
+                grid-template-columns: 1fr;
+                // grid-template-rows: repeat(2, 1fr);
+            }
+            justify-items: center;
+            // align-items: center;
             .fotoPerfil{
-                // background-color: firebrick;
+                //  background-color: aquamarine;
                 display: grid;
                 justify-items: end;
-                img{
-                    width: 200px;
-                    border-radius: 50%;
+                @include responder-a(mediano){
+                    justify-items: center;
                 }
-            }
-            .nombre{
-                // background-color: purple;
-                display: grid;
-                justify-items: left;
                 align-items: center;
-            }
-        }
-        .cv2{
-            margin-top: 50px;
-            //background-color: blueviolet;
-            display: grid;
-
-            .links{
-                // background-color: antiquewhite;
-                @include bordeAnimado;
-                ul{
-                    list-style-type: none;
-                    padding: 0;
-                    margin: 10px;
-                    display: flex;
-                    justify-content: center;
-
-                    li{
-                        margin: 0 15px;
+                img{
+                    width: 25%;
+                    border-radius: 50%;
+                    @include responder-a(pequeno){
+                        width: 50%;
                     }
                 }
             }
+            .nombre{
+                // background-color: red;
+                display: grid;
+                align-items: center;
+                div{
+                    width: 50%;
+                    @include responder-a(mediano){
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+                // align-items: center;
+                // width: 50%;
+                // justify-items: left;
+                // display: grid;
+                // // align-items: center;
+                // div{
+                    
+                //     @include responder-a(pequeno){
+                //         padding: 20px;
+                //         text-align: center;
+                //     }
+                //     background-color: royalblue;
+                //     h4{
+                //         font-size: 20px;
+                //         @include responder-a(pequeno){
+                //             font-size: 16px;
+                //         }
+                //     }
+                // }
+            }
+        }
+        .cv2{
+            .links{
+                
+                display: grid;
+                justify-items: center;
+                margin-top: 20px;
+
+                @include responder-a(extrapequenio){
+                    @include bordeBottom;
+                    @include bordeTop;
+                    margin-bottom: 50px;
+                }
+
+                ul{
+                    list-style: none;
+                    display: flex;
+                    @include responder-a(extrapequenio){
+                        display: grid;
+                        // justify-content: center;
+                        // align-items: center;
+                        // text-align: center;
+                        // // gap: 10px;
+                        // @include bordeBottom
+                    }
+                    justify-items: center;
+                    // align-items: center;
+                    li{
+                        @include bordeTop;
+                        @include bordeBottom;
+                        @include responder-a (extrapequenio){
+                            border: none;
+                        }
+                        // display: flex;
+                        padding: 0 100px;
+                        @include responder-a(grande){
+                            padding: 0 50px;
+                        }
+                        @include responder-a(pequeno){
+                            padding:  0 30px;
+                        }
+                        @include responder-a(muypequenio){
+                            padding:  0 10px;
+                        }
+                        @include responder-a(muypequenio){
+                            padding: 10px;
+                        }
+                        // padding-left: 100px;
+                        a{
+                            text-decoration: none;
+                            color: $moradoH3;
+                            font-size: 20px;
+                        }
+                        a:hover{
+                            color: $moradoPrincipal;
+                        }
+                    }
+                }
+            }
+
         }
         .cv3{
-            padding: 100px;
-            // background-color: forestgreen;
-            // height: 100px;
-            display: grid;
-            justify-items: center;
-            gap: 50px;
+            padding: 2% 10%;
+            // margin-bottom: 2%;
+            // text-align: center;
             .cv31{
-                background-color: rgb(255, 255, 255);
-                border-radius: 20px;
-                width: 1000px;
-                padding: 30px;
+                // display: grid;
+                background-color: white;
+                padding: 5%;
+                margin-bottom: 10px;
+                @include bordeAnimado;
+                li{
+                    // list-style: none;
+                }
             }
         }
     }
+
+    // .cv{
+    //     background-color: $moradoDiv;
+    //     padding-top: 200px;
+    //     display: grid;
+    //     justify-items: center;
+    //     // width: 100%;
+    //     //background-color: aquamarine;
+    //     .cv1{
+    //           background-color: azure;
+    //         // height: 100px;
+    //         display: grid;
+    //         grid-template-columns: 1fr 2fr;
+    //         gap: 20px;
+    //         // width: 100%;
+            
+    //         @include responder-a(extragrande){
+    //             width: 60%;
+    //         }
+    //         // width: 60%;
+    //         @include responder-a(pequeno){
+    //             width: 100%;
+    //             padding: 20px;
+    //         }
+    //         @include responder-a(extrapequenio){
+    //             grid-template-columns: 1fr;
+    //             grid-template-rows: repeat(2, 1fr);
+    //         }
+    //         justify-items: center;
+    //         align-items: center;
+    //         .fotoPerfil{
+    //             // background-color: firebrick;
+    //             display: grid;
+    //             justify-items: end;
+    //             img{
+    //                 width: 200px;
+    //                 @include responder-a(extrapequenio){
+    //                     width: 150px;
+    //                 }
+    //                 border-radius: 50%;
+    //             }
+    //         }
+    //         .nombre{
+    //             //  background-color: purple;
+    //             display: grid;
+    //             justify-items: left;
+    //             align-items: center;
+    //             // width: 60%;
+    //         }
+    //     }
+    //     .cv2{
+    //         margin-top: 50px;
+    //         // background-color: blueviolet;
+    //         display: grid;
+    //         justify-items: center;
+    //         align-items: center;
+
+    //         .links{
+    //             // background-color: antiquewhite;
+    //             @include bordeTop;
+    //             @include bordeBottom;
+    //             // @include responder-a(extragrande){
+    //             //     width: 60%;
+    //             // }
+    //             // width: 60%;
+    //             display: grid;
+    //             // @include responder-a(pequeno){
+    //             //     width: 100%;
+    //             // }
+                
+    //             ul{
+    //                 list-style-type: none;
+    //                 padding: 0;
+    //                 margin: 10px;
+    //                 display: flex;
+    //                 justify-content: center;
+
+    //                 li{
+    //                     margin: 0 15px;
+    //                     font-size: 20px;
+    //                     a{
+    //                         text-decoration: none;
+    //                         color: $moradoH3;
+    //                     }
+    //                     @include responder-a(extrapequenio){
+    //                         font-size: 15px;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     .cv3{
+    //         padding: 100px;
+    //         //  background-color: forestgreen;
+    //         // height: 100px;
+    //         display: grid;
+    //         justify-items: center;
+    //         gap: 50px;
+    //         .cv31{
+    //             background-color: white;
+    //             // border-radius: 20px;
+    //             width: 80%;
+    //             padding: 30px;
+    //             @include bordeAnimado;
+    //             @include responder-a(pequeno){
+    //                 width: 120%;
+                    
+    //             }
+    //         }
+
+    //         // @include responder-a(extragrande){
+    //         //     //padding: 0px;
+                
+    //         // }
+    //     }
+    // }
     
 }
-
+// ----------------------------------------------------
 .politicas{
     background-color: $moradoDiv;
     padding: 100px;
+
+    @include responder-a(pequeno){
+        padding: 50px;
+        margin-top: -15px;
+    }
 }
