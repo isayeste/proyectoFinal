@@ -10,6 +10,10 @@
     .agendarCita{
         display: grid;
         grid-template-columns: 2fr 3fr;
+        @include responder-a(grande){
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+        }
         padding: 50px;
         height: 700px;
         gap: 20px;
@@ -27,6 +31,9 @@
             display: grid;
             align-items: center;
             justify-items: end;
+            @include responder-a(pequeno){
+                justify-items: center;
+            }
             padding: 10%;
             border-radius: 20px;
             box-shadow: 4px 7px 5px 0px rgba(0,0,0,0.2);
@@ -34,12 +41,21 @@
             background: linear-gradient(349deg, rgba(255,255,255,1) 0%, $moradoDiv 51%, $moradoDiv 72%, rgba(255,255,255,1) 100%);
             .texto{
                 text-align: end;
+                @include responder-a(pequeno){
+                    justify-items: center;
+                }
                 h1{
                     text-align: end;
+                    @include responder-a(pequeno){
+                        justify-items: center;
+                    }
                     // align-items: end;
                 }
                 h3{
                     text-align: end;
+                    @include responder-a(pequeno){
+                        justify-items: center;
+                    }
                 }
             }
 
@@ -47,6 +63,11 @@
                 display: grid;
                 gap: 100px;
                 grid-template-columns: repeat(2, 1fr);
+                @include responder-a(pequeno){
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(2, 1fr);
+                    gap: 20px;
+                }
                 .enlace{
                     @include boton(25px, 40px);
                 }
